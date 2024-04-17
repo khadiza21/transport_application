@@ -3,8 +3,8 @@ import './Footer.css';
 const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
-        <div className="topright">
-            <footer className="footer p-10 bg-base-200  text-base-content">
+        <div className="topright ">
+            <footer className="footer py-10 bg-base-200  text-base-content px-48">
                 <nav>
                     <h6 className="footer-title">Services</h6>
                     <a className="link link-hover">Branding</a>
@@ -28,7 +28,7 @@ const Footer = () => {
                 <nav>
                     <form>
                         <h6 className="footer-title">Newsletter</h6>
-                        <fieldset className="form-control w-80">
+                        <fieldset className="form-control w-100">
                             <label className="label">
                                 <span className="label-text">Enter your email address</span>
                             </label>
@@ -40,7 +40,7 @@ const Footer = () => {
                     </form>
                 </nav>
             </footer>
-            <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
+            <footer className="footer px-48 py-4 border-t bg-base-200 text-base-content border-base-300">
                 <aside className="items-center grid-flow-col">
              
                 <aside>
