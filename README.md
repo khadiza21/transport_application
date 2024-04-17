@@ -14,3 +14,6 @@ Admin email:
 Admin Pass: 
 
 
+##### carousel
+- https://github.com/leandrowd/react-responsive-carousel
+- https://github.com/brillout/awesome-react-components
