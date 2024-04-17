@@ -1,0 +1,72 @@
+[
+    {
+      "name": "Dune",
+      "review": "Incredible world-building and storytelling",
+      "star": "5",
+      "img": "dune.jpg",
+      "id": "1234567890"
+    },
+    {
+      "name": "Foundation",
+      "review": "Classic science fiction at its best",
+      "star": "4",
+      "img": "foundation.jpg",
+      "id": "0987654321"
+    },
+    {
+      "name": "Ender's Game",
+      "review": "A must-read for any sci-fi fan",
+      "star": "4.5",
+      "img": "endersgame.jpg",
+      "id": "5678901234"
+    },
+    {
+      "name": "The Hitchhiker's Guide to the Galaxy",
+      "review": "Hilarious and thought-provoking",
+      "star": "4.5",
+      "img": "hitchhikersguide.jpg",
+      "id": "4321098765"
+    },
+    {
+      "name": "Neuromancer",
+      "review": "Revolutionary cyberpunk novel",
+      "star": "4",
+      "img": "neuromancer.jpg",
+      "id": "9876543210"
+    },
+    {
+      "name": "1984",
+      "review": "A dystopian classic",
+      "star": "5",
+      "img": "1984.jpg",
+      "id": "2468135790"
+    },
+    {
+      "name": "Brave New World",
+      "review": "Thought-provoking and unsettling",
+      "star": "4.5",
+      "img": "bravenewworld.jpg",
+      "id": "1357924680"
+    },
+    {
+      "name": "The Martian",
+      "review": "Hard science fiction at its finest",
+      "star": "4.5",
+      "img": "themartian.jpg",
+      "id": "3141592653"
+    },
+    {
+      "name": "Snow Crash",
+      "review": "Fast-paced and mind-bending",
+      "star": "4",
+      "img": "snowcrash.jpg",
+      "id": "2718281828"
+    },
+    {
+      "name": "Ready Player One",
+      "review": "Nostalgic and thrilling",
+      "star": "4.5",
+      "img": "readyplayerone.jpg",
+      "id": "6180339887"
+    }
+  ]
