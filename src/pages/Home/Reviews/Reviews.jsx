@@ -8,7 +8,6 @@ import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css'
 
 
-
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
