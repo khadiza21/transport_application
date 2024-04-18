@@ -17,3 +17,5 @@ Admin Pass:
 ##### carousel
 - https://github.com/leandrowd/react-responsive-carousel
 - https://github.com/brillout/awesome-react-components
+<!-- const Review = ({ item }) => {
+    const { id, name, img, review, star, } = item; -->

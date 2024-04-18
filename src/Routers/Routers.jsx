@@ -12,6 +12,10 @@ import Home from "../pages/Home/Home";
         {
             path: '/',
             element: <Home></Home>
+        },
+        {
+            path: 'serviceitem',
+            element: <ServiceItem></ServiceItem>
         }
       ]
     },

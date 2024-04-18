@@ -19,7 +19,7 @@ const Reviews = () => {
 
             })
 
-    }, [])
+    }, []) 
     return (
         <section className='py-44'>
             <SectionTitle
