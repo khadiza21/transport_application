@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     const navOptions = <>
-
         <li>
             <details>
-                <summary>Servicess</summary>
+                <summary>Services</summary>
                 <ul className="p-2 bg-opacity-50 bg-neutral-950">
                     <li><Link to="/busService">Bus</Link></li>
                     <li><Link to="/carService">Car</Link></li>
@@ -33,7 +32,6 @@ const Navbar = () => {
 
     return (
         // px-48 is appropriet for large device. for small device not appropriet. need to responsive
-
         <div className="navbar fixed z-10 bg-opacity-50  bg-neutral-950 text-white font-bold px-48">
             <div className="navbar-start   mx-auto ">
                 <div className="dropdown">
@@ -44,7 +42,7 @@ const Navbar = () => {
                         {navOptions}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl font-bold">Female Transport</a>
+                <Link to="/" className="btn btn-ghost text-xl font-bold">CityMover</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 text-white font-bold px-48">

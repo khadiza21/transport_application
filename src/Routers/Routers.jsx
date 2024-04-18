@@ -3,7 +3,6 @@ import {
 } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home";
-import ServiceItem from "../pages/ServiceItem/ServiceItem";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import BusService from "../pages/ServiceItem/BusService/BusService";
