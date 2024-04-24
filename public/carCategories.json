@@ -1,0 +1,25 @@
+[
+    {
+        "_id": "66293d9f8be0864a20bafa8e",
+        "carType": "max",
+        "description": "7-seater vehicles that can host 6 passengers comfortably, making them suitable for group outings and sightseeing",
+        "buttonText": "/maxCar",
+        "img": "max.png"
+    },
+    {
+        "_id": "66293e294831e7798f6593a8",
+        "carType": "prime",
+        "description": "Experience maximum comfort and safety with our well-maintained vehicles, ideal for small groups of 4 or individuals",
+        "buttonText": "/primeCar",
+        "img": "prime.png"
+    },
+    {
+        "_id": "66293e294c2aa358ad98f5c8",
+        "carType": "plus",
+        "description": "Senda Car Plus is now at your service for a comfortable and classy commute. Your dream ride within affordable budget is at your doorstep.",
+        "buttonText": "/plusCar",
+        "img": "plus.png"
+    }
+]
+
+

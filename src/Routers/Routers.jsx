@@ -8,6 +8,9 @@ import Contact from "../pages/Contact/Contact";
 import BusService from "../pages/ServiceItem/BusService/BusService";
 import CarService from "../pages/ServiceItem/CarService/CarService";
 import BikeService from "../pages/ServiceItem/BikeService/BikeService";
+import CarMax from "../pages/ServiceItem/CarService/CarMax/CarMax";
+import CarPlus from "../pages/ServiceItem/CarService/CarPlus/CarPlus";
+import CarPrime from "../pages/ServiceItem/CarService/CarPrime/CarPrime";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +40,21 @@ export const router = createBrowserRouter([
       {
         path: 'contact',
         element: <Contact></Contact>
-      }
+
+      },
+      {
+        path: 'plusCar',
+        element: <CarPlus></CarPlus>
+      },
+      {
+        path: 'primeCar',
+        element: <CarPrime></CarPrime>
+      },
+      {
+        path: 'maxCar',
+        element: <CarMax></CarMax>
+      },
+
     ]
   },
 ]);
