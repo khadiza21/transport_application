@@ -11,6 +11,7 @@ import BikeService from "../pages/ServiceItem/BikeService/BikeService";
 import CarMax from "../pages/ServiceItem/CarService/CarMax/CarMax";
 import CarPlus from "../pages/ServiceItem/CarService/CarPlus/CarPlus";
 import CarPrime from "../pages/ServiceItem/CarService/CarPrime/CarPrime";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: 'maxCar',
         element: <CarMax></CarMax>
+      },
+      {
+        path: 'notFound',
+        element: <NotFound></NotFound>
       },
 
     ]

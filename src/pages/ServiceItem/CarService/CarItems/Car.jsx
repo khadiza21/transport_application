@@ -11,7 +11,7 @@ const Car = ({ item }) => {
                     <h2 className="card-title uppercase">CAR {carType}</h2>
                     <p>{description}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-success">   <Link to={buttonText}>Book Now</Link>
+                        <button className="btn btn-success">   <Link to={buttonText}>View Details </Link>
                         </button>
                     </div>
                 </div>
