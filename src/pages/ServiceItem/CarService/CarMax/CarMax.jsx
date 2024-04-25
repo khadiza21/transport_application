@@ -1,22 +1,19 @@
 import useCarService from "../../../../hooks/useCarService";
 
+import { Helmet } from "react-helmet-async";
+import Cover from "../../../Shared/Cover/Cover";
 const CarMax = () => {
 
     const [carItems] = useCarService([]);
-    const max = carItems.filter(item => item.category == 'max');
+    //const max = carItems.filter(item => item.category == 'max');
     return (
-        <div>
+        <div className="">
 
-            <h1>The number of max car : {max.length()}</h1>
-            {/* {
-                max.map(item => <MenuCar
+            <Helmet>
+                <title>City Mover | Car Max Service</title>
+            </Helmet>
+            <Cover img={carmax} title="Car max services"></Cover>
 
-                    key={item._id}
-                    item={item}
-                >
-
-                </MenuCar>)
-            } */}
         </div>
     );
 };
