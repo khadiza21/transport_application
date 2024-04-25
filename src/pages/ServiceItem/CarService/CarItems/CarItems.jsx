@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Car from "./Car";
-import SectionTitle from "../../../Home/Components/SectionTitile";
+import SectionTitle from "../../../Shared/Components/SectionTitile";
 
 const CarItems = () => {
     const [cars, setCars] = useState([]);

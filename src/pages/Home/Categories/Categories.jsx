@@ -1,21 +1,36 @@
-import React from 'react';
-import SectionTitle from '../Components/SectionTitile';
+import React, { useEffect, useState } from 'react';
+import SectionTitle from '../../Shared/Components/SectionTitile';
+import Services from './Services';
 
 const Categories = () => {
-
+    const [services, setServices] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        fetch('categories.json')
+            .then(res => res.json())
+            .then(data => {
+                setServices(data);
+                setLoading(false);
+            })
+    }, [])
     return (
-        <section className='py-48'>
+        <section className='pt-40'>
             <SectionTitle
                 subHeading={"From 08.00am to 10.00pm"}
                 heading={"Categories"}
             >
 
             </SectionTitle>
-            <div className="grid grid-cols-2 gap-4 px-48 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-44 ">
 
-                <div>set 1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis totam officia odit tempora nulla, illum, numquam repudiandae explicabo vitae animi omnis eligendi ab recusandae quia, atque autem praesentium ex fugit consequatur et ducimus accusantium. Vel, eaque laudantium facere nulla architecto doloribus aliquam suscipit. Sunt beatae reprehenderit impedit expedita aperiam, magni id quos deleniti. Obcaecati, sequi necessitatibus minus quis eum quae!</div>
-                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis alias consequatur saepe nostrum, culpa esse eos animi neque modi corrupti nam aliquid sint quae voluptatum consectetur quam vel exercitationem, sit in deleniti ullam quaerat possimus quo praesentium? Corrupti ullam voluptatum eum doloribus animi accusamus est?
-                </div>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    services.map(item => (<Services
+                        key={item._id}
+                        item={item}
+                    ></Services>)
+                    ))}
 
 
             </div>

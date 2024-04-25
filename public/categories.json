@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "66293d9f8be0864a20bafa8f",
+        "serviceType": "Bus",
+        "description": "Service avaiable separately for Female and male. Also provided Ac and Non Ac services.",
+        "img": "bus.png"
+    },
+    {
+        "_id": "66293e294831e7798f6593a8g",
+        "serviceType": "Car",
+        "description": "Car service avaiable for everyone different type size car.",
+        "img": "car.png"
+    },
+    {
+        "_id": "66293e294c2aa358ad98f5c8h",
+        "serviceType": "Bike",
+        "description": "This service available for male .",
+        "img": "bike.png"
+    },
+    {
+        "_id": "66293e294c2aa358ad98f5ci",
+        "serviceType": "Scoty",
+        "description": "The services are provided for girls.",
+        "img": "scoti.png"
+    }
+]
