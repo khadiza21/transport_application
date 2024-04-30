@@ -43,7 +43,7 @@ const Navbar = () => {
                         {navOptions}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost text-xl font-bold">CityMover</Link>
+                <Link to="/" className="btn btn-ghost text-xl font-bold"> <span className='px-0 mx-0 font-bold text-yellow-500 text-[26px]'>City</span>Mover</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 text-white font-bold px-48">
