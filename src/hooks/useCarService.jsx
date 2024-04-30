@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import Loading from "../pages/Shared/Loading/Loading";
 
 const useCarService = () => {
     const [carItems, setCarItems] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('menu.json')
+        fetch('')
             .then(res => res.json())
             .then(data => {
                 setCarItems(data);
                 setLoading(false);
             })
     }, [])
-    return [carItems, loading]
+    return [carItems, loading=Loading]
 }
 
 export default useCarService;

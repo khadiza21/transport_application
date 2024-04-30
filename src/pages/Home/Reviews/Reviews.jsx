@@ -6,15 +6,18 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css'
+import Loading from '../../Shared/Loading/Loading';
 
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetch('http://localhost:5000/review')
             .then(res => res.json())
             .then(data => {
-                setReviews(data)
+                setReviews(data);
+                setLoading(false);
 
             })
 
@@ -30,7 +33,11 @@ const Reviews = () => {
             <div className='px-44'>
                 <Swiper navigation={true} modules={[Navigation]} className="mySwiper ">
 
-                    {
+                    
+                {loading ? (
+                    <Loading></Loading>
+                ) : (
+                    
                         reviews.map(item => <SwiperSlide
 
                             key={item.id} >
@@ -47,7 +54,7 @@ const Reviews = () => {
                             </div>
 
                         </SwiperSlide>)
-                    }
+                  )  }
 
                 </Swiper>
             </div>

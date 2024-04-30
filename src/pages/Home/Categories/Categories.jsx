@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../Shared/Components/SectionTitile';
 import Services from './Services';
+import Loading from '../../Shared/Loading/Loading';
 
 const Categories = () => {
     const [services, setServices] = useState([]);
@@ -24,7 +25,7 @@ const Categories = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-44 ">
 
                 {loading ? (
-                    <p>Loading...</p>
+                    <Loading></Loading>
                 ) : (
                     services.map(item => (<Services
                         key={item._id}

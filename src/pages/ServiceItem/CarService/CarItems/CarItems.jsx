@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Car from "./Car";
 import SectionTitle from "../../../Shared/Components/SectionTitile";
+import Loading from "../../../Shared/Loading/Loading";
 
 const CarItems = () => {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         fetch('http://localhost:5000/cartypes')
             .then(res => res.json())
@@ -24,7 +26,7 @@ const CarItems = () => {
 
             <div className="sm:grid grid-cols-1 lg:grid-cols-3  md:grid-cols-2 gap-4">
                 {loading ? (
-                    <p>Loading...</p>
+                    <Loading></Loading>
                 ) : (
                     cars.map(item => (<Car
                         key={item._id}
