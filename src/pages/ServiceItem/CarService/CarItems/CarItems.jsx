@@ -6,7 +6,7 @@ const CarItems = () => {
     const [cars, setCars] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('carCategories.json')
+        fetch('http://localhost:5000/cartypes')
             .then(res => res.json())
             .then(data => {
                 setCars(data);

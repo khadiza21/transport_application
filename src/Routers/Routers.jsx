@@ -12,6 +12,8 @@ import CarMax from "../pages/ServiceItem/CarService/CarMax/CarMax";
 import CarPlus from "../pages/ServiceItem/CarService/CarPlus/CarPlus";
 import CarPrime from "../pages/ServiceItem/CarService/CarPrime/CarPrime";
 import NotFound from "../pages/NotFound/NotFound";
+import Login from "../pages/Authentication/Login/Login";
+import CreateAccount from "../pages/Authentication/CreateAccount/CreateAccount";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +60,14 @@ export const router = createBrowserRouter([
       {
         path: 'notFound',
         element: <NotFound></NotFound>
+      },
+      {
+        path: 'login',
+        element: <Login></Login>
+      },
+      {
+        path: 'signup',
+        element: <CreateAccount></CreateAccount>
       },
 
     ]
