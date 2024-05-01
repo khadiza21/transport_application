@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Loading from "../pages/Shared/Loading/Loading";
+
 
 const useCarService = () => {
     const [carItems, setCarItems] = useState([]);
@@ -12,7 +12,7 @@ const useCarService = () => {
                 setLoading(false);
             })
     }, [])
-    return [carItems, loading=Loading]
+    return [carItems, loading]
 }
 
 export default useCarService;
