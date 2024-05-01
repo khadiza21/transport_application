@@ -35,6 +35,13 @@ const Login = () => {
         console.log(email, password, selectedValue);
 
         // Perform login logic
+
+        // form.email.value = "";
+        // form.password.value = "";
+        // setSelectedValue("");
+        form.captcha.value = "";
+        form.reset();
+        setSelectedValue("");
     }
 
 
@@ -75,7 +82,7 @@ function ChildComponent({ selectedValue, handleSelectChange, handleLogin, handle
 
 
 
-                               
+
 
 
 
