@@ -24,7 +24,7 @@ const CarItems = () => {
 
             > </SectionTitle>
 
-            <div className="sm:grid grid-cols-1 lg:grid-cols-3  md:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-1 lg:grid-cols-3  md:grid-cols-2 gap-4">
                 {loading ? (
                     <Loading></Loading>
                 ) : (
