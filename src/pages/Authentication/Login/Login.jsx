@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
     const [selectedValue, setSelectedValue] = useState("");
-
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
 
     useEffect(() => {
         loadCaptchaEnginge(6);
