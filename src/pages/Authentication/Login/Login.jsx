@@ -52,6 +52,7 @@ const Login = () => {
                            
                                 <p class="text-red-500 text-xs italic">Please choose a password.</p>
                         </div>
+                        
                         <div class="flex items-center justify-between">
                             <button class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                                 Sign In
