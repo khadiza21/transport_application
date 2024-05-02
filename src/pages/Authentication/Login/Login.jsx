@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
@@ -26,6 +27,23 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                Swal.fire({
+                    title: "Sign In Successfully!",
+                    showClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                });
             })
 
         reset();
@@ -45,7 +63,7 @@ const Login = () => {
             <Helmet>
                 <title>CITY MOVER | Login</title>
             </Helmet>
-          
+
 
 
 
@@ -100,10 +118,7 @@ const Login = () => {
                                     <input
                                         type="password"
                                         placeholder="password"
-                                        {...register("password", {
-                                            required: true,
-                                            validate: value => value === watch('password') || "Passwords do not match"
-                                        })}
+                                        {...register("password", { required: true, })}
                                         className="input input-bordered"
                                         required
                                     />
