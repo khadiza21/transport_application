@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import loginimg from '../../../assets/log2.webp';
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
 import { Helmet } from 'react-helmet-async';
@@ -8,52 +8,44 @@ import { useForm } from 'react-hook-form';
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
-    const { register, handleSubmit, watch, formState: { errors }, } = useForm();
+    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
+    const captchaRef = useRef(null);
     const currentYear = new Date().getFullYear();
+    const { signIn } = useContext(AuthContext);
+
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, []);
+
 
     const onSubmit = (data) => {
+        const { email, password } = data;
         console.log(data);
+
         signIn(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
             })
-        //     // form.email.value = "";
-        //     // form.password.value = "";
 
-        //   form.captcha.value = "";
-        form.reset();
+        reset();
 
-    }
+    };
 
-
-    const { signIn } = useContext(AuthContext);
-
-    useEffect(() => {
-        loadCaptchaEnginge(6);
-    }, [])
 
     const handleValidateCaptcha = (e) => {
         const user_captcha_value = e.target.value;
-        if (validateCaptcha(user_captcha_value)) {
-            setDisabled(false);
-        }
-        else {
-            setDisabled(true)
-        }
+        const isValidCaptcha = validateCaptcha(user_captcha_value);
+        setDisabled(!isValidCaptcha);
+
     }
-
-
-
 
     return (
         <>
             <Helmet>
                 <title>CITY MOVER | Login</title>
             </Helmet>
-            {/* <div className='my-24 lg:px-44 lg:mx-48 sm:px-8 md:px-8'>
-
-                <div className="grid sm:grid-cols-1 lg:grid-cols-2 md:grid-cols-2"> */}
+          
 
 
 
@@ -125,18 +117,18 @@ const Login = () => {
                                     <label className="label ">
                                         <LoadCanvasTemplate />
                                     </label>
-                                    <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="type the captcha above" className="input input-bordered" />
+                                    <input onBlur={handleValidateCaptcha} ref={captchaRef} type="text" name="captcha" placeholder="type the captcha above" className="input input-bordered" />
 
                                 </div>
 
 
 
-                                <div className="flex items-start my-5">
+                                {/* <div className="flex items-start my-5">
                                     <div className="flex items-center h-5">
                                         <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                                     </div>
                                     <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-dark-300">Remember me</label>
-                                </div>
+                                </div> */}
 
 
 
@@ -144,7 +136,7 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover align-baseline font-bold text-sm text-dark-600 hover:text-yellow-800">Forgot password?</a>
                                 </label>
 
-                          
+
                                 <div className="form-control mt-6">
 
                                     <input disabled={disabled} value={"Sign In"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
@@ -155,7 +147,7 @@ const Login = () => {
                             <p className='text-center mb-4 pb-4 '><small className='font-bold'>New Here? <Link className='font-bold text-blue-600' to="/signup">Create Account</Link> </small></p>
                         </div>
 
-                        
+
                         {/* <SocialLogin></SocialLogin> */}
                     </div>
 
@@ -165,8 +157,8 @@ const Login = () => {
 
             </div>
             <p className="text-center text-gray-500 text-xs font-bold my-24">
-                    &copy;{currentYear} bk group. All rights reserved.
-                </p>
+                &copy;{currentYear} bk group. All rights reserved.
+            </p>
 
         </>
 
