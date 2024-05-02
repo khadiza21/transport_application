@@ -1,8 +1,17 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Navbar = () => {
 
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
     const navOptions = <>
 
         <li> <Link to="/home"> <span className='text-white'>Home</span></Link></li>
@@ -34,7 +43,7 @@ const Navbar = () => {
 
     return (
         // px-48 is appropriet for large device. for small device not appropriet. need to responsive bg-base-100
-        <div className= "navbar fixed z-10 bg-opacity-50  bg-neutral-950 text-white px-40">
+        <div className="navbar fixed z-10 bg-opacity-50  bg-neutral-950 text-white px-40">
             <div className="navbar-start   mx-auto ">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,7 +61,12 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-            <Link className='btn font-bold' to="/login">Sign Up</Link>
+                {
+                    user ? <Link onClick={handleLogOut} className='btn font-bold' to="/logout">Sign Out</Link>
+                        : <Link className='btn font-bold' to="/login">Sign Up</Link>
+
+                }
+                <Link className='btn font-bold' to="/login">Sign Up</Link>
             </div>
         </div>
 
