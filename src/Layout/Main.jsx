@@ -5,15 +5,15 @@ import Navbar from "../pages/Shared/Navbar/Navbar";
 
 const Main = () => {
     const location = useLocation();
-    console.log(location);
-    const extractHeaderFooter = location.pathname.includes('login');
+
+    const extractHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signup');
     return (
         <div className="">
-            { extractHeaderFooter ||  <Navbar></Navbar>}
-           
+            {extractHeaderFooter || <Navbar></Navbar>}
+
             <Outlet></Outlet>
-            { extractHeaderFooter || <Footer></Footer>}
-            
+            {extractHeaderFooter || <Footer></Footer>}
+
         </div>
     )
 }
