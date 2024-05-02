@@ -63,7 +63,7 @@ const CreateAccount = () => {
                                     </label>
                                     <input type="text"  {...register("name", { required: true, maxLength: 20, pattern: /^[A-Za-z\s]+$/i })} placeholder="name" className="input input-bordered" required />
                                     {errors.name?.type === "required" && (
-                                        <span className="text-red-600" role="alert">First name is required</span>
+                                        <span className="text-red-600" role="alert"> Name is required</span>
                                     )}
                                     {errors.name?.type === 'pattern' && <p className="text-red-600">Name can only contain letters and spaces</p>}
                                 </div>
