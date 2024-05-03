@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
 
     const updateUserProfile = (name, email, role, phone, gender) => {
         return updateProfile(auth.currentUser, {
-            rolename: role, name: name, phone: phone, email: email, gender: gender
+            rolename: role, name: name, phone: phone, email: email, gender: gender,
 
         });
     }
@@ -40,13 +40,29 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
-    // cosnt userProfileUpdate = (name)
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-            console.log('current user', currentUser);
-            setLoading(false);
+            if (currentUser) {
+                let displayName = currentUser.name;
+                let photoURL = currentUser.photoURL;
+
+
+                setUser({
+                    ...currentUser,
+                    displayName,
+                    photoURL
+                });
+
+                console.log('current user', currentUser);
+                setLoading(false);
+            } else {
+                setUser(null);
+                setLoading(false);
+            }
+
+
         });
         return () => {
             return unsubscribe();

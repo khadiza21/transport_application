@@ -6,6 +6,7 @@ const Navbar = () => {
 
 
     const { user, logOut } = useContext(AuthContext);
+    console.log('user  ',user);
 
     const handleLogOut = () => {
         logOut()
@@ -64,7 +65,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ?<>
-                    <span>{user?.name}</span>
+                    <span>{user?.displayName }</span>
                     <Link onClick={handleLogOut} className='btn font-bold' to="/">Sign Out</Link></>
                         : <Link className='btn font-bold' to="/login">Sign Up</Link>
 

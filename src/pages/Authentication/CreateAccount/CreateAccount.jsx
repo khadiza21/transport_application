@@ -11,20 +11,18 @@ import Swal from "sweetalert2";
 
 const CreateAccount = () => {
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-
-
         const { email, password, name, rolename, gender, phone } = data;
+        console.log(createUser, 'create user')
         createUser(email, password)
-
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
-                console.log(data);
+                console.log('logged user ', loggedUser);
+                console.log('data', data);
                 return updateUserProfile(name, rolename, gender, phone, email);
             })
             .then(() => {
@@ -46,11 +44,6 @@ const CreateAccount = () => {
                     setErrorMessage('An error occurred. Please try again later.');
                 }
             });
-
-
-
-
-
     }
 
     return (
