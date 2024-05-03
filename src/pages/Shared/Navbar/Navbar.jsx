@@ -38,6 +38,7 @@ const Navbar = () => {
         </li>
         <li><Link to="/about"><span className='text-white'>About</span></Link></li>
         <li><Link to="/contact"><span className='text-white'></span>Contact</Link></li>
+        <li><Link to="/secret"><span className='text-white'></span>secret</Link></li>
 
     </>
 
@@ -62,7 +63,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <Link onClick={handleLogOut} className='btn font-bold' to="/logout">Sign Out</Link>
+                    user ? <Link onClick={handleLogOut} className='btn font-bold' to="/">Sign Out</Link>
                         : <Link className='btn font-bold' to="/login">Sign Up</Link>
 
                 }

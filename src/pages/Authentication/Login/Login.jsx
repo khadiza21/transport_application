@@ -2,17 +2,24 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import loginimg from '../../../assets/log2.webp';
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-simple-captcha';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
-    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+
     const captchaRef = useRef(null);
     const currentYear = new Date().getFullYear();
     const { signIn } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -44,6 +51,7 @@ const Login = () => {
                       `
                     }
                 });
+                navigate(from, { replace: true });
             })
 
         reset();
