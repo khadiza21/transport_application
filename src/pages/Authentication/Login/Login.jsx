@@ -98,8 +98,8 @@ const Login = () => {
                                         <span className="label-text font-bold">Join as  </span>
                                     </label>
                                     <div className='input input-bordered' >
-                                        <select type="text" {...register("rolename", { required: true, maxLength: 20 })} placeholder="rolename" id="dropdown" className="border-0 mt-2 border-none outline-none" required >
-                                            <option className="text-gray-400" >Select...</option>
+                                        <select  type="text" {...register("rolename", { required: true, maxLength: 20 })} placeholder="rolename" id="dropdown" className="border-0 mt-2 border-none outline-none w-full" required >
+                                            <option className="text-gray-400 w-full" >Select...</option>
                                             <option value="admin">Admin</option>
                                             <option value="user">User</option>
                                         </select>
