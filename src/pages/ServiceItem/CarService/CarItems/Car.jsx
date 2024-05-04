@@ -11,7 +11,7 @@ const Car = ({ item }) => {
                     <h2 className="card-title uppercase font-bold text-white">CAR {carType}</h2>
                     <p className="text-white">{description}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-outline border-0 bg-slate-200  border-b-4 mt-4 ">   <Link className="font-semibold uppercase border-orange-400" to={buttonText}>View Details </Link>
+                        <button className="btn btn-outline border-0 bg-slate-200  border-b-4 mt-4 ">  <Link className="font-semibold uppercase border-orange-400" to={buttonText}>View Details </Link>
                         </button>
                     </div>
                 </div>

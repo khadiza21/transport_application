@@ -15,6 +15,8 @@ import NotFound from "../pages/NotFound/NotFound";
 import Login from "../pages/Authentication/Login/Login";
 import CreateAccount from "../pages/Authentication/CreateAccount/CreateAccount";
 import PrivateRoute from "./PrivateRoute";
+import FemaleBus from "../pages/ServiceItem/BusService/FemaleBus/FemaleBus";
+import PublicBus from "../pages/ServiceItem/BusService/PublicBus/PublicBus";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +63,14 @@ export const router = createBrowserRouter([
       {
         path: 'maxCar',
         element:   <PrivateRoute><CarMax></CarMax></PrivateRoute>
+      },
+      {
+        path: 'femalebus',
+        element:   <PrivateRoute><FemaleBus></FemaleBus> </PrivateRoute>
+      },
+      {
+        path: 'publicbus',
+        element:   <PrivateRoute> <PublicBus></PublicBus> </PrivateRoute>
       },
       {
         path: 'notFound',

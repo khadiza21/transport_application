@@ -1,14 +1,20 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import Cover from '../../Shared/Cover/Cover';
+import busimg from '../../../assets/buscover.jpg';
 
+import BusCatF from './BusCatF';
+import BusCatP from './BusCatP';
 const BusService = () => {
     return (
-        <div>
+        <>
             <Helmet>
                 <title>City Mover | Bus Service</title>
             </Helmet>
-          
-        </div>
+            <Cover img={busimg} title="Bus services" btntext="Bus"></Cover>
+            <BusCatF></BusCatF>
+            <BusCatP></BusCatP>
+        </>
     );
 };
 

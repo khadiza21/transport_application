@@ -12,7 +12,7 @@ const CarService = () => {
             <Helmet>
                 <title>City Mover | Car Service</title>
             </Helmet>
-            <Cover img={carmax} title="Car services"></Cover>
+            <Cover img={carmax} title="Car services" btntext="Car"></Cover>
 
             <CarItems></CarItems>
             <Earn></Earn>
