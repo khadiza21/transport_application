@@ -20,6 +20,9 @@ import PublicBus from "../pages/ServiceItem/BusService/PublicBus/PublicBus";
 import BikeDetails from "../pages/ServiceItem/BikeService/BikeDetails/BikeDetails";
 import Schotydetails from "../pages/ServiceItem/BikeService/ScotyDetails.jsx/Schotydetails";
 import EarnAuthCategory from "../pages/EarnAuthentication/EarnAuthCategory";
+import BusDriver from "../pages/EarnAuthentication/CreateAccount/BusDriver";
+import CarDriver from "../pages/EarnAuthentication/CreateAccount/CarDriver";
+import BikerDriver from "../pages/EarnAuthentication/CreateAccount/BikerDriver";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +85,18 @@ export const router = createBrowserRouter([
       {
         path: 'scotyside',
         element:   <PrivateRoute> <Schotydetails></Schotydetails> </PrivateRoute>
+      },
+      {
+        path: '/busdriver',
+        element:   <PrivateRoute> <BusDriver></BusDriver> </PrivateRoute>
+      },
+      {
+        path: '/cardriver',
+        element:   <PrivateRoute> <CarDriver></CarDriver> </PrivateRoute>
+      },
+      {
+        path: '/bikedriver',
+        element:   <PrivateRoute> <BikerDriver></BikerDriver> </PrivateRoute>
       },
       {
         path: 'notFound',

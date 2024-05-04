@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import loginimg from '../../../assets/log2.webp';
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";

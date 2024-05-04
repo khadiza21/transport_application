@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import BusDriver from './CreateAccount/BusDriver';
 import BikerDriver from './CreateAccount/BikerDriver';
 import CarDriver from './CreateAccount/CarDriver';
+
 
 
 
@@ -31,9 +32,10 @@ const EarnAuthCategory = () => {
                     <div className="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
                         <div className=" flex justify-center space-x-4 mb-4">
                             {categories.map((category) => (
-                                <button
+                         
+                               <button
                                     key={category}
-                                    onClick={(e) => handleCategoryClick(category,e)}
+                                    onClick={(e) => handleCategoryClick(category, e)}
                                     className={classNames(
                                         'py-2 px-4 font-semibold rounded-lg focus:outline-none',
                                         selectedCategory === category
@@ -55,7 +57,7 @@ const EarnAuthCategory = () => {
                             leaveTo="opacity-0"
                         >
                             <div>
-                               <BusDriver></BusDriver>
+                                <BusDriver></BusDriver>
                             </div>
                         </Transition>
                         <Transition
@@ -68,9 +70,9 @@ const EarnAuthCategory = () => {
                             leaveTo="opacity-0"
                         >
                             <div>
-                              
-                            <BikerDriver></BikerDriver>
-                             
+
+                                <BikerDriver></BikerDriver>
+
                             </div>
                         </Transition>
                         <Transition
@@ -83,7 +85,7 @@ const EarnAuthCategory = () => {
                             leaveTo="opacity-0"
                         >
                             <div>
-                           <CarDriver></CarDriver>
+                                <CarDriver></CarDriver>
                             </div>
                         </Transition>
                     </div>

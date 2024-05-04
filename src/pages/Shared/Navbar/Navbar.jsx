@@ -31,9 +31,9 @@ const Navbar = () => {
             <details>
                 <summary><span className='text-white'>Earn</span></summary>
                 <ul className="p-2 bg-opacity-50 bg-neutral-950">
-                    <li><a><span className='text-white'>Bus</span></a></li>
-                    <li><a><span className='text-white'>Bike</span></a></li>
-                    <li><a><span className='text-white'>Car</span></a></li>
+                    <li><Link to="/busdriver"><span className='text-white'>Bus</span></Link></li>
+                    <li><Link to="/cardriver"><span className='text-white'>Car</span></Link></li>
+                    <li><Link to="/bikedriver"><span className='text-white'>Bike</span></Link></li>
                 </ul>
             </details>
         </li>
