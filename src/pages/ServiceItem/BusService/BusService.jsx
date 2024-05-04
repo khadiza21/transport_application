@@ -7,7 +7,7 @@ const BusService = () => {
             <Helmet>
                 <title>City Mover | Bus Service</title>
             </Helmet>
-            <h4>Bus Service</h4>
+          
         </div>
     );
 };

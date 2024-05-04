@@ -2,7 +2,7 @@
 import {useNavigation } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import useAuth from '../../../hooks/useAuth';
-import useAxiosPublic from './useAxiosPublic';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const GoogleLogin = () => {
     const { googleSignIn } = useAuth();

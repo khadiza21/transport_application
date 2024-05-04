@@ -15,7 +15,7 @@ const CarService = () => {
             <Cover img={carmax} title="Car services"></Cover>
 
             <CarItems></CarItems>
-            <Earn  className=''></Earn>
+            <Earn></Earn>
 
             
 

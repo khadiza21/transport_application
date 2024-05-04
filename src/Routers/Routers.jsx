@@ -15,7 +15,6 @@ import NotFound from "../pages/NotFound/NotFound";
 import Login from "../pages/Authentication/Login/Login";
 import CreateAccount from "../pages/Authentication/CreateAccount/CreateAccount";
 import PrivateRoute from "./PrivateRoute";
-import Secret from "../pages/Shared/Secret/Secret";
 
 export const router = createBrowserRouter([
   {
@@ -74,11 +73,7 @@ export const router = createBrowserRouter([
       {
         path: 'signup',
         element: <CreateAccount></CreateAccount>
-      },
-      {
-        path: 'secret',
-        element: <PrivateRoute><Secret></Secret></PrivateRoute>
-      },
+      }
 
     ]
   },

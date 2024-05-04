@@ -45,7 +45,27 @@ const Login = () => {
                     }
                 });
                 navigate(from, { replace: true });
-            })
+            }).catch(error => {
+                if (error.code === 'auth/invalid-credential') {
+                    Swal.fire({
+                        title: "Invaid email or password.  Try Again!",
+                        showClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeInUp
+                            animate__faster
+                          `
+                        },
+                        hideClass: {
+                            popup: `
+                            animate__animated
+                            animate__fadeOutDown
+                            animate__faster
+                          `
+                        }
+                    });
+                }
+            });
 
         reset();
 

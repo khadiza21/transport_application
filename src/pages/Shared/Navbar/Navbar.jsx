@@ -39,7 +39,7 @@ const Navbar = () => {
         </li>
         <li><Link to="/about"><span className='text-white'>About</span></Link></li>
         <li><Link to="/contact"><span className='text-white'></span>Contact</Link></li>
-        <li><Link to="/secret"><span className='text-white'></span>secret</Link></li>
+     
 
     </>
 
