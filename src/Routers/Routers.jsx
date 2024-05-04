@@ -19,6 +19,7 @@ import FemaleBus from "../pages/ServiceItem/BusService/FemaleBus/FemaleBus";
 import PublicBus from "../pages/ServiceItem/BusService/PublicBus/PublicBus";
 import BikeDetails from "../pages/ServiceItem/BikeService/BikeDetails/BikeDetails";
 import Schotydetails from "../pages/ServiceItem/BikeService/ScotyDetails.jsx/Schotydetails";
+import EarnAuthCategory from "../pages/EarnAuthentication/EarnAuthCategory";
 
 export const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: 'signup',
         element: <CreateAccount></CreateAccount>
+      },
+      {
+        path: 'earnmoneyauth',
+        element:<EarnAuthCategory></EarnAuthCategory>
       }
 
     ]
