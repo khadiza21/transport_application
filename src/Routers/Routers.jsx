@@ -53,15 +53,15 @@ export const router = createBrowserRouter([
       },
       {
         path: 'plusCar',
-        element: <CarPlus></CarPlus>
+        element:   <PrivateRoute><CarPlus></CarPlus></PrivateRoute> 
       },
       {
         path: 'primeCar',
-        element: <CarPrime></CarPrime>
+        element:   <PrivateRoute><CarPrime></CarPrime></PrivateRoute>
       },
       {
         path: 'maxCar',
-        element: <CarMax></CarMax>
+        element:   <PrivateRoute><CarMax></CarMax></PrivateRoute>
       },
       {
         path: 'notFound',
