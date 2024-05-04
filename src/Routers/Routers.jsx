@@ -17,6 +17,8 @@ import CreateAccount from "../pages/Authentication/CreateAccount/CreateAccount";
 import PrivateRoute from "./PrivateRoute";
 import FemaleBus from "../pages/ServiceItem/BusService/FemaleBus/FemaleBus";
 import PublicBus from "../pages/ServiceItem/BusService/PublicBus/PublicBus";
+import BikeDetails from "../pages/ServiceItem/BikeService/BikeDetails/BikeDetails";
+import Schotydetails from "../pages/ServiceItem/BikeService/ScotyDetails.jsx/Schotydetails";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +73,14 @@ export const router = createBrowserRouter([
       {
         path: 'publicbus',
         element:   <PrivateRoute> <PublicBus></PublicBus> </PrivateRoute>
+      },
+      {
+        path: 'bikeside',
+        element:   <PrivateRoute> <BikeDetails></BikeDetails> </PrivateRoute>
+      },
+      {
+        path: 'scotyside',
+        element:   <PrivateRoute> <Schotydetails></Schotydetails> </PrivateRoute>
       },
       {
         path: 'notFound',
