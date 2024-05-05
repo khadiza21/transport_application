@@ -8,7 +8,7 @@ const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
     const [userData, loading] = useUsersAuth();
-    const [driverData] = busdriverdata(); 
+    const [driverData] = busdriverdata();
     console.log(userData?.role, 'rolename');
     console.log(driverData?.role, 'driver rolename');
     console.log('user data from navbar', userData);
@@ -24,18 +24,19 @@ const Navbar = () => {
 
         <li> <Link to="/home"> <span className='text-white'>Home</span></Link></li>
 
+        {driverData && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus') ? null :
+            <li>
+                <details>
+                    <summary><span className='text-white'>Services</span></summary>
+                    <ul className="p-2 bg-opacity-50 bg-neutral-950">
+                        <li><Link to="/busService"><span className='text-white'>Bus</span></Link></li>
+                        <li><Link to="/carService"><span className='text-white'>Car</span></Link></li>
+                        <li><Link to="/bikeService"><span className='text-white'>Bike</span></Link></li>
 
-        <li>
-            <details>
-                <summary><span className='text-white'>Services</span></summary>
-                <ul className="p-2 bg-opacity-50 bg-neutral-950">
-                    <li><Link to="/busService"><span className='text-white'>Bus</span></Link></li>
-                    <li><Link to="/carService"><span className='text-white'>Car</span></Link></li>
-                    <li><Link to="/bikeService"><span className='text-white'>Bike</span></Link></li>
-
-                </ul>
-            </details>
-        </li>
+                    </ul>
+                </details>
+            </li>
+        }
 
         {userData && (userData?.role === 'user' || userData?.role === 'admin') ? null :
             <li>
@@ -51,10 +52,10 @@ const Navbar = () => {
         }
 
 
-        {userData && (userData?.role === 'user' ) ? <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
-        {userData && ( userData?.role === 'admin') ? <li><Link to="/admindashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
-        {driverData && ( driverData?.role === 'public' || driverData?.role === 'female') ? <li><Link to="/busdriver"><span className='text-white'>DashBoard</span></Link></li> : null}
-        
+        {userData && (userData?.role === 'user') ? <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
+        {userData && (userData?.role === 'admin') ? <li><Link to="/admindashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
+        {driverData && (driverData?.role === 'publicbus' || driverData?.role === 'femalebus') ? <li><Link to="/busdriver"><span className='text-white'>DashBoard</span></Link></li> : null}
+
 
 
 

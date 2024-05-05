@@ -12,7 +12,7 @@ const busdriverdata = () => {
 
 
     useEffect(() => {
-      
+
         if (!user) {
             setUserData(null);
             setLoading(false);
@@ -41,7 +41,7 @@ const busdriverdata = () => {
 
         fetchData();
     }, [user]);
-    return [driverData,loading];
+    return [driverData, loading];
 };
 
 export default busdriverdata;

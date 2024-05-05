@@ -6,7 +6,7 @@ import Navbar from "../pages/Shared/Navbar/Navbar";
 const Main = () => {
     const location = useLocation();
 
-    const extractHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signup') || location.pathname.includes('earnmoneyauth')|| location.pathname.includes('busdriver');
+    const extractHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signup') || location.pathname.includes('earnmoneyauth')|| location.pathname.includes('busdriver') || location.pathname.includes('userdashboard')|| location.pathname.includes('admindashboard');
     return (
         <div className="">
             {extractHeaderFooter || <Navbar></Navbar>}
