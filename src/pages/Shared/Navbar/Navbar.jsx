@@ -2,12 +2,16 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import useUsersAuth from '../../../hooks/useUsersAuth';
+import busdriverdata from '../../../hooks/busdriverdata';
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
-    // const [userData, loading] = useUsersAuth();
-    //  console.log('user data from navbar', userData);
+    const [userData, loading] = useUsersAuth();
+    const [driverData] = busdriverdata(); 
+    console.log(userData?.role, 'rolename');
+    console.log(driverData?.role, 'driver rolename');
+    console.log('user data from navbar', userData);
 
 
 
@@ -33,22 +37,24 @@ const Navbar = () => {
             </details>
         </li>
 
-        {/* {userData.role === 'user' || userData.role === 'admin' ? <></> : */}
-        <li>
-            <details>
-                <summary><span className='text-white'>Earn</span></summary>
-                <ul className="p-2 bg-opacity-50 bg-neutral-950">
-                    <li><Link to="/busdriver"><span className='text-white'>Bus</span></Link></li>
-                    <li><Link to="/cardriver"><span className='text-white'>Car</span></Link></li>
-                    <li><Link to="/bikedriver"><span className='text-white'>Bike</span></Link></li>
-                </ul>
-            </details>
-        </li>
-        {/* } */}
+        {userData && (userData?.role === 'user' || userData?.role === 'admin') ? null :
+            <li>
+                <details>
+                    <summary><span className='text-white'>Earn</span></summary>
+                    <ul className="p-2 bg-opacity-50 bg-neutral-950">
+                        <li><Link to="/busdriver"><span className='text-white'>Bus</span></Link></li>
+                        <li><Link to="/cardriver"><span className='text-white'>Car</span></Link></li>
+                        <li><Link to="/bikedriver"><span className='text-white'>Bike</span></Link></li>
+                    </ul>
+                </details>
+            </li>
+        }
 
 
-        {/* {userData.role === 'user' || userData.role === 'admin' ?: <></>} */}
-        <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li>
+        {userData && (userData?.role === 'user' ) ? <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
+        {userData && ( userData?.role === 'admin') ? <li><Link to="/admindashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
+        {driverData && ( driverData?.role === 'public' || driverData?.role === 'female') ? <li><Link to="/busdriver"><span className='text-white'>DashBoard</span></Link></li> : null}
+        
 
 
 

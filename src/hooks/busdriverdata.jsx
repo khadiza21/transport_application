@@ -12,7 +12,12 @@ const busdriverdata = () => {
 
 
     useEffect(() => {
-        if (!user) return;
+      
+        if (!user) {
+            setUserData(null);
+            setLoading(false);
+            return;
+        };
 
         const fetchData = () => {
             fetch(`http://localhost:5000/busdriveraccount/${user._id}`)

@@ -4,7 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const useUsersAuth = () => {
     const { user } = useContext(AuthContext);
-    console.log('my user now', user._id);
+    console.log('my user now', user);
 
 
     const [userData, setUserData] = useState(null);
@@ -13,7 +13,11 @@ const useUsersAuth = () => {
 
 
     useEffect(() => {
-        if (!user) return;
+        if (!user) {
+            setUserData(null);
+            setLoading(false);
+            return;
+        };
 
         const fetchData = () => {
          
@@ -38,6 +42,9 @@ const useUsersAuth = () => {
 
        fetchData();
     }, [user]);
+
+
+
     return [userData, loading];
 };
 
