@@ -7,15 +7,15 @@ const BusDriversDashBoard = () => {
 
     return (
         <div>
-            <h1>bus driver</h1>
-            <Link to='/'><button className="btn btn-success"> GO Home</button></Link>
-            <div>
+            <h1 className="font-bold  text-dark text-5xl m-10 p-10 text-center">bus driver Dashboard</h1>
+            <Link  className='flex justify-center items-center mt-2' to='/'><button className="btn btn-success"> GO Home</button></Link>
+            <div className="">
                 {loading ? (
                     <Loading></Loading>
                 ) : (
-                    <div>
+                    <div className="">
                         {driverData && (
-                            <div>
+                            <div className='text-center font-bold'>
                                 <p>Name: {driverData.name}</p>
                                 <p>Email: {driverData.email}</p>
 

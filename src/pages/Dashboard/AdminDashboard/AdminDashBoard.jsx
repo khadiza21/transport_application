@@ -7,14 +7,14 @@ const AdminDashBoard = () => {
     const [userData, loading] = useUsersAuth(); 
     return (
         <div>
-            <h1>admin dashboard</h1>
+            <h1 className="font-bold  text-dark text-5xl m-10 p-10 text-center">admin dashboard</h1>
        
-            <Link to='/'><button className="btn btn-success"> GO Home</button></Link>
+            <Link  className='flex justify-center items-center mt-2' to='/'><button className="btn btn-success"> GO Home</button></Link>
             <div>
                 {loading ? (
                     <Loading></Loading>
                 ) : (
-                    <div>
+                    <div className='text-center font-bold'>
                         {userData && (
                             <div>
                                 <p>Name: {userData.name}</p>
