@@ -2,58 +2,59 @@ import { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../providers/AuthProviderBus';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { AuthContext } from '../../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const BusDriver = () => {
-    // const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
-    const { createUser, updatebusDriverProfile } = useContext(AuthContext)|| {};
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
-
     const onSubmit = (data) => {
-        console.log(createUser, 'create bus driver')
+        console.log(createUser, 'create user')
         createUser(data.email, data.password)
             .then(result => {
-                const loggedUser = result.busdriver;
+                const loggedUser = result.user;
                 console.log('logged user ', loggedUser);
-                // updatebusDriverProfile(data.name, data.role, data.gender, data.phone, data.email)
-                //     .then(() => {
-                //         const busDriverInfo = {
-                //             name: data.name,
-                //             email: data.email,
-                //             role: data.role,
-                //             gender: data.gender,
-                //             phone: data.phone
-                //         };
-                //         axiosPublic.post('/busdriveraccount', busDriverInfo)
-                //             .then(res => {
-                //                 if (res.data.insertedId) {
-                //                     console.log('bus driver added to the database')
-                //                     reset();
-                //                     Swal.fire({
-                //                         position: 'top-end',
-                //                         icon: 'success',
-                //                         title: 'driver created successfully.',
-                //                         showConfirmButton: false,
-                //                         timer: 1500
-                //                     });
-                //                     navigate("/");
+                updateUserProfile(data.name, data.role, data.gender, data.phone, data.email)
+                    .then(() => {
+                        const busdriverinfo = {
+                            name: data.name,
+                            email: data.email,
+                            role: data.role,
+                            gender: data.gender,
+                            phone: data.phone
+                        };
+                        axiosPublic.post('/busdriveraccount', busdriverinfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user added to the database')
+                                    reset();
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User created successfully.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate("/");
 
-                //                 } else {
-                //                     setErrorMessage('An error occurred while adding user to the database.');
-                //                 }
-                //             })
-                //             .catch(error => {
-                //                 console.error("Error adding user to the database:", error);
-                //                 setErrorMessage('An error occurred while adding user to the database. Please try again later.');
-                //             });
-                //     })
-                //     .catch(error => {
-                //         console.error("Error updating user profile:", error);
-                //         setErrorMessage('An error occurred while updating user profile. Please try again later.');
-                //     });
+                                } else {
+                                    setErrorMessage('An error occurred while adding user to the database.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Error adding user to the database:", error);
+                                setErrorMessage('An error occurred while adding user to the database. Please try again later.');
+                            });
+                    })
+                    .catch(error => {
+                        console.error("Error updating user profile:", error);
+                        setErrorMessage('An error occurred while updating user profile. Please try again later.');
+                    });
             })
 
             .catch(error => {
@@ -64,7 +65,6 @@ const BusDriver = () => {
                 }
             });
     };
-
 
 
     return (
@@ -133,8 +133,8 @@ const BusDriver = () => {
                         </label>
                         <div className="input input-bordered">
                             <select type="text" {...register("gender", { required: true, maxLength: 20 })} placeholder="gender" required className="border-0 mt-2 border-none outline-none" >
-                                <option value="female">female</option>
-                                <option value="male">male</option>
+                                <option value="femalebus">female</option>
+                                <option value="malebus">male</option>
                                 <option value="other">other</option>
                             </select>
                         </div>
