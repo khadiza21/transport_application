@@ -14,9 +14,9 @@ const AdminDashBoard = () => {
                 {loading ? (
                     <Loading></Loading>
                 ) : (
-                    <div className='text-center font-bold'>
+                    <div>
                         {userData && (
-                            <div>
+                            <div className='text-center font-bold'>
                                 <p>Name: {userData.name}</p>
                                 <p>Email: {userData.email}</p>
 
