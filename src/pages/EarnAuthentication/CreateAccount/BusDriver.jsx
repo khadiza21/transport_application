@@ -198,7 +198,7 @@ const BusDriver = () => {
                     </div>
                 </form>
             </div>
-            <p className='text-center mb-4 pb-4 '><small className='font-bold'>Already have an account <Link className='font-bold text-blue-600' to="/">SignUp</Link> </small></p>
+            <p className='text-center mb-4 pb-4 '><small className='font-bold'>Already have an account <Link className='font-bold text-blue-600' to="/signupdriver">SignIn</Link> </small></p>
         </>
     );
 };

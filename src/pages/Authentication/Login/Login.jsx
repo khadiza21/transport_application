@@ -142,9 +142,8 @@ const Login = () => {
                                     </div>
 
                                 </form>
-                                {/* <GoogleLogin></GoogleLogin> */}
                             </div>
-                            <p className='text-center mb-4 pb-4 '><small className='font-bold'>New Here? <Link className='font-bold text-blue-600' to="/signup">Create Account</Link> </small></p>
+                            <p className='text-center mb-4 pb-4 '><small className='font-bold'>New Here? <Link className='font-bold text-blue-600' to="/signupdriver">Create Account</Link> </small></p>
                         </div>
                     </div>
                 </div>
