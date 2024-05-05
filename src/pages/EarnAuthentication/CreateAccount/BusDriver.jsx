@@ -16,7 +16,6 @@ const BusDriver = () => {
 
     const onSubmit = (data) => {
         console.log(createUser, 'create user')
-        console.log('uid');
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;

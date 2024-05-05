@@ -1,12 +1,15 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import useUsersAuth from '../../../hooks/useUsersAuth';
 
 const Navbar = () => {
 
-
     const { user, logOut } = useContext(AuthContext);
-    console.log('user  ', user);
+    // const [userData, loading] = useUsersAuth();
+    //  console.log('user data from navbar', userData);
+
+
 
     const handleLogOut = () => {
         logOut()
@@ -16,6 +19,8 @@ const Navbar = () => {
     const navOptions = <>
 
         <li> <Link to="/home"> <span className='text-white'>Home</span></Link></li>
+
+
         <li>
             <details>
                 <summary><span className='text-white'>Services</span></summary>
@@ -27,6 +32,8 @@ const Navbar = () => {
                 </ul>
             </details>
         </li>
+
+        {/* {userData.role === 'user' || userData.role === 'admin' ? <></> : */}
         <li>
             <details>
                 <summary><span className='text-white'>Earn</span></summary>
@@ -37,6 +44,15 @@ const Navbar = () => {
                 </ul>
             </details>
         </li>
+        {/* } */}
+
+
+        {/* {userData.role === 'user' || userData.role === 'admin' ?: <></>} */}
+        <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li>
+
+
+
+
         <li><Link to="/about"><span className='text-white'>About</span></Link></li>
         <li><Link to="/contact"><span className='text-white'>Contact</span></Link></li>
 
@@ -65,7 +81,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ? <>
-                        <span>{user?.name}</span>
+                        <span></span>
                         <Link onClick={handleLogOut} className='btn font-bold' to="/">Sign Out</Link></>
                         : <Link className='btn font-bold' to="/login">Sign Up</Link>
 

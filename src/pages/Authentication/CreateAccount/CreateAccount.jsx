@@ -20,10 +20,12 @@ const CreateAccount = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log('logged user ', loggedUser);
-                updateUserProfile(data.name, data.role, data.gender, data.phone, data.email)
+                console.log('logged user ', loggedUser.uid);
+                const uid = loggedUser.uid;
+                updateUserProfile(data.name, data.role, data.gender, data.phone, data.email,uid)
                     .then(() => {
                         const userInfo = {
+                            _id: uid,
                             name: data.name,
                             email: data.email,
                             role: data.role,

@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-
-
 const useCarService = () => {
     const [carItems, setCarItems] = useState([]);
     const [loading, setLoading] = useState(true);
