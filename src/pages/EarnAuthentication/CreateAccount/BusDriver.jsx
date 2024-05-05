@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import { AuthContext } from '../../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const BusDriver = () => {
     const axiosPublic = useAxiosPublic();
@@ -83,8 +83,8 @@ const BusDriver = () => {
                         </label>
                         <div className='input input-bordered' >
                             <select type="text" {...register("role", { required: true, maxLength: 20 })} placeholder="" id="dropdown" className="w-full border-0 mt-2 border-none outline-none" required >
-                                <option value="female">Only Female Passanger</option>
-                                <option value="public">Public Passanger</option>
+                                <option value="femalebus">Only Female Passanger</option>
+                                <option value="publicbus">Public Passanger</option>
                             </select>
                         </div>
 
@@ -133,8 +133,8 @@ const BusDriver = () => {
                         </label>
                         <div className="input input-bordered">
                             <select type="text" {...register("gender", { required: true, maxLength: 20 })} placeholder="gender" required className="border-0 mt-2 border-none outline-none" >
-                                <option value="femalebus">female</option>
-                                <option value="malebus">male</option>
+                                <option value="female">female</option>
+                                <option value="male">male</option>
                                 <option value="other">other</option>
                             </select>
                         </div>
