@@ -24,6 +24,7 @@ import BusDriver from "../pages/EarnAuthentication/CreateAccount/BusDriver";
 import CarDriver from "../pages/EarnAuthentication/CreateAccount/CarDriver";
 import BikerDriver from "../pages/EarnAuthentication/CreateAccount/BikerDriver";
 import DriversRoute from "./DriversRoute";
+import BusDriversDashBoard from "../pages/Dashboard/DriverDashBoard/BusDriversDashBoard";
 
 export const router = createBrowserRouter([
   {
@@ -89,7 +90,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'busdriver',
-        element: <DriversRoute><BusDriver></BusDriver> </DriversRoute>
+        element: <DriversRoute><BusDriversDashBoard></BusDriversDashBoard> </DriversRoute>
       },
       {
         path: 'cardriver',
