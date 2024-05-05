@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const BusDriver = () => {
+
     const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -15,13 +16,16 @@ const BusDriver = () => {
 
     const onSubmit = (data) => {
         console.log(createUser, 'create user')
+        console.log('uid');
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log('logged user ', loggedUser);
-                updateUserProfile(data.name, data.role, data.gender, data.phone, data.email)
+                console.log('logged user ', loggedUser.uid);
+                const uid = loggedUser.uid;
+                updateUserProfile(data.name, data.role, data.gender, data.phone, data.email, uid)
                     .then(() => {
                         const busdriverinfo = {
+                            _id: uid,
                             name: data.name,
                             email: data.email,
                             role: data.role,

@@ -42,12 +42,14 @@ const AuthProvider = ({ children }) => {
             if (currentUser) {
                 let displayName = currentUser.name;
                 let photoURL = currentUser.photoURL;
+                let _id = currentUser.uid;
 
 
                 setUser({
                     ...currentUser,
                     displayName,
-                    photoURL
+                    photoURL,
+                    _id
                 });
 
                 console.log('current user', currentUser);
