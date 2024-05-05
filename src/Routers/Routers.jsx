@@ -23,6 +23,7 @@ import EarnAuthCategory from "../pages/EarnAuthentication/EarnAuthCategory";
 import BusDriver from "../pages/EarnAuthentication/CreateAccount/BusDriver";
 import CarDriver from "../pages/EarnAuthentication/CreateAccount/CarDriver";
 import BikerDriver from "../pages/EarnAuthentication/CreateAccount/BikerDriver";
+import DriversRoute from "./DriversRoute";
 
 export const router = createBrowserRouter([
   {
@@ -60,43 +61,43 @@ export const router = createBrowserRouter([
       },
       {
         path: 'plusCar',
-        element:   <PrivateRoute><CarPlus></CarPlus></PrivateRoute> 
+        element: <PrivateRoute><CarPlus></CarPlus></PrivateRoute>
       },
       {
         path: 'primeCar',
-        element:   <PrivateRoute><CarPrime></CarPrime></PrivateRoute>
+        element: <PrivateRoute><CarPrime></CarPrime></PrivateRoute>
       },
       {
         path: 'maxCar',
-        element:   <PrivateRoute><CarMax></CarMax></PrivateRoute>
+        element: <PrivateRoute><CarMax></CarMax></PrivateRoute>
       },
       {
         path: 'femalebus',
-        element:   <PrivateRoute><FemaleBus></FemaleBus> </PrivateRoute>
+        element: <PrivateRoute><FemaleBus></FemaleBus> </PrivateRoute>
       },
       {
         path: 'publicbus',
-        element:   <PrivateRoute> <PublicBus></PublicBus> </PrivateRoute>
+        element: <PrivateRoute> <PublicBus></PublicBus> </PrivateRoute>
       },
       {
         path: 'bikeside',
-        element:   <PrivateRoute> <BikeDetails></BikeDetails> </PrivateRoute>
+        element: <PrivateRoute> <BikeDetails></BikeDetails> </PrivateRoute>
       },
       {
         path: 'scotyside',
-        element:   <PrivateRoute> <Schotydetails></Schotydetails> </PrivateRoute>
+        element: <PrivateRoute> <Schotydetails></Schotydetails> </PrivateRoute>
       },
       {
-        path: '/busdriver',
-        element:   <PrivateRoute> <BusDriver></BusDriver> </PrivateRoute>
+        path: 'busdriver',
+        element: <DriversRoute><BusDriver></BusDriver> </DriversRoute>
       },
       {
-        path: '/cardriver',
-        element:   <PrivateRoute> <CarDriver></CarDriver> </PrivateRoute>
+        path: 'cardriver',
+        element: <DriversRoute><CarDriver></CarDriver> </DriversRoute>
       },
       {
-        path: '/bikedriver',
-        element:   <PrivateRoute> <BikerDriver></BikerDriver> </PrivateRoute>
+        path: 'bikedriver',
+        element: <DriversRoute><BikerDriver></BikerDriver> </DriversRoute>
       },
       {
         path: 'notFound',
@@ -112,7 +113,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'earnmoneyauth',
-        element:<EarnAuthCategory></EarnAuthCategory>
+        element: <EarnAuthCategory></EarnAuthCategory>
       }
 
     ]
