@@ -7,7 +7,7 @@ const Categories = () => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('https://transfor-f-server-jbh3rh2qc-bibi-khadizas-projects.vercel.app/categories')
             .then(res => res.json())
             .then(data => {
                 setServices(data);

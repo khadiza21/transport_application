@@ -15,7 +15,7 @@ const useCarDriverData = () => {
             return;
         };
         const fetchData = () => {
-            fetch(`http://localhost:5000/cardriveraccount/${user._id}`)
+            fetch(`https://transfor-f-server-jbh3rh2qc-bibi-khadizas-projects.vercel.app/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://transfor-f-server-jbh3rh2qc-bibi-khadizas-projects.vercel.app/'
 })
 
 const useAxiosPublic = () => {

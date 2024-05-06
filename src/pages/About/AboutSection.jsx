@@ -8,7 +8,7 @@ const AboutSection = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/aboutcart')
+        fetch('https://transfor-f-server-jbh3rh2qc-bibi-khadizas-projects.vercel.app/aboutcart')
             .then(res => res.json())
             .then(data => {
                 setAboutcart(data);
