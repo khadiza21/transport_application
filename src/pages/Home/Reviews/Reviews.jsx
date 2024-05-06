@@ -9,11 +9,12 @@ import '@smastrom/react-rating/style.css'
 import Loading from '../../Shared/Loading/Loading';
 
 
+
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch('https://transfar-f-server2.vercel.app/review')
             .then(res => res.json())
             .then(data => {
                 setReviews(data);

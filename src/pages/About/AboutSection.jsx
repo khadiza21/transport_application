@@ -8,11 +8,12 @@ const AboutSection = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://transfor-f-server-jbh3rh2qc-bibi-khadizas-projects.vercel.app/aboutcart')
+        fetch('https://transfar-f-server2.vercel.app/aboutcart')
             .then(res => res.json())
             .then(data => {
                 setAboutcart(data);
                 setLoading(false);
+                console.log('about data', data)
             })
     }, [])
     return (

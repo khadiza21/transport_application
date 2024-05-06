@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-
-
 const useUsersAuth = () => {
     const { user } = useContext(AuthContext);
     console.log('my user now', user);
@@ -20,8 +18,8 @@ const useUsersAuth = () => {
         };
 
         const fetchData = () => {
-         
-            fetch(`https://transfor-f-server-jbh3rh2qc-bibi-khadizas-projects.vercel.app/${user._id}`)
+
+            fetch(`https://transfar-f-server2.vercel.app/users/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {
@@ -40,7 +38,7 @@ const useUsersAuth = () => {
                 });
         };
 
-       fetchData();
+        fetchData();
     }, [user]);
 
 

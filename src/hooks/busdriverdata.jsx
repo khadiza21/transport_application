@@ -20,7 +20,7 @@ const busdriverdata = () => {
         };
 
         const fetchData = () => {
-            fetch(`https://transfor-f-server-jbh3rh2qc-bibi-khadizas-projects.vercel.app/${user._id}`)
+            fetch(`https://transfar-f-server2.vercel.app/cardriveraccount/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {
