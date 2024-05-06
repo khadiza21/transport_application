@@ -11,7 +11,7 @@ const BusService = () => {
             <Helmet>
                 <title>City Mover | Bus Service</title>
             </Helmet>
-            <Cover img={busimg} title="Bus services" btntext="Earn By Bus" buttonText='/busdriverdashboard' ></Cover>
+            <Cover img={busimg} title="Bus services" btntext="Earn By Bus" buttonText='/' ></Cover>
             <BusCatF></BusCatF>
             <BusCatP></BusCatP>
         </>
