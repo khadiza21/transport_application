@@ -8,7 +8,7 @@ const CarItems = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://transfar-f-server2.vercel.app/cartypes')
+        fetch('https://transfar-f-server2-bibi-khadizas-projects.vercel.app/cartypes')
             .then(res => res.json())
             .then(data => {
                 setCars(data);

@@ -19,7 +19,7 @@ const useUsersAuth = () => {
 
         const fetchData = () => {
 
-            fetch(`https://transfar-f-server2.vercel.app/users/${user._id}`)
+            fetch(`https://transfar-f-server2-bibi-khadizas-projects.vercel.app/users/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {
