@@ -1,4 +1,4 @@
-import {  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
@@ -9,7 +9,7 @@ const BusDriverLog = () => {
     const { signIn } = useContext(AuthContext);
 
     const navigate = useNavigate();
- 
+
 
     const onSubmit = (data) => {
         const { email, password } = data;
@@ -72,21 +72,8 @@ const BusDriverLog = () => {
                     </div>
                     <div className="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text font-bold">Join as  </span>
-                                </label>
-                                <div className='input input-bordered' >
-                                    <select type="text" {...register("rolename", { required: true, maxLength: 20 })} placeholder="rolename" id="dropdown" className="border-0 mt-2 border-none outline-none w-full" required >
-                                        <option className="text-gray-400 w-full" >Select...</option>
-                                        <option value="femalebus">Female Bus Service Provider</option>
-                                        <option value="publicbus">Public Bus Service Provider</option>
-                                    </select>
-                                </div>
-                                {errors.rolename?.type === "required" && (
-                                    <span className="text-red-600" role="alert">This is required</span>
-                                )}
-                            </div>
+
+
 
 
                             <div className="form-control">
@@ -118,8 +105,13 @@ const BusDriverLog = () => {
                                 <input value={"Sign In"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
                             </div>
 
-                        </form>
 
+                        </form>
+                        <div className=" mt-4 w-full">
+                            <Link to='/' ><button className=" w-full btn bg-slate-600 hover:bg-slate-700 text-white"> Go Home</button></Link>
+
+                        </div>
+                        <p className='text-center mb-4 pb-4 mt-4 '><small className='font-bold'>Create account..  <Link className='font-bold text-blue-600' to="/earnmoneyauth"> SignUp</Link> </small></p>
                     </div>
                 </div>
             </div>

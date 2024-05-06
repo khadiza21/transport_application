@@ -200,6 +200,10 @@ const BusDriver = () => {
                         <input value={"Sign Up"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
                     </div>
                 </form>
+                <div className=" mt-6 w-full">
+                    <Link to='/' ><button className=" w-full btn bg-slate-600 hover:bg-slate-700 text-white"> Go Home</button></Link>
+
+                </div>
             </div>
             <p className='text-center mb-4 pb-4 '><small className='font-bold'>Already have an account <Link className='font-bold text-blue-600' to="/signupdriver">SignIn</Link> </small></p>
         </>

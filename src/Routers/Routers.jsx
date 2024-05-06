@@ -27,6 +27,7 @@ import BusDriversDashBoard from "../pages/Dashboard/DriverDashBoard/BusDriversDa
 import BusDriverLog from "../pages/EarnAuthentication/Login/BusDriverLog";
 import UserDashBoard from "../pages/Dashboard/UserDashBoard/UserDashBoard";
 import AdminDashBoard from "../pages/Dashboard/AdminDashboard/AdminDashBoard";
+import CarDriverDashBoard from "../pages/Dashboard/DriverDashBoard/CarDriverDashBoard";
 
 export const router = createBrowserRouter([
   {
@@ -99,8 +100,12 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><AdminDashBoard></AdminDashBoard></PrivateRoute>
       },
       {
-        path: 'busdriver',
+        path: 'busdriverdashboard',
         element: <DriversRoute><BusDriversDashBoard></BusDriversDashBoard> </DriversRoute>
+      },
+      {
+        path: 'cardriverdashboard',
+        element: <DriversRoute> <CarDriverDashBoard></CarDriverDashBoard> </DriversRoute>
       },
       {
         path: 'cardriver',

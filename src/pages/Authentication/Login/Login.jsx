@@ -95,21 +95,7 @@ const Login = () => {
                                 <form onSubmit={handleSubmit(onSubmit)}>
 
 
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text font-bold">Join as  </span>
-                                        </label>
-                                        <div className='input input-bordered' >
-                                            <select type="text" {...register("rolename", { required: true, maxLength: 20 })} placeholder="rolename" id="dropdown" className="border-0 mt-2 border-none outline-none w-full" required >
-                                                <option className="text-gray-400 w-full" >Select...</option>
-                                                <option value="admin">Admin</option>
-                                                <option value="user">User</option>
-                                            </select>
-                                        </div>
-                                        {errors.rolename?.type === "required" && (
-                                            <span className="text-red-600" role="alert">This is required</span>
-                                        )}
-                                    </div>
+
 
 
                                     <div className="form-control">
@@ -142,6 +128,10 @@ const Login = () => {
                                     </div>
 
                                 </form>
+                                <div className=" mt-6 w-full">
+                                    <Link to='/' ><button className=" w-full btn bg-slate-600 hover:bg-slate-700 text-white"> Back Home</button></Link>
+
+                                </div>
                             </div>
                             <p className='text-center mb-4 pb-4 '><small className='font-bold'>New Here? <Link className='font-bold text-blue-600' to="/signup">Create Account</Link> </small></p>
                         </div>

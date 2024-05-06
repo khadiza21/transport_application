@@ -3,14 +3,20 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import useUsersAuth from '../../../hooks/useUsersAuth';
 import busdriverdata from '../../../hooks/busdriverdata';
+import useCarDriverData from '../../../hooks/useCarDriverData';
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
     const [userData, loading] = useUsersAuth();
     const [driverData] = busdriverdata();
-    console.log(userData?.role, 'rolename');
+    const [cardriverData] = useCarDriverData();
+  
+    console.log(driverData, 'driverdata');
+    console.log(userData, 'driverdata');
+    console.log(userData?.role, 'user data rolename');
     console.log(driverData?.role, 'driver rolename');
+    console.log(cardriverData?.role, 'car driver rolename');
     console.log('user data from navbar', userData);
 
 
@@ -24,7 +30,7 @@ const Navbar = () => {
 
         <li> <Link to="/home"> <span className='text-white'>Home</span></Link></li>
 
-        {driverData && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus') ? null :
+        {driverData && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus' || driverData?.role === 'primecardriver'|| driverData?.role === 'maxcardriver'|| driverData?.role === 'pluscardriver') ? null :
             <li>
                 <details>
                     <summary><span className='text-white'>Services</span></summary>
@@ -54,7 +60,10 @@ const Navbar = () => {
 
         {userData && (userData?.role === 'user') ? <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
         {userData && (userData?.role === 'admin') ? <li><Link to="/admindashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
-        {driverData && (driverData?.role === 'publicbus' || driverData?.role === 'femalebus') ? <li><Link to="/busdriver"><span className='text-white'>DashBoard</span></Link></li> : null}
+
+
+        {driverData && (driverData?.role === 'publicbus' || driverData?.role === 'femalebus') ? <li><Link to="/busdriverdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
+        {cardriverData && (cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? <li><Link to="/cardriverdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
 
 
 

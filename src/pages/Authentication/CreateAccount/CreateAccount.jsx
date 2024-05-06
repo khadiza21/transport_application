@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link,  useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginimg from '../../../assets/log2.webp';
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -22,7 +22,7 @@ const CreateAccount = () => {
                 const loggedUser = result.user;
                 console.log('logged user ', loggedUser.uid);
                 const uid = loggedUser.uid;
-                updateUserProfile(data.name, data.role, data.gender, data.phone, data.email,uid)
+                updateUserProfile(data.name, data.role, data.gender, data.phone, data.email, uid)
                     .then(() => {
                         const userInfo = {
                             _id: uid,
@@ -218,9 +218,12 @@ const CreateAccount = () => {
                                         <input value={"Sign Up"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
                                     </div>
                                 </form>
-                                {/* <GoogleLogin></GoogleLogin> */}
+                                <div className=" mt-6 w-full">
+                                    <Link to='/' ><button className=" w-full btn bg-slate-600 hover:bg-slate-700 text-white"> Back Home</button></Link>
+
+                                </div>
                             </div>
-                            <p className='text-center mb-4 pb-4 '><small className='font-bold'>Already have an account <Link className='font-bold text-blue-600' to="/login">SignUp</Link> </small></p>
+                            <p className='text-center mb-4 pb-4 '><small className='font-bold'>Already have an account <Link className='font-bold text-blue-600' to="/login">SignIn</Link> </small></p>
 
                         </div></div>
 

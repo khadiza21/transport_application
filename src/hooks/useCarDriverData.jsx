@@ -1,26 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
-const busdriverdata = () => {
+
+const useCarDriverData = () => {
     const { user } = useContext(AuthContext);
- 
-
-
-    const [driverData, setDriverData] = useState(null);
+    const [cardriverData, setCarDriverData] = useState(null);
     const [loading, setLoading] = useState(true);
 
 
-
     useEffect(() => {
-
         if (!user) {
-            setDriverData(null);
+            setCarDriverData(null);
             setLoading(false);
             return;
         };
-
         const fetchData = () => {
-            fetch(`http://localhost:5000/busdriveraccount/${user._id}`)
+            fetch(`http://localhost:5000/cardriveraccount/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {
@@ -29,7 +24,7 @@ const busdriverdata = () => {
                     return response.json();
                 })
                 .then(data => {
-                    setDriverData(data);
+                    setCarDriverData(data);
                     console.log('new', data)
                     setLoading(false);
                 })
@@ -41,7 +36,8 @@ const busdriverdata = () => {
 
         fetchData();
     }, [user]);
-    return [driverData, loading];
+    return [cardriverData, loading];
+
 };
 
-export default busdriverdata;
+export default useCarDriverData;
