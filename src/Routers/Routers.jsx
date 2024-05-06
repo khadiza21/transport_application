@@ -107,14 +107,8 @@ export const router = createBrowserRouter([
         path: 'cardriverdashboard',
         element: <DriversRoute> <CarDriverDashBoard></CarDriverDashBoard> </DriversRoute>
       },
-      {
-        path: 'cardriver',
-        element: <DriversRoute><CarDriver></CarDriver> </DriversRoute>
-      },
-      {
-        path: 'bikedriver',
-        element: <DriversRoute><BikerDriver></BikerDriver> </DriversRoute>
-      },
+    
+      
       {
         path: 'notFound',
         element: <NotFound></NotFound>

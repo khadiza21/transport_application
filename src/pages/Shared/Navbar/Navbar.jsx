@@ -11,7 +11,7 @@ const Navbar = () => {
     const [userData, loading] = useUsersAuth();
     const [driverData] = busdriverdata();
     const [cardriverData] = useCarDriverData();
-  
+
     console.log(driverData, 'driverdata');
     console.log(userData, 'driverdata');
     console.log(userData?.role, 'user data rolename');
@@ -30,7 +30,7 @@ const Navbar = () => {
 
         <li> <Link to="/home"> <span className='text-white'>Home</span></Link></li>
 
-        {driverData && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus' || driverData?.role === 'primecardriver'|| driverData?.role === 'maxcardriver'|| driverData?.role === 'pluscardriver') ? null :
+        {(driverData || cardriverData) && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus' || cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? null :
             <li>
                 <details>
                     <summary><span className='text-white'>Services</span></summary>
@@ -38,7 +38,6 @@ const Navbar = () => {
                         <li><Link to="/busService"><span className='text-white'>Bus</span></Link></li>
                         <li><Link to="/carService"><span className='text-white'>Car</span></Link></li>
                         <li><Link to="/bikeService"><span className='text-white'>Bike</span></Link></li>
-
                     </ul>
                 </details>
             </li>
@@ -49,9 +48,15 @@ const Navbar = () => {
                 <details>
                     <summary><span className='text-white'>Earn</span></summary>
                     <ul className="p-2 bg-opacity-50 bg-neutral-950">
-                        <li><Link to="/busdriver"><span className='text-white'>Bus</span></Link></li>
-                        <li><Link to="/cardriver"><span className='text-white'>Car</span></Link></li>
-                        <li><Link to="/bikedriver"><span className='text-white'>Bike</span></Link></li>
+
+
+                        {(cardriverData) && (cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? null : <li><Link to="/busdriverdashboard"><span className='text-white'>Bus</span></Link></li>}
+
+                        {(driverData) && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus') ? null :
+                            <li><Link to="/cardriverdashboard"><span className='text-white'>Car</span></Link></li>}
+
+
+                        {(driverData || cardriverData) && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus' || cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? null : <li><Link to="/bikedriver"><span className='text-white'>Bike</span></Link></li>}
                     </ul>
                 </details>
             </li>
@@ -97,7 +102,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ? <>
-                        <span></span>
+
                         <Link onClick={handleLogOut} className='btn font-bold' to="/">Sign Out</Link></>
                         : <Link className='btn font-bold' to="/login">Sign Up</Link>
 
