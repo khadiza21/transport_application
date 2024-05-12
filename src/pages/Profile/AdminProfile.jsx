@@ -2,35 +2,53 @@ import { useEffect, useState } from 'react';
 import useUsersAuth from '../../hooks/useUsersAuth';
 import Loading from '../Shared/Loading/Loading';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { FaFacebook } from 'react-icons/fa'; 
 
 const AdminProfile = () => {
     const [userData, loading] = useUsersAuth();
     console.log(userData);
 
-    const [profile, setProfile] = useState({});
+ const [profile, setProfile] = useState({});
     const [reload, setIsReload] = useState(true);
 
     const { register, handleSubmit, reset } = useForm();
 
 
     useEffect(() => {
-        const email = userData?.email;
-        const url = `http://localhost:5000/users/${email}`;
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => setProfile(data));
-    }, [reload]);
+        const fetchProfileData = async () => {
+            if (userData) {
+                const email = userData.email;
+                const url = `http://localhost:5000/users/${email}`;
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch profile data');
+                    }
+                    const data = await response.json();
+                    setProfile(data);
+                } catch (error) {
+                    console.error('Error fetching profile data:', error);
+                }
+            }
+        };
 
-    console.log('profile', profile);
+
+        fetchProfileData();
+    }, [userData]); 
+
+
+
+
+
+
+
 
 
     const onSubmit = (e) => {
+
         console.log(e);
-
-
         const { location, upazila, facebook, dob, address, phone, about, photo } = e;
-
-
         fetch(`http://localhost:5000/users/${userData?.email}`, {
             method: "PUT",
             body: JSON.stringify({
@@ -52,8 +70,8 @@ const AdminProfile = () => {
             .then((res) => res.json())
             .then((data) => {
                 // setIsReload(location, upazila, facebook, dob, address, phone, about, photo);
-                setIsReload(prevState => !prevState);
-                toast("Updated Profile!");
+                setIsReload(true);
+                toast.success("Successfully Updated Profile !");
                 console.log("success", data);
                 reset();
             })
@@ -86,18 +104,40 @@ const AdminProfile = () => {
                                     <div class="flex justify-center">
                                         <img
                                             className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
-                                            src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                                            alt=""
+                                            src={userData.photo}
+                                            alt="admin"
                                         />
                                     </div>
                                 </div>
+
+
+
+
 
                                 <div class="mt-4 flex justify-center">
                                     <div>
                                         <h1 className="text-2xl font-bold">Name  : {userData?.name} ({userData?.role})</h1>
                                         <h2 className="text-xl font-bold">Email  : {userData?.email}</h2>
-                                        <h2 className="text-xl font-bold">Gender :{userData?.gender}</h2>
-                                        <h2 className="text-xl font-bold">Phone  : {userData?.phone}</h2>
+                                        <h2 className=" font-bold">Gender :{userData?.gender}</h2>
+                                        <h2 className="font-bold">Phone  : {userData?.phone}</h2>
+                                        <h3 className=" font-bold"> BirthDate : {userData?.dob}</h3>
+                                        <h3 className="font-bold"> Location : {userData?.location}</h3>
+                                        <h3 className="font-bold"> Upazila : {userData?.upazila}</h3>
+                                        <h3 className=" font-bold">Address  : {userData?.address}</h3>
+                                        <p className=" font-bold">About : {userData?.about}</p>
+
+
+
+
+
+                                        <a href={userData?.facebook} target="_blank" rel="noopener noreferrer"
+                                 
+                                            className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300"
+                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+                                        >
+                                         
+                                            <FaFacebook className="w-10 h-10 my-8" />
+                                        </a>
 
                                     </div>
                                 </div>
@@ -167,9 +207,11 @@ const AdminProfile = () => {
                                 {...register("dob")}
                             />
                             <input
-                                type="file"
+                                required
+                                // type="file"
                                 name="photo"
-                                accept="image/*"
+                                // accept="image/*"
+                                placeholder='Photo Link'
                                 className="mb-3 py-2 px-4 border border-gray-300 rounded"
                                 {...register("photo")}
                             />
@@ -199,7 +241,7 @@ const AdminProfile = () => {
 
             </div>
 
-        
+
 
 
         </>

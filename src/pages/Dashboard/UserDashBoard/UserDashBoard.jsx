@@ -1,7 +1,6 @@
 import React from 'react';
 import Loading from '../../Shared/Loading/Loading';
 import useUsersAuth from '../../../hooks/useUsersAuth';
-
 import Dashboard from '../Dashboard';
 
 const UserDashBoard = () => {
