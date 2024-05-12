@@ -7,7 +7,6 @@ import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import BusService from "../pages/ServiceItem/BusService/BusService";
 import CarService from "../pages/ServiceItem/CarService/CarService";
-import BikeService from "../pages/ServiceItem/BikeService/BikeService";
 import CarMax from "../pages/ServiceItem/CarService/CarMax/CarMax";
 import CarPlus from "../pages/ServiceItem/CarService/CarPlus/CarPlus";
 import CarPrime from "../pages/ServiceItem/CarService/CarPrime/CarPrime";
@@ -17,11 +16,7 @@ import CreateAccount from "../pages/Authentication/CreateAccount/CreateAccount";
 import PrivateRoute from "./PrivateRoute";
 import FemaleBus from "../pages/ServiceItem/BusService/FemaleBus/FemaleBus";
 import PublicBus from "../pages/ServiceItem/BusService/PublicBus/PublicBus";
-import BikeDetails from "../pages/ServiceItem/BikeService/BikeDetails/BikeDetails";
-import Schotydetails from "../pages/ServiceItem/BikeService/ScotyDetails.jsx/Schotydetails";
 import EarnAuthCategory from "../pages/EarnAuthentication/EarnAuthCategory";
-import CarDriver from "../pages/EarnAuthentication/CreateAccount/CarDriver";
-import BikerDriver from "../pages/EarnAuthentication/CreateAccount/BikerDriver";
 import DriversRoute from "./DriversRoute";
 import BusDriversDashBoard from "../pages/Dashboard/DriverDashBoard/BusDriversDashBoard";
 import BusDriverLog from "../pages/EarnAuthentication/Login/BusDriverLog";
@@ -49,10 +44,6 @@ export const router = createBrowserRouter([
       {
         path: 'carService',
         element: <CarService></CarService>
-      },
-      {
-        path: 'bikeService',
-        element: <BikeService></BikeService>
       },
       {
         path: 'about',
@@ -83,14 +74,7 @@ export const router = createBrowserRouter([
         path: 'publicbus',
         element: <PrivateRoute> <PublicBus></PublicBus> </PrivateRoute>
       },
-      {
-        path: 'bikeside',
-        element: <PrivateRoute> <BikeDetails></BikeDetails> </PrivateRoute>
-      },
-      {
-        path: 'scotyside',
-        element: <PrivateRoute> <Schotydetails></Schotydetails> </PrivateRoute>
-      },
+    
       {
         path: 'userdashboard',
         element: <PrivateRoute><UserDashBoard></UserDashBoard> </PrivateRoute>
@@ -107,8 +91,6 @@ export const router = createBrowserRouter([
         path: 'cardriverdashboard',
         element: <DriversRoute> <CarDriverDashBoard></CarDriverDashBoard> </DriversRoute>
       },
-    
-      
       {
         path: 'notFound',
         element: <NotFound></NotFound>

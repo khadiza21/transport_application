@@ -2,6 +2,7 @@ import React from 'react';
 import useUsersAuth from '../../../hooks/useUsersAuth';
 import { Link } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
+import Dashboard from '../Dashboard';
 
 const AdminDashBoard = () => {
     const [userData, loading] = useUsersAuth(); 
@@ -13,20 +14,27 @@ const AdminDashBoard = () => {
             <div>
                 {loading ? (
                     <Loading></Loading>
-                ) : (
-                    <div>
+                ) : ( <>
+
+                  <div>
                         {userData && (
                             <div className='text-center font-bold'>
                                 <p>Name: {userData.name}</p>
                                 <p>Email: {userData.email}</p>
+                                <p>Email: {userData.role}</p>
+                                {console.log('test admindahs',userData.role)}
 
                             </div>
                         )
 
                         }
 
-                        {console.log(userData)}
+                        {console.log('userdata ',userData.email)}
                     </div>
+                <Dashboard
+                 userRole={userData.role}
+                ></Dashboard>
+                  </>
                 )}
             </div>
         </div>

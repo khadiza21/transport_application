@@ -18,10 +18,9 @@ const Navbar = () => {
     console.log(driverData?.role, 'driver rolename');
     console.log(cardriverData?.role, 'car driver rolename');
     console.log('user data from navbar', userData);
+   
 
-
-
-    const handleLogOut = () => {
+    const handleLogOut = () => { 
         logOut()
             .then(() => { })
             .catch(error => console.log(error));
@@ -30,6 +29,7 @@ const Navbar = () => {
 
         <li> <Link to="/home"> <span className='text-white'>Home</span></Link></li>
 
+
         {(driverData || cardriverData) && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus' || cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? null :
             <li>
                 <details>
@@ -37,26 +37,21 @@ const Navbar = () => {
                     <ul className="p-2 bg-opacity-50 bg-neutral-950">
                         <li><Link to="/busService"><span className='text-white'>Bus</span></Link></li>
                         <li><Link to="/carService"><span className='text-white'>Car</span></Link></li>
-                        <li><Link to="/bikeService"><span className='text-white'>Bike</span></Link></li>
+
                     </ul>
                 </details>
             </li>
         }
+
 
         {userData && (userData?.role === 'user' || userData?.role === 'admin') ? null :
             <li>
                 <details>
                     <summary><span className='text-white'>Earn</span></summary>
                     <ul className="p-2 bg-opacity-50 bg-neutral-950">
-
-
                         {(cardriverData) && (cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? null : <li><Link to="/busdriverdashboard"><span className='text-white'>Bus</span></Link></li>}
-
                         {(driverData) && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus') ? null :
                             <li><Link to="/cardriverdashboard"><span className='text-white'>Car</span></Link></li>}
-
-
-                        {(driverData || cardriverData) && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus' || cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? null : <li><Link to="/bikedriver"><span className='text-white'>Bike</span></Link></li>}
                     </ul>
                 </details>
             </li>

@@ -2,6 +2,7 @@ import React from 'react';
 import Loading from '../../Shared/Loading/Loading';
 import useCarDriverData from '../../../hooks/useCarDriverData';
 import { Link } from 'react-router-dom';
+import Dashboard from '../Dashboard';
 
 const CarDriverDashBoard = () => {
     const [cardriverData, loading] = useCarDriverData();
@@ -15,11 +16,16 @@ const CarDriverDashBoard = () => {
                 ) : (
                     <div className="">
                         {cardriverData && (
-                            <div className='text-center font-bold'>
-                                <p>Name: {cardriverData.name}</p>
-                                <p>Email: {cardriverData.email}</p>
+                            <>
+                                <div className='text-center font-bold'>
+                                    <p>Name: {cardriverData.name}</p>
+                                    <p>Email: {cardriverData.email}</p>
 
-                            </div>
+                                </div>
+
+                                <Dashboard
+                                    userRole={cardriverData.role}
+                                ></Dashboard></>
                         )
 
                         }

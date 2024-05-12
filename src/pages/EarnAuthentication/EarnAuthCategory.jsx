@@ -3,16 +3,13 @@ import { Helmet } from 'react-helmet-async';
 import { Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import BusDriver from './CreateAccount/BusDriver';
-import BikerDriver from './CreateAccount/BikerDriver';
 import CarDriver from './CreateAccount/CarDriver';
-
-
 
 
 const EarnAuthCategory = () => {
     const [selectedCategory, setSelectedCategory] = useState('bus');
 
-    const categories = ['bus', 'bike', 'car'];
+    const categories = ['bus',  'car'];
 
     const handleCategoryClick = (category, event) => {
         event.preventDefault();
@@ -58,21 +55,6 @@ const EarnAuthCategory = () => {
                         >
                             <div>
                                 <BusDriver></BusDriver>
-                            </div>
-                        </Transition>
-                        <Transition
-                            show={selectedCategory === 'bike'}
-                            enter="transition ease-out duration-300"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="transition ease-in duration-200"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                        >
-                            <div>
-
-                                <BikerDriver></BikerDriver>
-
                             </div>
                         </Transition>
                         <Transition

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Loading from "../../Shared/Loading/Loading";
 import busdriverdata from "../../../hooks/busdriverdata";
+import Dashboard from "../Dashboard";
 
 const BusDriversDashBoard = () => {
     const [driverData, loading] = busdriverdata(); 
@@ -13,6 +14,7 @@ const BusDriversDashBoard = () => {
                 {loading ? (
                     <Loading></Loading>
                 ) : (
+                    <>
                     <div className="">
                         {driverData && (
                             <div className='text-center font-bold'>
@@ -26,6 +28,12 @@ const BusDriversDashBoard = () => {
 
                         {console.log(driverData)}
                     </div>
+                    
+                    
+                    <Dashboard
+                 userRole={driverData.role}
+                ></Dashboard>
+                    </>
                 )}
             </div>
         </div>
