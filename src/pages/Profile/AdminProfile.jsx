@@ -5,6 +5,8 @@ import Loading from '../Shared/Loading/Loading';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { FaFacebook } from 'react-icons/fa';
+import { IoArrowBackCircle } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 
 const AdminProfile = () => {
@@ -66,17 +68,13 @@ const AdminProfile = () => {
     };
 
     if (loading || loadingg) return <Loading />;
-    
+
     console.log(profile);
-
-
 
 
     return (
         <>
             <div>
-
-
 
                 <section>
                     <div class="container mx-auto my-5 pb-5">
@@ -84,9 +82,6 @@ const AdminProfile = () => {
                         <h3 class="py-3 text-success text-4xl pb-5 text-center font-bold">
                             Your Profile
                         </h3>
-
-
-
                         <>
 
                             <div class="flex justify-center">
@@ -98,9 +93,6 @@ const AdminProfile = () => {
                                     />
                                 </div>
                             </div>
-
-
-
 
 
                             <div class="mt-4 flex justify-center">
@@ -116,23 +108,28 @@ const AdminProfile = () => {
                                     <p className=" font-bold">About : {profile?.about}</p>
 
 
-
-
-
-                                    <a href={userData?.facebook} target="_blank" rel="noopener noreferrer"
-
-                                        className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300"
-                                        style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                    >
-
-                                        <FaFacebook className="w-10 h-10 my-8" />
-                                    </a>
+                                    <div className="flex items-center justify-start">
+                                        <a
+                                            href={userData?.facebook}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300 mr-2"
+                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+                                        >
+                                            <FaFacebook className="w-10 h-10 my-8" />
+                                        </a>
+                                        <Link
+                                            to='/admindashboard'
+                                            className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
+                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+                                        >
+                                            <IoArrowBackCircle className="w-10 h-10 my-8" />
+                                        </Link>
+                                    </div>
 
                                 </div>
                             </div>
                         </>
-
-
 
 
                         <form
@@ -216,8 +213,6 @@ const AdminProfile = () => {
                                 className="mb-3 py-6 px-4 border border-gray-300 rounded"
                                 {...register("about")}
                             />
-
-
                             <input
                                 class="btn btn-success mb-3 py-2 px-4 font-bold"
                                 type="submit"
@@ -225,13 +220,8 @@ const AdminProfile = () => {
                             />
                         </form>
                     </div>
-
                 </section>
-
             </div>
-
-
-
 
         </>
     );
