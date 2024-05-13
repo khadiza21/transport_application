@@ -8,7 +8,7 @@ const CarItems = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://transfar-f-server2-bibi-khadizas-projects.vercel.app/cartypes')
+        fetch('http://localhost:5000/cartypes')
             .then(res => res.json())
             .then(data => {
                 setCars(data);

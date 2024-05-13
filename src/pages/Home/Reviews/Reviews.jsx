@@ -14,7 +14,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('https://transfar-f-server2-bibi-khadizas-projects.vercel.app/review')
+        fetch('http://localhost:5000/review')
             .then(res => res.json())
             .then(data => {
                 setReviews(data);

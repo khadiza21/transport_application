@@ -5,7 +5,7 @@ import Cover from "../../../Shared/Cover/Cover";
 const CarMax = () => {
 
     const [carItems] = useCarService([]);
-    //const max = carItems.filter(item => item.category == 'max');
+    const max = carItems.filter(item => item.category == 'max');
     return (
         <div className="">
 

@@ -20,7 +20,7 @@ const busdriverdata = () => {
         };
 
         const fetchData = () => {
-            fetch(`https://transfar-f-server2-bibi-khadizas-projects.vercel.app/busdriveraccount/${user._id}`)
+            fetch(`http://localhost:5000/busdriveraccount/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {

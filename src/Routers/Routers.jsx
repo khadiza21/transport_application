@@ -25,7 +25,8 @@ import AdminDashBoard from "../pages/Dashboard/AdminDashboard/AdminDashBoard";
 import CarDriverDashBoard from "../pages/Dashboard/DriverDashBoard/CarDriverDashBoard";
 import AdminProfile from "../pages/Profile/AdminProfile";
 import UserProfile from "../pages/Profile/UserProfile";
-import DriverProfile from "../pages/Profile/DriverProfile";
+import BusDriverProfile from "../pages/Profile/BusDriverProfile";
+
 
 export const router = createBrowserRouter([
   {
@@ -96,7 +97,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'driverprofile',
-        element: <DriversRoute> <DriverProfile></DriverProfile> </DriversRoute>
+        element: <DriversRoute> <BusDriverProfile></BusDriverProfile> </DriversRoute>
       },
       {
         path: 'busdriverdashboard',

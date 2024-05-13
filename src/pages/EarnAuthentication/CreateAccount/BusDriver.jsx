@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const BusDriver = () => {
-
     const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
