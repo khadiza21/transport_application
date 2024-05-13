@@ -7,6 +7,8 @@ import {
 import { router } from './Routers/Routers';
 import { HelmetProvider } from 'react-helmet-async';
 import AuthProvider from './providers/AuthProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import {
   QueryClient,
   QueryClientProvider,
@@ -22,6 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <div className=" mx-auto">
             <RouterProvider router={router} />
           </div>
+          <ToastContainer />
         </HelmetProvider>
       </QueryClientProvider>
     </AuthProvider>

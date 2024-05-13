@@ -1,86 +1,75 @@
 import { useEffect, useState } from 'react';
 import useUsersAuth from '../../hooks/useUsersAuth';
+import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../Shared/Loading/Loading';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { FaFacebook } from 'react-icons/fa'; 
+import { FaFacebook } from 'react-icons/fa';
+
 
 const AdminProfile = () => {
     const [userData, loading] = useUsersAuth();
-    console.log(userData);
-
- const [profile, setProfile] = useState({});
-    const [reload, setIsReload] = useState(true);
-
+    const [loadingg, setLoadingg] = useState(true);
+    const [profile, setProfile] = useState({});
     const { register, handleSubmit, reset } = useForm();
 
+    useEffect(() => {
+        if (userData) {
+            const storedProfile = JSON.parse(localStorage.getItem("profile"));
+            if (storedProfile) {
+                setProfile(storedProfile);
+                setLoadingg(false);
+            } else {
+                setLoadingg(false);
+            }
+        }
+    }, [userData]);
 
     useEffect(() => {
-        const fetchProfileData = async () => {
-            if (userData) {
-                const email = userData.email;
-                const url = `http://localhost:5000/users/${email}`;
-                try {
-                    const response = await fetch(url);
-                    if (!response.ok) {
+        if (userData && userData._id) {
+            const url = `http://localhost:5000/users/${userData._id}`;
+            fetch(url)
+                .then((res) => {
+                    if (!res.ok) {
                         throw new Error('Failed to fetch profile data');
                     }
-                    const data = await response.json();
+                    return res.json();
+                })
+                .then((data) => {
                     setProfile(data);
-                } catch (error) {
-                    console.error('Error fetching profile data:', error);
-                }
-            }
-        };
-
-
-        fetchProfileData();
-    }, [userData]); 
-
-
-
-
-
-
-
-
+                    localStorage.setItem("profile", JSON.stringify(data));
+                    setLoadingg(false);
+                })
+                .catch((error) => console.error('Error fetching profile data:', error));
+        }
+    }, [userData]);
 
     const onSubmit = (e) => {
-
-        console.log(e);
         const { location, upazila, facebook, dob, address, phone, about, photo } = e;
-        fetch(`http://localhost:5000/users/${userData?.email}`, {
+        fetch(`http://localhost:5000/users/${userData?._id}`, {
             method: "PUT",
-            body: JSON.stringify({
-
-                location,
-                upazila,
-                facebook,
-                dob,
-                address,
-                phone,
-                about,
-                photo
-            }),
-            headers: {
-                "content-type": "application/json",
-
-            },
+            body: JSON.stringify({ location, upazila, facebook, dob, address, phone, about, photo }),
+            headers: { "content-type": "application/json" }
         })
-            .then((res) => res.json())
-            .then((data) => {
-                // setIsReload(location, upazila, facebook, dob, address, phone, about, photo);
-                setIsReload(true);
+            .then(res => res.json())
+            .then(() => {
+                return fetch(`http://localhost:5000/users/${userData?._id}`);
+            })
+            .then(res => res.json())
+            .then((updatedData) => {
+                setProfile(updatedData);
+                localStorage.setItem("profile", JSON.stringify(updatedData));
                 toast.success("Successfully Updated Profile !");
-                console.log("success", data);
                 reset();
             })
-            .catch((error) => {
-                console.error('Error updating profile:', error);
-
-            });
-
+            .catch((error) => console.error('Error updating profile:', error));
     };
+
+    if (loading || loadingg) return <Loading />;
+    
+    console.log(profile);
+
+
 
 
     return (
@@ -97,53 +86,53 @@ const AdminProfile = () => {
                         </h3>
 
 
-                        {loading ? <Loading></Loading> :
-                            <>
 
+                        <>
+
+                            <div class="flex justify-center">
                                 <div class="flex justify-center">
-                                    <div class="flex justify-center">
-                                        <img
-                                            className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
-                                            src={userData.photo}
-                                            alt="admin"
-                                        />
-                                    </div>
+                                    <img
+                                        className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
+                                        src={profile?.photo}
+                                        alt="admin"
+                                    />
                                 </div>
+                            </div>
 
 
 
 
 
-                                <div class="mt-4 flex justify-center">
-                                    <div>
-                                        <h1 className="text-2xl font-bold">Name  : {userData?.name} ({userData?.role})</h1>
-                                        <h2 className="text-xl font-bold">Email  : {userData?.email}</h2>
-                                        <h2 className=" font-bold">Gender :{userData?.gender}</h2>
-                                        <h2 className="font-bold">Phone  : {userData?.phone}</h2>
-                                        <h3 className=" font-bold"> BirthDate : {userData?.dob}</h3>
-                                        <h3 className="font-bold"> Location : {userData?.location}</h3>
-                                        <h3 className="font-bold"> Upazila : {userData?.upazila}</h3>
-                                        <h3 className=" font-bold">Address  : {userData?.address}</h3>
-                                        <p className=" font-bold">About : {userData?.about}</p>
+                            <div class="mt-4 flex justify-center">
+                                <div>
+                                    <h1 className="text-2xl font-bold">Name  : {userData?.name} ({userData?.role})</h1>
+                                    <h2 className="text-xl font-bold">Email  : {userData?.email}</h2>
+                                    <h2 className=" font-bold">Gender :{profile?.gender}</h2>
+                                    <h2 className="font-bold">Phone  : {profile?.phone}</h2>
+                                    <h3 className=" font-bold"> BirthDate : {profile?.dob}</h3>
+                                    <h3 className="font-bold"> Location : {profile?.location}</h3>
+                                    <h3 className="font-bold"> Upazila : {profile?.upazila}</h3>
+                                    <h3 className=" font-bold">Address  : {profile?.address}</h3>
+                                    <p className=" font-bold">About : {profile?.about}</p>
 
 
 
 
 
-                                        <a href={userData?.facebook} target="_blank" rel="noopener noreferrer"
-                                 
-                                            className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300"
-                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                        >
-                                         
-                                            <FaFacebook className="w-10 h-10 my-8" />
-                                        </a>
+                                    <a href={userData?.facebook} target="_blank" rel="noopener noreferrer"
 
-                                    </div>
+                                        className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300"
+                                        style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+                                    >
+
+                                        <FaFacebook className="w-10 h-10 my-8" />
+                                    </a>
+
                                 </div>
-                            </>
+                            </div>
+                        </>
 
-                        }
+
 
 
                         <form
