@@ -6,19 +6,16 @@ import { toast } from 'react-toastify';
 import { FaFacebook } from 'react-icons/fa';
 import { IoArrowBackCircle } from "react-icons/io5";
 import { Link } from 'react-router-dom';
-import busdriverdata from '../../hooks/busdriverdata';
+import useCarDriverData from '../../hooks/useCarDriverData';
 
-const BusDriverProfile = () => {
-
-
-const [driverData, loading] = busdriverdata();
-//const [cardriverData] = useCarDriverData();
+const CarDriverProfile = () => {
+    const [cardriverData,loading] = useCarDriverData();
 const [loadingg, setLoadingg] = useState(true);
 const [profile, setProfile] = useState({});
 const { register, handleSubmit, reset } = useForm();
 
 useEffect(() => {
-    if (driverData) {
+    if (cardriverData) {
         const storedProfile = JSON.parse(localStorage.getItem("profile"));
         if (storedProfile) {
             setProfile(storedProfile);
@@ -27,11 +24,11 @@ useEffect(() => {
             setLoadingg(false);
         }
     }
-}, [driverData]);
+}, [cardriverData]);
 
 useEffect(() => {
-    if (driverData && driverData._id) {
-        const url = `https://transport-server2-1.onrender.com/busdriveraccount/${driverData._id}`;
+    if (cardriverData && cardriverData._id) {
+        const url = `https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData._id}`;
         fetch(url)
             .then((res) => {
                 if (!res.ok) {
@@ -46,18 +43,18 @@ useEffect(() => {
             })
             .catch((error) => console.error('Error fetching profile data:', error));
     }
-}, [driverData]);
+}, [cardriverData]);
 
 const onSubmit = (e) => {
     const { location, upazila, facebook, dob, address, phone, about, photo } = e;
-    fetch(`https://transport-server2-1.onrender.com/busdriveraccount/${driverData?._id}`, {
+    fetch(`https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData?._id}`, {
         method: "PUT",
         body: JSON.stringify({ location, upazila, facebook, dob, address, phone, about, photo }),
         headers: { "content-type": "application/json" }
     })
         .then(res => res.json())
         .then(() => {
-            return fetch(`https://transport-server2-1.onrender.com/busdriveraccount/${driverData?._id}`);
+            return fetch(`https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData?._id}`);
         })
         .then(res => res.json())
         .then((updatedData) => {
@@ -72,7 +69,6 @@ const onSubmit = (e) => {
 if (loading || loadingg) return <Loading />;
 
 console.log(profile);
-
     return (
         <div>
         <div>
@@ -98,8 +94,8 @@ console.log(profile);
 
                         <div class="mt-4 flex justify-center">
                             <div>
-                                <h1 className="text-2xl font-bold">Name  : {driverData?.name} ({driverData?.role})</h1>
-                                <h2 className="text-xl font-bold">Email  : {driverData?.email}</h2>
+                                <h1 className="text-2xl font-bold">Name  : {cardriverData?.name} ({cardriverData?.role})</h1>
+                                <h2 className="text-xl font-bold">Email  : {cardriverData?.email}</h2>
                                 <h2 className=" font-bold">Gender :{profile?.gender}</h2>
                                 <h2 className="font-bold">Phone  : {profile?.phone}</h2>
                                 <h3 className=" font-bold"> BirthDate : {profile?.dob}</h3>
@@ -120,7 +116,7 @@ console.log(profile);
                                         <FaFacebook className="w-10 h-10 my-8" />
                                     </a>
                                     <Link
-                                        to='/busdriverdashboard'
+                                        to='/cardriverdashboard'
                                         className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
                                         style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
                                     >
@@ -139,12 +135,12 @@ console.log(profile);
                     >
                         <input
                             name="email"
-                            value={driverData?.email}
+                            value={cardriverData?.email}
                             class="mb-3 py-2 px-4 border border-gray-300 rounded"
                             {...register("email")}
                         />
                         <input
-                            value={driverData?.name}
+                            value={cardriverData?.name}
                             class="mb-3 py-2 px-4 border border-gray-300 rounded "
                             {...register("name")}
                         />
@@ -228,5 +224,4 @@ console.log(profile);
     );
 };
 
-export default BusDriverProfile;
-
+export default CarDriverProfile;

@@ -15,7 +15,7 @@ const useCarDriverData = () => {
             return;
         };
         const fetchData = () => {
-            fetch(`http://localhost:5000/cardriveraccount/${user._id}`)
+            fetch(`https://transport-server2-1.onrender.com/cardriveraccount/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {

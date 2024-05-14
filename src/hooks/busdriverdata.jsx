@@ -20,7 +20,7 @@ const busdriverdata = () => {
         };
 
         const fetchData = () => {
-            fetch(`http://localhost:5000/busdriveraccount/${user._id}`)
+            fetch(`https://transport-server2-1.onrender.com/busdriveraccount/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {

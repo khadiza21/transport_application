@@ -26,6 +26,9 @@ import CarDriverDashBoard from "../pages/Dashboard/DriverDashBoard/CarDriverDash
 import AdminProfile from "../pages/Profile/AdminProfile";
 import UserProfile from "../pages/Profile/UserProfile";
 import BusDriverProfile from "../pages/Profile/BusDriverProfile";
+import CarDriverProfile from "../pages/Profile/CarDriverProfile";
+import AddReviews from "../pages/Reviews/AddReviews";
+import AllReviews from "../pages/Reviews/AllReviews";
 
 
 export const router = createBrowserRouter([
@@ -92,12 +95,24 @@ export const router = createBrowserRouter([
         element: <PrivateRoute> <UserProfile></UserProfile> </PrivateRoute>
       },
       {
+        path: 'allreview',
+        element: <PrivateRoute> <AllReviews></AllReviews> </PrivateRoute>
+      },
+      {
         path: 'admindashboard',
         element: <PrivateRoute><AdminDashBoard></AdminDashBoard></PrivateRoute>
       },
       {
-        path: 'driverprofile',
+        path: 'addreview',
+        element: <PrivateRoute><AddReviews></AddReviews></PrivateRoute>
+      },
+      {
+        path: 'busdriverprofile',
         element: <DriversRoute> <BusDriverProfile></BusDriverProfile> </DriversRoute>
+      },
+      {
+        path: 'cardriverprofile',
+        element: <DriversRoute> <CarDriverProfile></CarDriverProfile>  </DriversRoute>
       },
       {
         path: 'busdriverdashboard',

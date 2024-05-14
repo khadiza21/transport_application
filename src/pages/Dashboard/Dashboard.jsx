@@ -8,7 +8,7 @@ const Dashboard = ({ userRole }) => {
         { title: 'Profile', link: '/userprofile' },
         { title: 'Send Emergency Notification', link: '/send-emergency' },
         { title: 'Home', link: '/' },
-        { title: 'Add Review', link: '/add-review' },
+        { title: 'Add Review', link: '/addreview' },
         { title: 'History', link: '/history' },
     ];
 
@@ -19,18 +19,25 @@ const Dashboard = ({ userRole }) => {
         { title: 'Driver Management', link: '/driver-management' },
         { title: 'User Management', link: '/user-management' },
         { title: 'See Emergency Notifications', link: '/emergency-notifications' },
-        { title: 'See Reviews', link: '/reviews' },
+        { title: 'See Reviews', link: '/allreview' },
     ];
 
     const driverOptions = [
         { title: 'Home', link: '/' },
-        { title: 'Profile', link: '/driverprofile' },
+        { title: 'Profile', link: '/busdriverprofile' },
+        { title: 'Vehicle Profile', link: '/vehicle-profile' },
+        { title: 'Drive Management', link: '/drive-management' },
+        { title: 'History', link: '/history' },
+    ];
+    const crdriverOptions = [
+        { title: 'Home', link: '/' },
+        { title: 'Profile', link: '/cardriverprofile' },
         { title: 'Vehicle Profile', link: '/vehicle-profile' },
         { title: 'Drive Management', link: '/drive-management' },
         { title: 'History', link: '/history' },
     ];
 
-    const options = userRole === 'admin' ? adminOptions : userRole === 'primecardriver' ? driverOptions : userRole === 'maxcardriver' ? driverOptions : userRole === 'pluscardriver' ? driverOptions : userRole === 'femalebus' ? driverOptions : userRole === 'pubilcbus' ? driverOptions : userOptions;
+    const options = userRole === 'admin' ? adminOptions : userRole === 'primecardriver' ? crdriverOptions : userRole === 'maxcardriver' ? crdriverOptions : userRole === 'pluscardriver' ? crdriverOptions : userRole === 'femalebus' ? driverOptions : userRole === 'pubilcbus' ? driverOptions : userOptions;
 
     return (
         <div className="bg-gray-200 min-h-screen">

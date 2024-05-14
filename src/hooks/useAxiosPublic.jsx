@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:5000/'
+    baseURL: 'https://transport-server2-1.onrender.com'
 })
 
 const useAxiosPublic = () => {

@@ -29,7 +29,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         if (userData && userData._id) {
-            const url = `http://localhost:5000/users/${userData._id}`;
+            const url = `https://transport-server2-1.onrender.com/users/${userData._id}`;
             fetch(url)
                 .then((res) => {
                     if (!res.ok) {
@@ -48,14 +48,14 @@ const UserProfile = () => {
 
     const onSubmit = (e) => {
         const { location, upazila, facebook, dob, address, phone, about, photo } = e;
-        fetch(`http://localhost:5000/users/${userData?._id}`, {
+        fetch(`https://transport-server2-1.onrender.com/users/${userData?._id}`, {
             method: "PUT",
             body: JSON.stringify({ location, upazila, facebook, dob, address, phone, about, photo }),
             headers: { "content-type": "application/json" }
         })
             .then(res => res.json())
             .then(() => {
-                return fetch(`http://localhost:5000/users/${userData?._id}`);
+                return fetch(`https://transport-server2-1.onrender.com/users/${userData?._id}`);
             })
             .then(res => res.json())
             .then((updatedData) => {

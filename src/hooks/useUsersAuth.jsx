@@ -19,7 +19,7 @@ const useUsersAuth = () => {
 
         const fetchData = () => {
 
-            fetch(`http://localhost:5000/users/${user._id}`)
+            fetch(`https://transport-server2-1.onrender.com/users/${user._id}`)
 
                 .then(response => {
                     if (!response.ok) {

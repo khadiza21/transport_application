@@ -8,7 +8,7 @@ const AboutSection = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/aboutcart')
+        fetch('https://transport-server2-1.onrender.com/aboutcart')
             .then(res => res.json())
             .then(data => {
                 setAboutcart(data);

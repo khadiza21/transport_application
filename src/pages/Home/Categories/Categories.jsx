@@ -7,7 +7,7 @@ const Categories = () => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('https://transport-server2-1.onrender.com/categories')
             .then(res => res.json())
             .then(data => {
                 setServices(data);
