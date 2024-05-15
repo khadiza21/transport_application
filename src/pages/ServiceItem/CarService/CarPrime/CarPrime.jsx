@@ -1,16 +1,23 @@
 // lpCZ19ggOr5Sbk68OjyDniOrEK8s_AZfS2NGCuiNEiU
 
-import { useState } from 'react';
-
-
+import { useEffect, useState } from 'react';
+import MapShow from '../../../../hooks/MapShow';
 
 const CarPrime = () => {
+
     const [pickupLocation, setPickupLocation] = useState('');
+
+    const [latitude, setLatitude] = useState(23.8041);
+
+    const [longitude, setLongitude] = useState(90.4152);
+
     const [destination, setDestination] = useState('');
     const [fetchingLocation, setFetchingLocation] = useState(false);
 
+
+    console.log(pickupLocation);
     const handlePickupLocationChange = (e) => {
-        setPickupLocation(e.target.value);
+        setPickupLocation(e.target.value[0]);
     };
 
     const handleDestinationChange = (e) => {
@@ -29,8 +36,15 @@ const CarPrime = () => {
                         .then(response => response.json())
                         .then(data => {
                             if (data.items && data.items.length > 0) {
-                                const address = data.items[0].title;
+                                const address = data.items[0].address.label;
+                                const currentLocation = {
+                                    latitude: latitude,
+                                    longitude: longitude,
+                                    address: address
+                                };
                                 setPickupLocation(address);
+                                setLatitude(latitude);
+                                setLongitude(longitude);
                             } else {
                                 console.error('No address found for the given coordinates.');
                                 setPickupLocation('');
@@ -54,7 +68,19 @@ const CarPrime = () => {
             alert('Geolocation is not supported by this browser.');
             setFetchingLocation(false);
         }
-    };
+
+    }
+
+
+
+
+
+
+        const location = {
+            latitude: latitude,
+            longitude: longitude,
+        }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -63,9 +89,9 @@ const CarPrime = () => {
             return;
         }
         console.log('Form submitted:', { pickupLocation, destination });
-        
-    };
 
+    };
+    console.log(pickupLocation)
     return (
 
 
@@ -77,9 +103,10 @@ const CarPrime = () => {
 
             <div className="card lg:card-side bg-base-100 shadow-xl rounded-lg">
                 <div className='rounded-lg'>
-                    
-                    <section className='bg-slate-100'>
-                    <div id="map" style={{ width: '100%', height: '400px' }}></div>
+
+                    <section className='bg-slate-100' >
+                        <MapShow location={location} ></MapShow>
+
                     </section>
                     <section className='p-12 bg-slate-200 '>
                         <h1 className="text-3xl font-semibold text-center mb-6">Request a ride for now or later</h1>
@@ -117,11 +144,7 @@ const CarPrime = () => {
 
 
                 <div className="card-body bg-green-100">
-                    <h2 className="card-title">New album is released!</h2>
-                    <p>Click the button to listen on Spotiwhy app.</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Listen</button>
-                    </div>
+
                 </div>
             </div>
 
