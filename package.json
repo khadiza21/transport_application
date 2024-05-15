@@ -20,6 +20,7 @@
     "classnames": "^2.5.1",
     "country-flag-icons": "^1.5.11",
     "firebase": "^10.11.1",
+    "gps-tracking": "^1.1.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "react": "^18.2.0",
