@@ -1,0 +1,44 @@
+[
+    {
+      "_id": "6645d4fe38586dfed9af718f",
+      "carype": "Plus car",
+      "description": "Affodable everyday rides",
+      "img": "car1.jpeg",
+      "price":523.343
+    },
+    {
+      "_id": "6645d4fe90a4ce11a283c93f",
+      "carype": "Prime car",
+      "description": "Affodable everyday rides",
+      "img": "car2.jpeg",
+      "price":723.343
+    },
+    {
+      "_id": "6645d4fe78e3b0f0938b68b7",
+      "carype": "Prime car",
+      "description": "Affodable everyday rides",
+      "img": "car3.jpeg",
+      "price":423.343
+    },
+    {
+      "_id": "6645d4fe2744622330b7baeb",
+      "carype": "Max car",
+      "description": "Affodable everyday rides",
+      "img": "car1.jpeg",
+      "price":1023.343
+    },
+    {
+      "_id": "6645d4fe2520d79b4ee7486c",
+      "carype": "Max car",
+      "description": "Affodable everyday rides",
+      "img": "car2.jpeg",
+      "price":1523.343
+    },
+    {
+      "_id": "6645d4fe2955edb95904c326",
+      "carype": "Max car",
+      "description": "Affodable everyday rides",
+      "img": "car3.jpeg",
+      "price":1523.343
+    }
+  ]

@@ -90,9 +90,9 @@ const CarPrime = () => {
     };
 
     return (
-        <div className="px-24 mx-auto py-8">
+        <div className="px-24 mx-auto ">
             <div className="card lg:card-side bg-base-100 shadow-xl rounded-lg">
-                <div className='rounded-lg'>
+                <div className='rounded-lg w-1/3'>
                     <section className='bg-slate-100' >
                         <MapShow location1={location1}  ></MapShow>
                     </section>
@@ -127,10 +127,10 @@ const CarPrime = () => {
                         </form>
                     </section>
                 </div>
-                <div className="card-body ">
+                <div className="card-body w-1/2   ">
                     {move ? <ChooseCar></ChooseCar> : null}
                 </div>
-                <div className="card-body bg-pink-100">
+                <div className="card-body bg-pink-100 w-1/3">
                   
                 </div>
             </div>
