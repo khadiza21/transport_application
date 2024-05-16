@@ -12,7 +12,7 @@ const CarPrime = () => {
     const [longitude, setLongitude] = useState(90.4152);
     const [error, setError] = useState('');
     const [move, setMove] = useState(false);
-  
+
     const [destination, setDestination] = useState('');
     const [fetchingLocation, setFetchingLocation] = useState(false);
 
@@ -24,6 +24,7 @@ const CarPrime = () => {
     const handleDestinationChange = (e) => {
         const destVlaue = e.target.value;
         setDestination(destVlaue);
+
     };
 
     const handleCurrentLocationClick = () => {
@@ -91,9 +92,11 @@ const CarPrime = () => {
         setMove(true)
     };
 
+
+
     return (
         <>
-        
+
 
 
             <div className="navbar  bg-base-100 px-10 shadow-lg bg-slate-100">
@@ -102,8 +105,8 @@ const CarPrime = () => {
                 </div>
                 <div className="flex-none">
                     <div className="dropdown dropdown-end">
-                        
-                        
+
+
                     </div>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -162,10 +165,11 @@ const CarPrime = () => {
                         </section>
                     </div>
                     <div className="card-body   ">
-                        {move ? <ChooseCar
+                        {console.log(destination)}
+                        {move ? <ChooseCar pickupLocation={pickupLocation} destination={destination}
                         ></ChooseCar> : null}
                     </div>
-                   
+
                 </div>
             </div></>
     );
