@@ -1,19 +1,18 @@
 // lpCZ19ggOr5Sbk68OjyDniOrEK8s_AZfS2NGCuiNEiU
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import MapShow from '../../../../hooks/MapShow';
+import ChooseCar from '../ChooseCar';
 
 const CarPrime = () => {
 
     const [pickupLocation, setPickupLocation] = useState('');
-
     const [latitude, setLatitude] = useState(23.8041);
-
     const [longitude, setLongitude] = useState(90.4152);
-
+    const [error, setError] = useState('');
+    const [move, setMove] = useState(false);
     const [destination, setDestination] = useState('');
     const [fetchingLocation, setFetchingLocation] = useState(false);
-
 
     console.log(pickupLocation);
     const handlePickupLocationChange = (e) => {
@@ -21,7 +20,8 @@ const CarPrime = () => {
     };
 
     const handleDestinationChange = (e) => {
-        setDestination(e.target.value);
+        const destVlaue = e.target.value;
+        setDestination(destVlaue);
     };
 
     const handleCurrentLocationClick = () => {
@@ -71,42 +71,30 @@ const CarPrime = () => {
 
     }
 
+    const location1 = {
+        latitude: latitude,
+        longitude: longitude,
+    }
 
-
-
-
-
-        const location = {
-            latitude: latitude,
-            longitude: longitude,
-        }
-
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!pickupLocation || !destination) {
-            alert('Please fill out both pickup location and destination.');
+
+            setError('Please fill out both pickup location and destination');
+
             return;
         }
-        console.log('Form submitted:', { pickupLocation, destination });
+        setError('');
 
+        setMove(true)
     };
-    console.log(pickupLocation)
+
     return (
-
-
-
-
-
-
         <div className="px-24 mx-auto py-8">
-
             <div className="card lg:card-side bg-base-100 shadow-xl rounded-lg">
                 <div className='rounded-lg'>
-
                     <section className='bg-slate-100' >
-                        <MapShow location={location} ></MapShow>
-
+                        <MapShow location1={location1}  ></MapShow>
                     </section>
                     <section className='p-12 bg-slate-200 '>
                         <h1 className="text-3xl font-semibold text-center mb-6">Request a ride for now or later</h1>
@@ -128,27 +116,24 @@ const CarPrime = () => {
                                     )}
                                 </span>
                             </div>
-
                             <div className="mb-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="destination">Destination:</label>
                                 <input id="destination" type="text" name="destination" value={destination} onChange={handleDestinationChange} className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                                {error && <p className=" text-red-400">{error}</p>}
                             </div>
-
                             <div className="flex justify-center">
                                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Request Ride</button>
                             </div>
                         </form>
                     </section>
                 </div>
-
-
-
-                <div className="card-body bg-green-100">
-
+                <div className="card-body ">
+                    {move ? <ChooseCar></ChooseCar> : null}
+                </div>
+                <div className="card-body bg-pink-100">
+                  
                 </div>
             </div>
-
-
         </div>
     );
 };
