@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { FaFacebook } from 'react-icons/fa';
 import { IoArrowBackCircle } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import userImg from '../../assets/user.png'
 
 
 const AdminProfile = () => {
@@ -14,6 +15,7 @@ const AdminProfile = () => {
     const [loadingg, setLoadingg] = useState(true);
     const [profile, setProfile] = useState({});
     const { register, handleSubmit, reset } = useForm();
+
 
     useEffect(() => {
         if (userData) {
@@ -86,11 +88,20 @@ const AdminProfile = () => {
 
                             <div class="flex justify-center">
                                 <div class="flex justify-center">
-                                    <img
-                                        className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
-                                        src={profile?.photo}
-                                        alt="admin"
-                                    />
+                                    {userData?.photo === undefined ?
+                                        <img
+                                            className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
+                                            src={userImg}
+                                            alt="admin"
+                                        />
+                                        :
+                                        <img
+                                            className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
+                                            src={profile?.photo}
+                                            alt="admin"
+                                        />
+                                    }
+
                                 </div>
                             </div>
 
@@ -153,6 +164,7 @@ const AdminProfile = () => {
                                 name="location"
                                 className="mb-3 py-2 px-4 border border-gray-300 rounded"
                                 {...register("location")}
+                                defaultValue={userData?.location}
                             >
 
                                 <option value="Dhaka">Dhaka</option>
@@ -162,6 +174,7 @@ const AdminProfile = () => {
                                 name="upazila"
                                 className="mb-3 py-2 px-4 border border-gray-300 rounded"
                                 {...register("upazila")}
+                                defaultValue={userData?.upazila}
                             >
 
 
@@ -176,6 +189,7 @@ const AdminProfile = () => {
                                 class="mb-3 py-2 px-4 border border-gray-300 rounded"
                                 placeholder="Phone Number"
                                 {...register("phone")}
+                                defaultValue={userData?.phone}
                             />
                             <input
                                 required
@@ -183,6 +197,7 @@ const AdminProfile = () => {
                                 class="mb-3 py-2 px-4 border border-gray-300 rounded"
                                 placeholder="Social URL Link"
                                 {...register("facebook")}
+                                defaultValue={userData?.facebook}
                             />
 
                             <input
@@ -191,6 +206,7 @@ const AdminProfile = () => {
                                 name="dob"
                                 className="mb-3 py-2 px-4 border border-gray-300 rounded"
                                 {...register("dob")}
+                                defaultValue={userData?.dob}
                             />
                             <input
                                 required
@@ -200,18 +216,22 @@ const AdminProfile = () => {
                                 placeholder='Photo Link'
                                 className="mb-3 py-2 px-4 border border-gray-300 rounded"
                                 {...register("photo")}
+                                defaultValue={userData?.photo}
                             />
                             <textarea
                                 name="address"
                                 placeholder="Address"
                                 className="mb-3 py-3 px-4 border border-gray-300 rounded"
-                                {...register("address")} />
+                                {...register("address")}
+                                defaultValue={userData?.address} />
+
 
                             <textarea
                                 name="about"
                                 placeholder="About"
                                 className="mb-3 py-6 px-4 border border-gray-300 rounded"
                                 {...register("about")}
+                                defaultValue={userData?.about}
                             />
                             <input
                                 class="btn btn-success mb-3 py-2 px-4 font-bold"
