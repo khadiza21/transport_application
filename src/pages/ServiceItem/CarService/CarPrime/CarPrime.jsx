@@ -1,7 +1,9 @@
 // lpCZ19ggOr5Sbk68OjyDniOrEK8s_AZfS2NGCuiNEiU
 
-import { useState } from 'react';
-import MapShow from '../../../../hooks/MapShow';
+import { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import axios from 'axios';
 import ChooseCar from '../ChooseCar';
 import DashboardNav from '../../../Shared/Navbar/NavDashBoard';
 
@@ -10,14 +12,19 @@ const CarPrime = () => {
     const [pickupLocation, setPickupLocation] = useState('');
     const [latitude, setLatitude] = useState(23.8041);
     const [longitude, setLongitude] = useState(90.4152);
+    const [longlang, setLonglang] = useState([0, 0]);
     const [error, setError] = useState('');
-    const [distance, setDistance] = useState(0.00);
     const [move, setMove] = useState(false);
-
+    const [route, setRoute] = useState([]);
+    const [distance, setDistance] = useState(0.00);
     const [destination, setDestination] = useState('');
     const [fetchingLocation, setFetchingLocation] = useState(false);
 
-    console.log(pickupLocation);
+
+    const position = [latitude, longitude];
+    const position1 = longlang;
+
+ 
     const handlePickupLocationChange = (e) => {
         setPickupLocation(e.target.value);
     };
@@ -75,94 +82,111 @@ const CarPrime = () => {
 
     }
 
-    const location1 = {
-        latitude: latitude,
-        longitude: longitude,
-    }
+  
+
+        const fetchDestinationCoordinates = async (destination) => {
+            const API_KEY = 'lpCZ19ggOr5Sbk68OjyDniOrEK8s_AZfS2NGCuiNEiU';
+            const response = await fetch(`https://geocode.search.hereapi.com/v1/geocode?q=${encodeURIComponent(destination)}&apiKey=${API_KEY}`);
+            const data = await response.json();
+            if (data.items && data.items.length > 0) {
+                return {
+                    latitude: data.items[0].position.lat,
+                    longitude: data.items[0].position.lng,
+                };
+            } else {
+                throw new Error('No coordinates found for the given destination.');
+            }
+        }
 
 
-    const haversineDistance = (coords1, coords2) => {
-        const toRad = (x) => {
-            return x * Math.PI / 180;
+
+        const calculateDistance = (pos1, pos2) => {
+            const toRadians = (degrees) => degrees * (Math.PI / 180);
+            const R = 6371; // Radius of the Earth in kilometers
+            const dLat = toRadians(pos2[0] - pos1[0]);
+            const dLon = toRadians(pos2[1] - pos1[1]);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(toRadians(pos1[0])) * Math.cos(toRadians(pos2[0])) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        };
+    
+
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            if (!pickupLocation || !destination) {
+                setError('Please fill out both pickup location and destination');
+                return;
+            }
+            setError('');
+    
+            try {
+                const destinationCoords = await fetchDestinationCoordinates(destination);
+                setLonglang([destinationCoords.latitude, destinationCoords.longitude]);
+                const dist = calculateDistance(position, [destinationCoords.latitude, destinationCoords.longitude]);
+                setDistance(dist);
+                setMove(true);
+            } catch (error) {
+                console.error('Error calculating distance:', error);
+                alert('Error calculating distance. Please try again.');
+            }
         };
 
-        const lat1 = coords1.latitude;
-        const lon1 = coords1.longitude;
-        const lat2 = coords2.latitude;
-        const lon2 = coords2.longitude;
 
-        const R = 6371; // Radius of the Earth in km
-
-        const dLat = toRad(lat2 - lat1);
-        const dLon = toRad(lon2 - lon1);
-        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        const distance = R * c;
-        return distance;
-    };
-
-
-    const fetchDestinationCoordinates = async (destination) => {
-        const API_KEY = 'lpCZ19ggOr5Sbk68OjyDniOrEK8s_AZfS2NGCuiNEiU';
-        const response = await fetch(`https://geocode.search.hereapi.com/v1/geocode?q=${encodeURIComponent(destination)}&apiKey=${API_KEY}`);
-        const data = await response.json();
-        if (data.items && data.items.length > 0) {
-            return {
-                latitude: data.items[0].position.lat,
-                longitude: data.items[0].position.lng,
-            };
-        } else {
-            throw new Error('No coordinates found for the given destination.');
-        }
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!pickupLocation || !destination) {
-
-            setError('Please fill out both pickup location and destination');
-
-            return;
-        }
-        setError('');
-
-
-        try {
-            const destinationCoords = await fetchDestinationCoordinates(destination);
-            const distance = haversineDistance({ latitude, longitude }, destinationCoords);
-            console.log(`Distance: ${distance} km`);
-            setDistance(distance);
-
-            setMove(true);
-        } catch (error) {
-            console.error('Error calculating distance:', error);
-            alert('Error calculating distance. Please try again.');
-        }
-
-        // setMove(true)
-
-
-    };
+     useEffect(() => {
+            if (longlang[0] !== 0 && longlang[1] !== 0) {
+                const fetchRoute = async () => {
+                    const apiKey = '5b3ce3597851110001cf6248aceb145e309b47fab24beefd6be8f116';
+                    const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${apiKey}&start=${position[1]},${position[0]}&end=${longlang[1]},${longlang[0]}`;
+    
+                    try {
+                        const response = await axios.get(url);
+                        const routeCoordinates = response.data.features[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
+                        setRoute(routeCoordinates);
+                    } catch (error) {
+                        console.error("Error fetching the route:", error);
+                    }
+                };
+    
+                fetchRoute();
+            }
+        }, [longlang, position]);
 
 
 
     return (
         <>
-
-
             <DashboardNav></DashboardNav>
-
             <div className="px-5 mx-auto ">
                 <div className="card lg:card-side  rounded-lg">
                     <div className='rounded-lg w-1/3 h-[80vh]'>
                         <section className=' rounded-lg p-5' >
-                            <MapShow location1={location1}   ></MapShow>
+                            <MapContainer center={position} zoom={7} style={{ height: '500px', width: '100%' }}>
+                                <TileLayer
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                
+                                />
+                                <Marker position={position}>
+                                    <Popup>
+                                        Staring Point
+                                    </Popup>
+                                </Marker>
+                                <Marker position={position1}>
+                                    <Popup>
+                                        Ending point
+                                    </Popup>
+                                </Marker>
+                           
+                               
+                                {route.length > 0 && <Polyline positions={route} color="blue" />}
+                               
+                            </MapContainer>
                         </section>
                         <section className='px-8 py-4  shadow-lg '>
                             <h1 className="text-3xl font-semibold text-center mb-6">Request a ride for now or later</h1>
+                            <small>The distance between the two points is {distance.toFixed(2)} kilometers.</small>
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-4 relative">
                                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pickupLocation">Pickup Location:</label>

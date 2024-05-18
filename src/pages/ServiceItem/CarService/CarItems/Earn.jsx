@@ -18,7 +18,7 @@ const Earn = () => {
                         <div className="max-w-md ">
                             <h1 className="mb-5 text-5xl font-bold uppercase">Make Earn </h1>
                             <p className="mb-5">Provident cupiditate voluptatem et in.</p>
-                            <button className="btn px-10 font-bold">Earn By Car</button>
+                            
                         </div>
                     </div>
                 </div>

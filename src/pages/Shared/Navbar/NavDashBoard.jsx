@@ -6,7 +6,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 
 const NavDashBoard = () => {
  
-    const [userData] = useUsersAuth();
+    const [userData ,loading ] = useUsersAuth();
     console.log(userData?.photo, 'userdata')
     const { user,logOut } = useContext(AuthContext);
     const handleLogOut = () => {
