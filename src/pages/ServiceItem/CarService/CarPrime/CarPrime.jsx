@@ -11,6 +11,7 @@ const CarPrime = () => {
     const [latitude, setLatitude] = useState(23.8041);
     const [longitude, setLongitude] = useState(90.4152);
     const [error, setError] = useState('');
+    const [distance, setDistance] = useState(0.00);
     const [move, setMove] = useState(false);
 
     const [destination, setDestination] = useState('');
@@ -18,7 +19,7 @@ const CarPrime = () => {
 
     console.log(pickupLocation);
     const handlePickupLocationChange = (e) => {
-        setPickupLocation(e.target.value[0]);
+        setPickupLocation(e.target.value);
     };
 
     const handleDestinationChange = (e) => {
@@ -79,6 +80,45 @@ const CarPrime = () => {
         longitude: longitude,
     }
 
+
+    const haversineDistance = (coords1, coords2) => {
+        const toRad = (x) => {
+            return x * Math.PI / 180;
+        };
+
+        const lat1 = coords1.latitude;
+        const lon1 = coords1.longitude;
+        const lat2 = coords2.latitude;
+        const lon2 = coords2.longitude;
+
+        const R = 6371; // Radius of the Earth in km
+
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                  Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        const distance = R * c;
+        return distance;
+    };
+
+
+    const fetchDestinationCoordinates = async (destination) => {
+        const API_KEY = 'lpCZ19ggOr5Sbk68OjyDniOrEK8s_AZfS2NGCuiNEiU';
+        const response = await fetch(`https://geocode.search.hereapi.com/v1/geocode?q=${encodeURIComponent(destination)}&apiKey=${API_KEY}`);
+        const data = await response.json();
+        if (data.items && data.items.length > 0) {
+            return {
+                latitude: data.items[0].position.lat,
+                longitude: data.items[0].position.lng,
+            };
+        } else {
+            throw new Error('No coordinates found for the given destination.');
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!pickupLocation || !destination) {
@@ -89,7 +129,22 @@ const CarPrime = () => {
         }
         setError('');
 
-        setMove(true)
+
+        try {
+            const destinationCoords = await fetchDestinationCoordinates(destination);
+            const distance = haversineDistance({ latitude, longitude }, destinationCoords);
+            console.log(`Distance: ${distance} km`);
+            setDistance(distance);
+
+            setMove(true);
+        } catch (error) {
+            console.error('Error calculating distance:', error);
+            alert('Error calculating distance. Please try again.');
+        }
+
+        // setMove(true)
+
+
     };
 
 
@@ -166,7 +221,7 @@ const CarPrime = () => {
                     </div>
                     <div className="card-body   ">
                         {console.log(destination)}
-                        {move ? <ChooseCar pickupLocation={pickupLocation} destination={destination}
+                        {move ? <ChooseCar pickupLocation={pickupLocation} destination={destination} distance={distance}
                         ></ChooseCar> : null}
                     </div>
 

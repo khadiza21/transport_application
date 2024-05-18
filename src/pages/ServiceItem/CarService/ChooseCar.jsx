@@ -7,7 +7,7 @@ import Loading from '../../Shared/Loading/Loading';
 import Swal from 'sweetalert2';
 import { SiSquare } from "react-icons/si";
 
-const ChooseCar = ({ pickupLocation, destination }) => {
+const ChooseCar = ({ pickupLocation, destination ,distance}) => {
     const [cardata, setCarData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [move, setMove] = useState(false);
@@ -25,7 +25,7 @@ const ChooseCar = ({ pickupLocation, destination }) => {
             })
 
     }, [])
-
+console.log(distance, 'distance')
 
     const [selectedItem, setSelectedItem] = useState(null);
     const handleClick = (item) => {
@@ -40,6 +40,7 @@ const ChooseCar = ({ pickupLocation, destination }) => {
 
     };
     console.log(selectedItem);
+   
 
     return (
         <div className='flex'>
@@ -83,7 +84,8 @@ const ChooseCar = ({ pickupLocation, destination }) => {
                                         </div>
                                     </div>
                                     <div className='flex items-center'>
-                                        <h1 className='font-bold text-2xl'> BDT {item?.price}</h1>
+                                  
+                                        <h1 className='font-bold text-2xl'> BDT {(item?.price*distance).toFixed(3)}</h1>
                                     </div>
                                 </div>
 
@@ -168,9 +170,9 @@ const ChooseCar = ({ pickupLocation, destination }) => {
                     </div>
                     <div className='flex pt-5 '>
                         <MdPayments className='text-3xl mt-4' />
-
+                       
                         <div className='px-5'>
-                            <h3 className='font-bold text-xl'>BDT {selectedItem?.price}</h3>
+                            <h3 className='font-bold text-xl'>BDT {(selectedItem?.price *distance).toFixed(3)}</h3>
                             <small className='text-gray-500'> Payment </small>
                         </div>
                     </div>
