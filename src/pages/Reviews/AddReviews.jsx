@@ -71,7 +71,7 @@ const AddReviews = () => {
                                 <h1 className="text-2xl font-bold">Name  : {userData?.name} </h1>
                                 <div className="flex items-center justify-start">
                                     <Link
-                                        to='/userdashboard'
+                                        to='/primeCar'
                                         className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
                                         style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
                                     >

@@ -18,9 +18,9 @@ const Navbar = () => {
     console.log(driverData?.role, 'driver rolename');
     console.log(cardriverData?.role, 'car driver rolename');
     console.log('user data from navbar', userData);
-   
 
-    const handleLogOut = () => { 
+
+    const handleLogOut = () => {
         logOut()
             .then(() => { })
             .catch(error => console.log(error));
@@ -58,8 +58,8 @@ const Navbar = () => {
         }
 
 
-        {userData && (userData?.role === 'user') ? <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
-        {userData && (userData?.role === 'admin') ? <li><Link to="/admindashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
+        {/* {userData && (userData?.role === 'user') ? <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li> : null} */}
+        {/* {userData && (userData?.role === 'admin') ? <li><Link to="/admindashboard"><span className='text-white'>DashBoard</span></Link></li> : null} */}
 
 
         {driverData && (driverData?.role === 'publicbus' || driverData?.role === 'femalebus') ? <li><Link to="/busdriverdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}

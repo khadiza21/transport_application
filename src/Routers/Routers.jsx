@@ -7,8 +7,7 @@ import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
 import BusService from "../pages/ServiceItem/BusService/BusService";
 import CarService from "../pages/ServiceItem/CarService/CarService";
-import CarMax from "../pages/ServiceItem/CarService/CarMax/CarMax";
-import CarPlus from "../pages/ServiceItem/CarService/CarPlus/CarPlus";
+
 import CarPrime from "../pages/ServiceItem/CarService/CarPrime/CarPrime";
 import NotFound from "../pages/NotFound/NotFound";
 import Login from "../pages/Authentication/Login/Login";
@@ -61,18 +60,12 @@ export const router = createBrowserRouter([
         element: <Contact></Contact>
 
       },
-      {
-        path: 'plusCar',
-        element: <PrivateRoute><CarPlus></CarPlus></PrivateRoute>
-      },
+     
       {
         path: 'primeCar',
         element: <PrivateRoute><CarPrime></CarPrime></PrivateRoute>
       },
-      {
-        path: 'maxCar',
-        element: <PrivateRoute><CarMax></CarMax></PrivateRoute>
-      },
+    
       {
         path: 'femalebus',
         element: <PrivateRoute><FemaleBus></FemaleBus> </PrivateRoute>

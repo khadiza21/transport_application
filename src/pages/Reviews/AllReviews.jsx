@@ -7,12 +7,12 @@ import SectionTitle from '../Shared/Components/SectionTitile';
 import Loading from '../Shared/Loading/Loading';
 import { Link } from 'react-router-dom';
 import { IoArrowBackCircle } from 'react-icons/io5';
-import useUsersAuth from '../../hooks/useUsersAuth';
+
 
 
 
 const AllReviews = () => {
-    const [userData] = useUsersAuth();
+ 
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -83,26 +83,19 @@ const AllReviews = () => {
                 <div class="mt-4 flex justify-center">
                     <div>
                         <div className="flex items-center justify-start">
-                            { userData?.role === 'admin' ? <Link
-                                to='/admindashboard'
-                                className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
-                                style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                            >
-                                <IoArrowBackCircle className="w-10 h-10 my-8" />
-                                
-                            </Link>:  
-                            
-                            
-                            <Link
-                            to='/userdashboard'
-                            className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
-                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                        >
-                            <IoArrowBackCircle className="w-10 h-10 my-8" />
-                            
-                        </Link>
-                            }
-                            
+                          
+
+
+                                <Link
+                                    to='/primeCar'
+                                    className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
+                                    style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+                                >
+                                    <IoArrowBackCircle className="w-10 h-10 my-8" />
+
+                                </Link>
+                           
+
                         </div>
                     </div>
                 </div>

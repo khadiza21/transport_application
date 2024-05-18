@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import MapShow from '../../../../hooks/MapShow';
 import ChooseCar from '../ChooseCar';
-import { Link } from 'react-router-dom';
+import DashboardNav from '../../../Shared/Navbar/NavDashBoard';
 
 const CarPrime = () => {
 
@@ -96,8 +96,8 @@ const CarPrime = () => {
         const dLat = toRad(lat2 - lat1);
         const dLon = toRad(lon2 - lon1);
         const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                  Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-                  Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         const distance = R * c;
@@ -153,35 +153,8 @@ const CarPrime = () => {
         <>
 
 
+            <DashboardNav></DashboardNav>
 
-            <div className="navbar  bg-base-100 px-10 shadow-lg bg-slate-100">
-                <div className="flex-1">
-                    <Link to='/' className="  text-xl font-bold">City Mover</Link>
-                </div>
-                <div className="flex-none">
-                    <div className="dropdown dropdown-end">
-
-
-                    </div>
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                            </div>
-                        </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div className="px-5 mx-auto ">
                 <div className="card lg:card-side  rounded-lg">
                     <div className='rounded-lg w-1/3 h-[80vh]'>

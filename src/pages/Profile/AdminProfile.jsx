@@ -119,7 +119,7 @@ const AdminProfile = () => {
                                             <FaFacebook className="w-10 h-10 my-8" />
                                         </a>
                                         <Link
-                                            to='/admindashboard'
+                                            to='/primeCar'
                                             className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
                                             style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
                                         >
