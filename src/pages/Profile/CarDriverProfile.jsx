@@ -7,6 +7,7 @@ import { FaFacebook } from 'react-icons/fa';
 import { IoArrowBackCircle } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import useCarDriverData from '../../hooks/useCarDriverData';
+import cardriverImg from '../../assets/user.png'
 
 const CarDriverProfile = () => {
     const [cardriverData,loading] = useCarDriverData();
@@ -83,11 +84,20 @@ console.log(profile);
 
                         <div class="flex justify-center">
                             <div class="flex justify-center">
-                                <img
-                                    className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
-                                    src={profile?.photo}
-                                    alt="admin"
-                                />
+                            {profile?.photo === undefined ?
+                                        <img
+                                            className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
+                                            src={cardriverImg}
+                                            alt="cardriver"
+                                        />
+                                        :
+                                        <img
+                                            className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
+                                            src={profile?.photo}
+                                            alt="cardriver"
+                                        />
+                                    }
+                                
                             </div>
                         </div>
 
@@ -136,12 +146,12 @@ console.log(profile);
                         <input
                             name="email"
                             value={cardriverData?.email}
-                            class="mb-3 py-2 px-4 border border-gray-300 rounded"
+                            class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400"
                             {...register("email")}
                         />
                         <input
                             value={cardriverData?.name}
-                            class="mb-3 py-2 px-4 border border-gray-300 rounded "
+                            class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400"
                             {...register("name")}
                         />
 
@@ -150,6 +160,7 @@ console.log(profile);
                             name="location"
                             className="mb-3 py-2 px-4 border border-gray-300 rounded"
                             {...register("location")}
+                            defaultValue={cardriverData?.location}
                         >
 
                             <option value="Dhaka">Dhaka</option>
@@ -159,6 +170,7 @@ console.log(profile);
                             name="upazila"
                             className="mb-3 py-2 px-4 border border-gray-300 rounded"
                             {...register("upazila")}
+                            defaultValue={cardriverData?.upazila}
                         >
 
 
@@ -173,6 +185,7 @@ console.log(profile);
                             class="mb-3 py-2 px-4 border border-gray-300 rounded"
                             placeholder="Phone Number"
                             {...register("phone")}
+                            defaultValue={cardriverData?.phone}
                         />
                         <input
                             required
@@ -180,6 +193,7 @@ console.log(profile);
                             class="mb-3 py-2 px-4 border border-gray-300 rounded"
                             placeholder="Social URL Link"
                             {...register("facebook")}
+                            defaultValue={cardriverData?.facebook}
                         />
 
                         <input
@@ -188,6 +202,7 @@ console.log(profile);
                             name="dob"
                             className="mb-3 py-2 px-4 border border-gray-300 rounded"
                             {...register("dob")}
+                            defaultValue={cardriverData?.dob}
                         />
                         <input
                             required
@@ -197,18 +212,21 @@ console.log(profile);
                             placeholder='Photo Link'
                             className="mb-3 py-2 px-4 border border-gray-300 rounded"
                             {...register("photo")}
+                            defaultValue={cardriverData?.photo}
                         />
                         <textarea
                             name="address"
                             placeholder="Address"
                             className="mb-3 py-3 px-4 border border-gray-300 rounded"
-                            {...register("address")} />
+                            {...register("address")}
+                            defaultValue={cardriverData?.address} />
 
                         <textarea
                             name="about"
                             placeholder="About"
                             className="mb-3 py-6 px-4 border border-gray-300 rounded"
                             {...register("about")}
+                            defaultValue={cardriverData?.about}
                         />
                         <input
                             class="btn btn-success mb-3 py-2 px-4 font-bold"

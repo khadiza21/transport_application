@@ -150,12 +150,12 @@ const AdminProfile = () => {
                             <input
                                 name="email"
                                 value={userData?.email}
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded"
+                                class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400"
                                 {...register("email")}
                             />
                             <input
                                 value={userData?.name}
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded "
+                                class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400 "
                                 {...register("name")}
                             />
 
