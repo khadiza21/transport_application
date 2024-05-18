@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useUsersAuth from '../../../hooks/useUsersAuth';
-import user from '../.../../../../assets/user.avif'
+import userImge from '../../../assets/user.png'
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const NavDashBoard = () => {
+ 
     const [userData] = useUsersAuth();
-    console.log(userData, 'userdata')
-    const { logOut } = useContext(AuthContext);
+    console.log(userData?.photo, 'userdata')
+    const { user,logOut } = useContext(AuthContext);
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -28,8 +29,8 @@ const NavDashBoard = () => {
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    {userData?.photo === "" ? <img alt="User Avatar" src={user} /> : <img alt="User Avatar" src={userData?.photo} />}
-
+                                    {userData?.photo === undefined  ? <img alt="User Avatar" src={userImge} /> : <img alt="User Avatar" src={userData?.photo} />}
+                                  
                                 </div>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

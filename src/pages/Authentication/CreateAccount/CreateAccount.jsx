@@ -13,9 +13,19 @@ const CreateAccount = () => {
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
+    const [role, setRole] = useState('user');
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
+        console.log('Form data:', data);
+        if (data.role === 'admin' && data.secretPassword !== '@192002040Bk') {
+
+            setErrorMessage('Incorrect secret password for admin role.');
+            return;
+        } else {
+
+        }
+        setErrorMessage('');
         console.log(createUser, 'create user')
         createUser(data.email, data.password)
             .then(result => {
@@ -70,7 +80,9 @@ const CreateAccount = () => {
             });
     };
 
-
+    const handleRoleChange = (e) => {
+        setRole(e.target.value);
+    };
 
 
 
@@ -103,9 +115,11 @@ const CreateAccount = () => {
                                             <span className="label-text font-bold">Join as  </span>
                                         </label>
                                         <div className='input input-bordered' >
-                                            <select type="text" {...register("role", { required: true, maxLength: 20 })} placeholder="" id="dropdown" className="w-full border-0 mt-2 border-none outline-none" required >
+                                            <select type="text" {...register("role", { required: true, maxLength: 20 })} placeholder="" id="dropdown" className="w-full border-0 mt-2 border-none outline-none" required
+                                                onChange={handleRoleChange}
+                                            ><option value="user">User</option>
                                                 <option value="admin">Admin</option>
-                                                <option value="user">User</option>
+                                                
                                             </select>
                                         </div>
 
@@ -113,6 +127,9 @@ const CreateAccount = () => {
                                             <span className="text-red-600" role="alert">This is required</span>
                                         )}
                                     </div>
+
+
+
 
                                     <div className="form-control">
                                         <label className="label">
@@ -175,40 +192,67 @@ const CreateAccount = () => {
                                         {errorMessage && <p className="text-red-600">{errorMessage}</p>}
                                     </div>
 
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text font-bold">Password</span>
-                                        </label>
-                                        <input type="password" placeholder="password"  {...register("password", {
-                                            required: true,
-                                            minLength: 6,
-                                            maxLength: 20,
-                                            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                                        })} className="input input-bordered" required />
-                                        {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
-                                        {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
-                                        {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
-                                        {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
-                                    </div>
+                                    {role === 'admin' && (
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text font-bold">Secret Password</span>
+                                            </label>
+                                            <input
+                                                type="password"
+                                                {...register("secretPassword", { required: true })}
+                                                placeholder="Secret Password"
+                                                className="input input-bordered"
+                                                required
+                                            />
+                                            {errors.secretPassword && (
+                                                <span className="text-red-600" role="alert">Secret password is required for admin role</span>
+                                            )}
+                                        </div>
+                                    )}
 
+                                    {role === 'user' && (
 
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text font-bold">Confirm Password</span>
-                                        </label>
-                                        <input
-                                            type="password"
-                                            placeholder="confirm password"
-                                            {...register("confirmPassword", {
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text font-bold">Password</span>
+                                            </label>
+                                            <input type="password" placeholder="password"  {...register("password", {
                                                 required: true,
-                                                validate: value => value === watch('password') || "Passwords do not match"
-                                            })}
-                                            className="input input-bordered"
-                                            required
-                                        />
-                                        {errors.confirmPassword?.type === 'required' && <p className="text-red-600">Confirm Password is required</p>}
-                                        {errors.confirmPassword?.type === 'validate' && <p className="text-red-600">{errors.confirmPassword.message}</p>}
-                                    </div>
+                                                minLength: 6,
+                                                maxLength: 20,
+                                                pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
+                                            })} className="input input-bordered" required />
+                                            {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
+                                            {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
+                                            {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
+                                            {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
+                                        </div>
+                                    )}
+
+
+                                    {role === 'user' && (
+
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text font-bold">Confirm Password</span>
+                                            </label>
+                                            <input
+                                                type="password"
+                                                placeholder="confirm password"
+                                                {...register("confirmPassword", {
+                                                    required: true,
+                                                    validate: value => value === watch('password') || "Passwords do not match"
+                                                })}
+                                                className="input input-bordered"
+                                                required
+                                            />
+                                            {errors.confirmPassword?.type === 'required' && <p className="text-red-600">Confirm Password is required</p>}
+                                            {errors.confirmPassword?.type === 'validate' && <p className="text-red-600">{errors.confirmPassword.message}</p>}
+                                        </div>
+
+                                    )}
+
+
 
 
 
