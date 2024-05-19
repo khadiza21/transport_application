@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { MdPayments } from "react-icons/md";
+import Loading from '../../Shared/Loading/Loading';
+import Swal from 'sweetalert2';
+import maxcar from '../../../assets/car3.jpeg'
+import pluscar from '../../../assets/car2.jpeg'
+import primecar from '../../../assets/car1.jpeg'
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { FaMobileScreenButton } from "react-icons/fa6";
 import { FaDotCircle } from "react-icons/fa";
-import Loading from '../../Shared/Loading/Loading';
-import Swal from 'sweetalert2';
 import { SiSquare } from "react-icons/si";
+import driverimg from '../../../assets/user.png'
 
-const ChooseCar = ({ pickupLocation, destination ,distance}) => {
+
+
+
+
+const ChooseCar = ({ pickupLocation, destination, distance }) => {
+
+
     const [cardata, setCarData] = useState([]);
+    const [cardriverdata, setCardriverData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [move, setMove] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [filteredDriver, setFilteredDriver] = useState(null);
 
     useEffect(() => {
-        fetch('/cardata.json')
+        fetch('https://transport-server2-1.onrender.com/cardata')
             .then(res => res.json())
             .then(data => {
 
@@ -25,9 +38,27 @@ const ChooseCar = ({ pickupLocation, destination ,distance}) => {
             })
 
     }, [])
-console.log(distance, 'distance')
 
-    const [selectedItem, setSelectedItem] = useState(null);
+    useEffect(() => {
+        fetch('https://transport-server2-1.onrender.com/cardriveraccount')
+            .then(res => res.json())
+            .then(data => {
+                setCardriverData(data);
+                console.log(data)
+
+            })
+
+    }, [])
+
+    useEffect(() => {
+        if (selectedItem && cardriverdata.length > 0) {
+            const matchedDriver = cardriverdata.find(driver => driver.email === selectedItem.email);
+            setFilteredDriver(matchedDriver);
+        }
+    }, [selectedItem, cardriverdata]);
+    console.log(filteredDriver?.photo, 'distance')
+
+
     const handleClick = (item) => {
         setSelectedItem(item);
         Swal.fire({
@@ -39,99 +70,119 @@ console.log(distance, 'distance')
 
 
     };
-    console.log(selectedItem);
-   
+  
+
 
     return (
         <div className='flex'>
-            <div className='w-2/3 '>
-                <h1 className='text-4xl font-bold   my-2 px-5'>Choose A Ride </h1>
-                <hr />
+            {move ? null :
 
-                <div className='overflow-y-scroll h-[73vh] '>
-                    {loading ? (
-                        <Loading></Loading>
-                    ) : (
+                <div className='w-2/3 '>
+                    <h1 className='text-4xl font-bold   my-2 px-5'>Choose A Ride </h1>
+                    <hr />
 
-                        cardata.map(item =>
-                            <div key={item._id}
+                    <div className='overflow-y-scroll h-[73vh] '>
+                        {loading ? (
+                            <Loading></Loading>
+                        ) : (
 
-                                id={item._id}
-                                className="focus:outline rounded-[30px] focus:border-2 focus:shadow-outline mx-5 my-2"
+                            cardata.map(item =>
+                                <div key={item._id}
 
-                                tabIndex={0}
-                                onClick={() => handleClick(item)}
+                                    id={item._id}
+                                    className="focus:outline rounded-[30px] focus:border-2 focus:shadow-outline mx-5 my-2"
 
-                            >
+                                    tabIndex={0}
+                                    onClick={() => handleClick(item)}
 
-                                <div
-                                    className=" h-100 flex justify-between py-6 px-5 " >
-                                    <div className='flex justify-start '>
-                                        <div className="avatar">
-                                            <div className="w-24 rounded">
-                                                <div className="avatar">
-                                                    <div className="w-24 rounded">
-                                                        <img src={item?.img} />
+                                >
+
+                                    <div
+                                        className=" h-100 flex justify-between py-6 px-5 " >
+                                        <div className='flex justify-start '>
+                                            <div className="avatar">
+                                                <div className="w-24 rounded">
+                                                    <div className="avatar">
+                                                        <div className="w-24 rounded">
+
+                                                            {
+                                                                item?.cartype === 'Prime Car' ? (
+                                                                    <img src={primecar} alt="Prime Car" />
+                                                                ) : item?.cartype === 'Plus Car' ? (
+                                                                    <img src={pluscar} alt="Plus Car" />
+                                                                ) : (
+                                                                    <img src={maxcar} alt="Max Car" />
+                                                                )
+                                                            }
+
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className='flex items-center pl-3 '>
-                                            <div>
-                                                <h2 className='font-bold text-xl '> {item?.carype}</h2>
-                                                <p className='text-gray-500'>{item?.description}</p>
+                                            <div className='flex items-center pl-3 '>
+                                                <div>
+                                                    <h2 className='font-bold text-xl '> {item?.cartype}</h2>
+                                                    <small className='font-bold text-gray-400'>Affodable everyday rides</small>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div className='flex items-center'>
+
+                                            <h1 className='font-bold text-2xl'> BDT {(item?.chargePerKm * distance).toFixed(3)}</h1>
+                                        </div>
                                     </div>
-                                    <div className='flex items-center'>
-                                  
-                                        <h1 className='font-bold text-2xl'> BDT {(item?.price*distance).toFixed(3)}</h1>
-                                    </div>
+
                                 </div>
 
-                            </div>
+
+                            ))}
+                    </div>
+
+                    <hr />
+                    <section className='flex justify-end px-5 py-4 shadow-lg'>
+
+                       
+
+                        {selectedItem !== null ? <div>
+                            <button className='btn btn-neutral'
+
+                                onClick={() => setMove(true)}>Request For Ride</button>
+
+                        </div> : <div><button className='btn btn-disabled'
+
+                        >Request For Ride</button></div>}
 
 
-                        ))}
+
+
+                    </section>
+
+
                 </div>
-
-                <hr />
-                <section className='flex justify-between px-5 py-4 shadow-lg'>
-
-                    <div className='flex  '><MdPayments className='text-4xl' /><span className='mt-2 font-bold pl-2'>Pay</span></div>
-
-                    {selectedItem !== null ? <div><button className='btn btn-neutral'
-                        onClick={() => setMove(true)}
-                    >Request For Ride</button></div> : <div><button className='btn btn-disabled'
-
-                    >Request For Ride</button></div>}
-
-
-
-
-                </section>
-
-
-            </div>
-
+            }
 
 
             {move ?
                 <div className="card-body  w-1/3 h-[90h] shadow-xl rounded-lg">
 
-                    <h1 className='text-3xl font-bold   my-2 '>Meet At Road 6d, Avenue 8, Mirpur DOSH </h1>
+                    <h1 className='text-3xl font-bold   my-2 '>Meet At {pickupLocation} </h1>
                     <hr />
 
                     <div className='flex justify-between'>
                         <div className="avatar ">
+
                             <div className="w-24 h-24 mask mask-hexagon">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                {filteredDriver?.photo === undefined ? <img src={driverimg} alt="" /> : <img src={filteredDriver?.photo} />}
+
                             </div>
                         </div>
                         <div className='w-[200px]'>
-                            <h1 className='text-gray-500 uppercase text-xl text-right font-bold'>MD Zahid</h1>
-                            <h2 className=' font-bold text-3xl text-right'>DHM-GA-29-7002</h2>
-                            <p className='text-gray-500 text-right '>Nissan Bluebird</p>
+                            <h1 className='text-gray-500 uppercase text-xl text-right font-bold'>{selectedItem?.name}</h1>
+                            <h2 className=' font-bold text-3xl text-right'>{selectedItem?.registrationNumber}</h2>
+                            <p className='text-gray-500 text-right '>{selectedItem?.brandname}</p>
+                            <p className='text-gray-500 text-right '>{selectedItem?.modelname}</p>
+                            <p className='text-red-500 text-right '>{selectedItem?.cartype} Rent Per km {selectedItem?.chargePerKm} BDT</p>
                         </div>
                     </div>
                     <hr />
@@ -144,7 +195,15 @@ console.log(distance, 'distance')
                             <span>Safty</span>
                         </div>
                         <div>
-                            <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%]'> <FaMobileScreenButton className='text-3xl ' />
+                            <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%]'>
+                            <MdPayments className='text-4xl' />
+
+                            </div>
+                            <span>Pay</span>
+                        </div>
+                        <div>
+                            <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%] tooltip tooltip-open  tooltip-right tooltip-success'  data-tip={filteredDriver?.phone}>
+                                 <FaMobileScreenButton className='text-3xl ' />
                             </div>
 
                             <p>Phone</p>
@@ -170,9 +229,9 @@ console.log(distance, 'distance')
                     </div>
                     <div className='flex pt-5 '>
                         <MdPayments className='text-3xl mt-4' />
-                       
+
                         <div className='px-5'>
-                            <h3 className='font-bold text-xl'>BDT {(selectedItem?.price *distance).toFixed(3)}</h3>
+                            <h3 className='font-bold text-xl'>BDT {(selectedItem?.chargePerKm * distance).toFixed(3)}</h3>
                             <small className='text-gray-500'> Payment </small>
                         </div>
                     </div>
