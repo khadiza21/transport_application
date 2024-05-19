@@ -25,14 +25,14 @@ const Dashboard = ({ userRole }) => {
     const driverOptions = [
         { title: 'Home', link: '/' },
         { title: 'Profile', link: '/busdriverprofile' },
-        { title: 'Vehicle Profile', link: '/vehicle-profile' },
+        { title: 'Vehicle Profile', link: '/vehicleprofile' },
         { title: 'Drive Management', link: '/drive-management' },
         { title: 'History', link: '/history' },
     ];
     const crdriverOptions = [
         { title: 'Home', link: '/' },
         { title: 'Profile', link: '/cardriverprofile' },
-        { title: 'Vehicle Profile', link: '/vehicle-profile' },
+        { title: 'Vehicle Profile', link: '/vehicleprofile' },
         { title: 'Drive Management', link: '/drive-management' },
         { title: 'History', link: '/history' },
     ];

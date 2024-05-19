@@ -10,81 +10,81 @@ import useCarDriverData from '../../hooks/useCarDriverData';
 import cardriverImg from '../../assets/user.png'
 
 const CarDriverProfile = () => {
-    const [cardriverData,loading] = useCarDriverData();
-const [loadingg, setLoadingg] = useState(true);
-const [profile, setProfile] = useState({});
-const { register, handleSubmit, reset } = useForm();
+    const [cardriverData, loading] = useCarDriverData();
+    const [loadingg, setLoadingg] = useState(true);
+    const [profile, setProfile] = useState({});
+    const { register, handleSubmit, reset } = useForm();
 
-useEffect(() => {
-    if (cardriverData) {
-        const storedProfile = JSON.parse(localStorage.getItem("profile"));
-        if (storedProfile) {
-            setProfile(storedProfile);
-            setLoadingg(false);
-        } else {
-            setLoadingg(false);
-        }
-    }
-}, [cardriverData]);
-
-useEffect(() => {
-    if (cardriverData && cardriverData._id) {
-        const url = `https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData._id}`;
-        fetch(url)
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error('Failed to fetch profile data');
-                }
-                return res.json();
-            })
-            .then((data) => {
-                setProfile(data);
-                localStorage.setItem("profile", JSON.stringify(data));
+    useEffect(() => {
+        if (cardriverData) {
+            const storedProfile = JSON.parse(localStorage.getItem("profile"));
+            if (storedProfile) {
+                setProfile(storedProfile);
                 setLoadingg(false);
+            } else {
+                setLoadingg(false);
+            }
+        }
+    }, [cardriverData]);
+
+    useEffect(() => {
+        if (cardriverData && cardriverData._id) {
+            const url = `https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData._id}`;
+            fetch(url)
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error('Failed to fetch profile data');
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    setProfile(data);
+                    localStorage.setItem("profile", JSON.stringify(data));
+                    setLoadingg(false);
+                })
+                .catch((error) => console.error('Error fetching profile data:', error));
+        }
+    }, [cardriverData]);
+
+    const onSubmit = (e) => {
+        const { location, upazila, facebook, dob, address, phone, about, photo } = e;
+        fetch(`https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData?._id}`, {
+            method: "PUT",
+            body: JSON.stringify({ location, upazila, facebook, dob, address, phone, about, photo }),
+            headers: { "content-type": "application/json" }
+        })
+            .then(res => res.json())
+            .then(() => {
+                return fetch(`https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData?._id}`);
             })
-            .catch((error) => console.error('Error fetching profile data:', error));
-    }
-}, [cardriverData]);
+            .then(res => res.json())
+            .then((updatedData) => {
+                setProfile(updatedData);
+                localStorage.setItem("profile", JSON.stringify(updatedData));
+                toast.success("Successfully Updated Profile !");
+                reset();
+            })
+            .catch((error) => console.error('Error updating profile:', error));
+    };
 
-const onSubmit = (e) => {
-    const { location, upazila, facebook, dob, address, phone, about, photo } = e;
-    fetch(`https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData?._id}`, {
-        method: "PUT",
-        body: JSON.stringify({ location, upazila, facebook, dob, address, phone, about, photo }),
-        headers: { "content-type": "application/json" }
-    })
-        .then(res => res.json())
-        .then(() => {
-            return fetch(`https://transport-server2-1.onrender.com/cardriveraccount/${cardriverData?._id}`);
-        })
-        .then(res => res.json())
-        .then((updatedData) => {
-            setProfile(updatedData);
-            localStorage.setItem("profile", JSON.stringify(updatedData));
-            toast.success("Successfully Updated Profile !");
-            reset();
-        })
-        .catch((error) => console.error('Error updating profile:', error));
-};
+    if (loading || loadingg) return <Loading />;
 
-if (loading || loadingg) return <Loading />;
-
-console.log(profile);
+    console.log(profile);
     return (
         <div>
-        <div>
+            <div>
 
-            <section>
-                <div class="container mx-auto my-5 pb-5">
+                <section>
+                    <div class="container mx-auto my-5 pb-5">
 
-                    <h3 class="py-3 text-success text-4xl pb-5 text-center font-bold">
-                        Your Profile
-                    </h3>
-                    <>
+                        <h3 class="py-3 text-success text-4xl pb-5 text-center font-bold">
+                            Your Profile
+                        </h3>
+                        <>
 
-                        <div class="flex justify-center">
                             <div class="flex justify-center">
-                            {profile?.photo === undefined ?
+                                <div class="flex justify-center">
+                                    {profile?.photo === undefined ?
                                         <img
                                             className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
                                             src={cardriverImg}
@@ -97,148 +97,148 @@ console.log(profile);
                                             alt="cardriver"
                                         />
                                     }
-                                
-                            </div>
-                        </div>
 
-
-                        <div class="mt-4 flex justify-center">
-                            <div>
-                                <h1 className="text-2xl font-bold">Name  : {cardriverData?.name} ({cardriverData?.role})</h1>
-                                <h2 className="text-xl font-bold">Email  : {cardriverData?.email}</h2>
-                                <h2 className=" font-bold">Gender :{profile?.gender}</h2>
-                                <h2 className="font-bold">Phone  : {profile?.phone}</h2>
-                                <h3 className=" font-bold"> BirthDate : {profile?.dob}</h3>
-                                <h3 className="font-bold"> Location : {profile?.location}</h3>
-                                <h3 className="font-bold"> Upazila : {profile?.upazila}</h3>
-                                <h3 className=" font-bold">Address  : {profile?.address}</h3>
-                                <p className=" font-bold">About : {profile?.about}</p>
-
-
-                                <div className="flex items-center justify-start">
-                                    <a
-                                        href={profile?.facebook}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300 mr-2"
-                                        style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                    >
-                                        <FaFacebook className="w-10 h-10 my-8" />
-                                    </a>
-                                    <Link
-                                        to='/cardriverdashboard'
-                                        className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
-                                        style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                    >
-                                        <IoArrowBackCircle className="w-10 h-10 my-8" />
-                                    </Link>
                                 </div>
-
                             </div>
-                        </div>
-                    </>
 
 
-                    <form
-                        onSubmit={handleSubmit(onSubmit)}
-                        class="flex flex-col w-3/4 mx-auto mt-8"
-                    >
-                        <input
-                            name="email"
-                            value={cardriverData?.email}
-                            class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400"
-                            {...register("email")}
-                        />
-                        <input
-                            value={cardriverData?.name}
-                            class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400"
-                            {...register("name")}
-                        />
+                            <div class="mt-4 flex justify-center">
+                                <div>
+                                    <h1 className="text-2xl font-bold">Name  : {cardriverData?.name} ({cardriverData?.role})</h1>
+                                    <h2 className="text-xl font-bold">Email  : {cardriverData?.email}</h2>
+                                    <h2 className=" font-bold">Gender :{profile?.gender}</h2>
+                                    <h2 className="font-bold">Phone  : {profile?.phone}</h2>
+                                    <h3 className=" font-bold"> BirthDate : {profile?.dob}</h3>
+                                    <h3 className="font-bold"> Location : {profile?.location}</h3>
+                                    <h3 className="font-bold"> Upazila : {profile?.upazila}</h3>
+                                    <h3 className=" font-bold">Address  : {profile?.address}</h3>
+                                    <p className=" font-bold">About : {profile?.about}</p>
 
 
-                        <select
-                            name="location"
-                            className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                            {...register("location")}
-                            defaultValue={cardriverData?.location}
+                                    <div className="flex items-center justify-start">
+                                        <a
+                                            href={profile?.facebook}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300 mr-2"
+                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+                                        >
+                                            <FaFacebook className="w-10 h-10 my-8" />
+                                        </a>
+                                        <Link
+                                            to='/cardriverdashboard'
+                                            className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
+                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
+                                        >
+                                            <IoArrowBackCircle className="w-10 h-10 my-8" />
+                                        </Link>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </>
+
+
+                        <form
+                            onSubmit={handleSubmit(onSubmit)}
+                            class="flex flex-col w-3/4 mx-auto mt-8"
                         >
+                            <input
+                                name="email"
+                                value={cardriverData?.email}
+                                class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400"
+                                {...register("email")}
+                            />
+                            <input
+                                value={cardriverData?.name}
+                                class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400"
+                                {...register("name")}
+                            />
 
-                            <option value="Dhaka">Dhaka</option>
 
-                        </select>
-                        <select
-                            name="upazila"
-                            className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                            {...register("upazila")}
-                            defaultValue={cardriverData?.upazila}
-                        >
+                            <select
+                                name="location"
+                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
+                                {...register("location")}
+                                defaultValue={cardriverData?.location}
+                            >
+
+                                <option value="Dhaka">Dhaka</option>
+
+                            </select>
+                            <select
+                                name="upazila"
+                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
+                                {...register("upazila")}
+                                defaultValue={cardriverData?.upazila}
+                            >
 
 
-                            <option value="Dhanmondi">Dhanmondi</option>
-                            <option value="Gulshan">Gulshan</option>
-                            <option value="Savar">Savar</option>
+                                <option value="Dhanmondi">Dhanmondi</option>
+                                <option value="Gulshan">Gulshan</option>
+                                <option value="Savar">Savar</option>
 
-                        </select>
-                        <input
-                            required
-                            name="phone"
-                            class="mb-3 py-2 px-4 border border-gray-300 rounded"
-                            placeholder="Phone Number"
-                            {...register("phone")}
-                            defaultValue={cardriverData?.phone}
-                        />
-                        <input
-                            required
-                            name="facebook"
-                            class="mb-3 py-2 px-4 border border-gray-300 rounded"
-                            placeholder="Social URL Link"
-                            {...register("facebook")}
-                            defaultValue={cardriverData?.facebook}
-                        />
+                            </select>
+                            <input
+                                required
+                                name="phone"
+                                class="mb-3 py-2 px-4 border border-gray-300 rounded"
+                                placeholder="Phone Number"
+                                {...register("phone")}
+                                defaultValue={cardriverData?.phone}
+                            />
+                            <input
+                                required
+                                name="facebook"
+                                class="mb-3 py-2 px-4 border border-gray-300 rounded"
+                                placeholder="Social URL Link"
+                                {...register("facebook")}
+                                defaultValue={cardriverData?.facebook}
+                            />
 
-                        <input
-                            required
-                            type="date"
-                            name="dob"
-                            className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                            {...register("dob")}
-                            defaultValue={cardriverData?.dob}
-                        />
-                        <input
-                            required
-                            // type="file"
-                            name="photo"
-                            // accept="image/*"
-                            placeholder='Photo Link'
-                            className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                            {...register("photo")}
-                            defaultValue={cardriverData?.photo}
-                        />
-                        <textarea
-                            name="address"
-                            placeholder="Address"
-                            className="mb-3 py-3 px-4 border border-gray-300 rounded"
-                            {...register("address")}
-                            defaultValue={cardriverData?.address} />
+                            <input
+                                required
+                                type="date"
+                                name="dob"
+                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
+                                {...register("dob")}
+                                defaultValue={cardriverData?.dob}
+                            />
+                            <input
+                                required
+                                // type="file"
+                                name="photo"
+                                // accept="image/*"
+                                placeholder='Photo Link'
+                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
+                                {...register("photo")}
+                                defaultValue={cardriverData?.photo}
+                            />
+                            <textarea
+                                name="address"
+                                placeholder="Address"
+                                className="mb-3 py-3 px-4 border border-gray-300 rounded"
+                                {...register("address")}
+                                defaultValue={cardriverData?.address} />
 
-                        <textarea
-                            name="about"
-                            placeholder="About"
-                            className="mb-3 py-6 px-4 border border-gray-300 rounded"
-                            {...register("about")}
-                            defaultValue={cardriverData?.about}
-                        />
-                        <input
-                            class="btn btn-success mb-3 py-2 px-4 font-bold"
-                            type="submit"
-                            value="Update Your Profile"
-                        />
-                    </form>
-                </div>
-            </section>
+                            <textarea
+                                name="about"
+                                placeholder="About"
+                                className="mb-3 py-6 px-4 border border-gray-300 rounded"
+                                {...register("about")}
+                                defaultValue={cardriverData?.about}
+                            />
+                            <input
+                                class="btn btn-success mb-3 py-2 px-4 font-bold"
+                                type="submit"
+                                value="Update Your Profile"
+                            />
+                        </form>
+                    </div>
+                </section>
+            </div>
+
         </div>
-
-    </div>
     );
 };
 

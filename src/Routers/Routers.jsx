@@ -28,6 +28,7 @@ import BusDriverProfile from "../pages/Profile/BusDriverProfile";
 import CarDriverProfile from "../pages/Profile/CarDriverProfile";
 import AddReviews from "../pages/Reviews/AddReviews";
 import AllReviews from "../pages/Reviews/AllReviews";
+import Vehicle from "../pages/Vehicle/Vehicle";
 
 
 export const router = createBrowserRouter([
@@ -102,6 +103,10 @@ export const router = createBrowserRouter([
       {
         path: 'busdriverprofile',
         element: <DriversRoute> <BusDriverProfile></BusDriverProfile> </DriversRoute>
+      },
+      {
+        path: 'vehicleprofile',
+        element: <DriversRoute> <Vehicle></Vehicle> </DriversRoute>
       },
       {
         path: 'cardriverprofile',
