@@ -45,7 +45,7 @@ const Dashboard = ({ userRole }) => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
-                            {/* Burger menu */}
+                         
                             <button
                                 onClick={() => setMenuOpen(!menuOpen)}
                                 className="block sm:hidden border border-gray-300 px-2 py-1 rounded focus:outline-none focus:ring"
@@ -62,9 +62,7 @@ const Dashboard = ({ userRole }) => {
                                     <path d="M4 6h16M4 12h16M4 18h16"></path>
                                 </svg>
                             </button>
-                            {/* End Burger menu */}
-
-                            {/* Navigation links */}
+                           
                             <div className={`${menuOpen ? 'block' : 'hidden'} sm:-my-px sm:ml-6 sm:flex sm:space-x-8`}>
                                 {options.map((option, index) => (
                                     <Link
@@ -80,7 +78,7 @@ const Dashboard = ({ userRole }) => {
                     </div>
                 </div>
             </nav>
-            {/* Additional content */}
+           
         </div>
     );
 };

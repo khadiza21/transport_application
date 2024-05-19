@@ -29,3 +29,4 @@
       const { id, name, img, review, star, } = item; -->
 <!-- // const primeCars = data.filter(item => item.catagory === 'prime'); -->
 <!-- // setCarItems(primeCars); -->
+vehicle, providers, earnauthentcation, authentication,hooks

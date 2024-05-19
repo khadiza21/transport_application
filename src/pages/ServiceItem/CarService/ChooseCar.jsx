@@ -16,8 +16,6 @@ import driverimg from '../../../assets/user.png'
 
 
 const ChooseCar = ({ pickupLocation, destination, distance }) => {
-
-
     const [cardata, setCarData] = useState([]);
     const [cardriverdata, setCardriverData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -70,7 +68,7 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
 
 
     };
-  
+
 
 
     return (
@@ -142,7 +140,7 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
                     <hr />
                     <section className='flex justify-end px-5 py-4 shadow-lg'>
 
-                       
+
 
                         {selectedItem !== null ? <div>
                             <button className='btn btn-neutral'
@@ -196,14 +194,14 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
                         </div>
                         <div>
                             <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%]'>
-                            <MdPayments className='text-4xl' />
+                                <MdPayments className='text-4xl' />
 
                             </div>
                             <span>Pay</span>
                         </div>
                         <div>
-                            <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%] tooltip tooltip-open  tooltip-right tooltip-success'  data-tip={filteredDriver?.phone}>
-                                 <FaMobileScreenButton className='text-3xl ' />
+                            <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%] tooltip tooltip-open  tooltip-right tooltip-success' data-tip={filteredDriver?.phone}>
+                                <FaMobileScreenButton className='text-3xl ' />
                             </div>
 
                             <p>Phone</p>

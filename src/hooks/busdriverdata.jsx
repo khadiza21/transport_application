@@ -3,9 +3,6 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const busdriverdata = () => {
     const { user } = useContext(AuthContext);
- 
-
-
     const [driverData, setDriverData] = useState(null);
     const [loading, setLoading] = useState(true);
 

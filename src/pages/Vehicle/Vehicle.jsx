@@ -6,10 +6,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
-
-
-
-
 const Vehicle = () => {
 
     const { register, handleSubmit, reset } = useForm();
@@ -46,6 +42,8 @@ const Vehicle = () => {
         areaCodes: ['DHA', 'CTG', 'RAJ', 'SYL', 'MY', 'NG', 'NR', 'NA', 'ND', 'NT', 'NK', 'NO', 'PB', 'PA', 'PT', 'PJ', 'RB', 'RM', 'RP', 'SK', 'SP', 'SH', 'SG'],
         categoryCodes: ['BHA', 'CHA', 'GA', 'GHA', 'KA', 'KHA', 'MA', 'PA', 'THA']
     };
+
+
     useEffect(() => {
         if (selectedBrand) {
             const brand = carData.brands.find(b => b.name === selectedBrand);
