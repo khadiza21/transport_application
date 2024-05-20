@@ -19,8 +19,8 @@ import EarnAuthCategory from "../pages/EarnAuthentication/EarnAuthCategory";
 import DriversRoute from "./DriversRoute";
 import BusDriversDashBoard from "../pages/Dashboard/DriverDashBoard/BusDriversDashBoard";
 import BusDriverLog from "../pages/EarnAuthentication/Login/BusDriverLog";
-import UserDashBoard from "../pages/Dashboard/UserDashBoard/UserDashBoard";
-import AdminDashBoard from "../pages/Dashboard/AdminDashboard/AdminDashBoard";
+
+
 import CarDriverDashBoard from "../pages/Dashboard/DriverDashBoard/CarDriverDashBoard";
 import AdminProfile from "../pages/Profile/AdminProfile";
 import UserProfile from "../pages/Profile/UserProfile";
@@ -31,6 +31,8 @@ import AllReviews from "../pages/Reviews/AllReviews";
 import Vehicle from "../pages/Vehicle/Vehicle";
 import ReqCarRide from "../pages/ServiceItem/CarService/ReqCarRide";
 import OrderHistory from "../pages/OrderHistory/OrderHistory";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import CommonDashboard from "../pages/Dashboard/CommonDashbord/CommonDashboard";
 
 
 
@@ -80,8 +82,8 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: 'userdashboard',
-        element: <PrivateRoute><UserDashBoard></UserDashBoard> </PrivateRoute>
+        path: 'dashboard',
+        element: <PrivateRoute> <CommonDashboard></CommonDashboard> </PrivateRoute>
       },
       {
         path: 'adminprofile',
@@ -103,10 +105,7 @@ export const router = createBrowserRouter([
         path: 'historylist',
         element: <PrivateRoute> <OrderHistory></OrderHistory> </PrivateRoute>
       },
-      {
-        path: 'admindashboard',
-        element: <PrivateRoute><AdminDashBoard></AdminDashBoard></PrivateRoute>
-      },
+    
       {
         path: 'addreview',
         element: <PrivateRoute><AddReviews></AddReviews></PrivateRoute>

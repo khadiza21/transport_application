@@ -118,7 +118,7 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
 
 
             })
-            .catch(err => console.error('Error saving order:', err));
+           
 
     };
     console.log('Order history:', orderHistory);

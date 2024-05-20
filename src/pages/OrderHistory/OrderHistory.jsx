@@ -10,10 +10,12 @@ import { SiSquare } from 'react-icons/si';
 import 'react-toastify/dist/ReactToastify.css'
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const OrderHistory = () => {
     const [orderHistoryDatalist, setOrderHistoryDatalist] = useState([]);
     const [filteredOrderHistory, setFilteredOrderHistory] = useState([]);
+    const navigate = useNavigate();
  
 
     const [userData, loading] = useUsersAuth();
@@ -88,13 +90,15 @@ const OrderHistory = () => {
         
     };
     
-
+    const handleView = (order) => {
+        navigate('/requestedcarride', { state: { order } });
+      };
 
     console.log(filteredOrderHistory.length);
     if (loading) {
         return <Loading></Loading>;
     }
-
+    // requestedcarride
     return (
         <>
         <NavDashBoard></NavDashBoard>
@@ -167,7 +171,7 @@ const OrderHistory = () => {
                                          onClick={() => handleRebook(order._id)}
                                         >Rebook</button> :
                                         <button className="btn btn-sm  bg-slate-400 mt-2"
-                                       
+                                        onClick={() => handleView(order._id)}
                                        >view</button> }
                                        
                                     </div>

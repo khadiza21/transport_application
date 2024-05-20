@@ -58,8 +58,8 @@ const Navbar = () => {
         }
 
 
-        {/* {userData && (userData?.role === 'user') ? <li><Link to="/userdashboard"><span className='text-white'>DashBoard</span></Link></li> : null} */}
-        {/* {userData && (userData?.role === 'admin') ? <li><Link to="/admindashboard"><span className='text-white'>DashBoard</span></Link></li> : null} */}
+        {userData && (userData?.role === 'user') ? <li><Link to="/dashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
+        {userData && (userData?.role === 'admin') ? <li><Link to="/dashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
 
 
         {driverData && (driverData?.role === 'publicbus' || driverData?.role === 'femalebus') ? <li><Link to="/busdriverdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
