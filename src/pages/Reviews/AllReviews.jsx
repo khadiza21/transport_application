@@ -16,6 +16,7 @@ const AllReviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
+    
     const reviewsPerPage = 4;
     useEffect(() => {
         fetch('https://transport-server2-1.onrender.com/review')

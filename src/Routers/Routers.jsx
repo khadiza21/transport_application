@@ -29,6 +29,8 @@ import CarDriverProfile from "../pages/Profile/CarDriverProfile";
 import AddReviews from "../pages/Reviews/AddReviews";
 import AllReviews from "../pages/Reviews/AllReviews";
 import Vehicle from "../pages/Vehicle/Vehicle";
+import ReqCarRide from "../pages/ServiceItem/CarService/ReqCarRide";
+import OrderHistory from "../pages/OrderHistory/OrderHistory";
 
 
 
@@ -90,8 +92,16 @@ export const router = createBrowserRouter([
         element: <PrivateRoute> <UserProfile></UserProfile> </PrivateRoute>
       },
       {
+        path: 'requestedcarride',
+        element: <PrivateRoute><ReqCarRide></ReqCarRide> </PrivateRoute>
+      },
+      {
         path: 'allreview',
         element: <PrivateRoute> <AllReviews></AllReviews> </PrivateRoute>
+      },
+      {
+        path: 'historylist',
+        element: <PrivateRoute> <OrderHistory></OrderHistory> </PrivateRoute>
       },
       {
         path: 'admindashboard',

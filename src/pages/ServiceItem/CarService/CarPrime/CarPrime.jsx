@@ -159,9 +159,12 @@ const CarPrime = () => {
     return (
         <>
             <DashboardNav></DashboardNav>
-            <div className="px-5 mx-auto ">
-                <div className="card lg:card-side  rounded-lg">
-                    <div className='rounded-lg w-1/3 h-[80vh]'>
+            <div className="px-24 mx-auto ">
+                <div className="card lg:card-side w-fullrounded-lg">
+                    
+                    
+                    
+                    <div className='rounded-lg w-4/12 h-[80vh]'>
                         <section className=' rounded-lg p-5' >
                             <MapContainer center={position} zoom={7} style={{ height: '500px', width: '100%' }}>
                                 <TileLayer
@@ -216,10 +219,18 @@ const CarPrime = () => {
                             </form>
                         </section>
                     </div>
-                    <div className="card-body   ">
-                        {console.log(destination)}
-                        {move ? <ChooseCar pickupLocation={pickupLocation} destination={destination} distance={distance}
-                        ></ChooseCar> : null}
+
+                    <div className="card-body w-8/12   ">
+                     
+                        {move ? 
+                        
+                        
+                        <ChooseCar pickupLocation={pickupLocation} destination={destination} distance={distance}
+                        ></ChooseCar> 
+                        
+                        
+                        
+                        : null}
                     </div>
 
                 </div>

@@ -1,27 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { MdPayments } from "react-icons/md";
+import { useEffect, useState } from 'react';
+
 import Loading from '../../Shared/Loading/Loading';
 import Swal from 'sweetalert2';
 import maxcar from '../../../assets/car3.jpeg'
 import pluscar from '../../../assets/car2.jpeg'
 import primecar from '../../../assets/car1.jpeg'
-import { AiFillSafetyCertificate } from "react-icons/ai";
-import { FaMobileScreenButton } from "react-icons/fa6";
-import { FaDotCircle } from "react-icons/fa";
-import { SiSquare } from "react-icons/si";
-import driverimg from '../../../assets/user.png'
 
-
-
+import useUsersAuth from '../../../hooks/useUsersAuth';
+import {  useNavigate } from 'react-router-dom';
 
 
 const ChooseCar = ({ pickupLocation, destination, distance }) => {
+    const [userData] = useUsersAuth();
     const [cardata, setCarData] = useState([]);
     const [cardriverdata, setCardriverData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [move, setMove] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [filteredDriver, setFilteredDriver] = useState(null);
+    const [orderHistory, setOrderHistory] = useState([]);
+    const navigate = useNavigate();
+    const orderusername = userData?.name;
+    const orderuseremail = userData?.email;
+    const driveremail = cardriverdata?.email;
+  
+  
+
+    console.log(userData?.name)
 
     useEffect(() => {
         fetch('https://transport-server2-1.onrender.com/cardata')
@@ -67,15 +72,63 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
         });
 
 
+
     };
 
 
 
-    return (
-        <div className='flex'>
-            {move ? null :
 
-                <div className='w-2/3 '>
+    const handleRequestRide = () => {
+
+        const orderData = {
+            paymentStatus: 'unpaid',
+            orderusername,
+            orderuseremail,
+            driveremail,
+            pickupLocation,
+            destination,
+            distance:distance.toFixed(3),
+            carType: selectedItem.cartype,
+            driverEmail: selectedItem.email,
+            driverPhoto: filteredDriver.photo,
+            driverName: selectedItem.name,
+            registrationNumber:selectedItem.registrationNumber,
+            brandname:selectedItem.brandname,
+            modelname:selectedItem.modelname,
+            cartype: selectedItem.carType,
+            driverPhone: filteredDriver.phone,
+            chargePerKm: selectedItem.chargePerKm,
+            totalPrice: (selectedItem.chargePerKm * distance).toFixed(3),
+        };
+        fetch('https://transport-server2-1.onrender.com/orderhistory', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+        })
+            .then(res => res.json())
+            .then(data => {
+         
+                setOrderHistory(prevHistory => [...prevHistory, data]);
+                setMove(true);
+                console.log('Order saved:', data);
+                navigate('/requestedcarride', { state: { orderHistory: [...orderHistory, data] } });
+
+
+
+            })
+            .catch(err => console.error('Error saving order:', err));
+
+    };
+    console.log('Order history:', orderHistory);
+
+    return (
+        <div className=''>
+            {/* {move ? null : */}
+            {!move && (
+
+                <div className='w-full '>
                     <h1 className='text-4xl font-bold   my-2 px-5'>Choose A Ride </h1>
                     <hr />
 
@@ -143,9 +196,8 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
 
 
                         {selectedItem !== null ? <div>
-                            <button className='btn btn-neutral'
+                            <button className='btn btn-neutral' onClick={handleRequestRide}>Request For Ride</button>
 
-                                onClick={() => setMove(true)}>Request For Ride</button>
 
                         </div> : <div><button className='btn btn-disabled'
 
@@ -157,88 +209,13 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
                     </section>
 
 
-                </div>
+                </div>)
             }
 
 
-            {move ?
-                <div className="card-body  w-1/3 h-[90h] shadow-xl rounded-lg">
-
-                    <h1 className='text-3xl font-bold   my-2 '>Meet At {pickupLocation} </h1>
-                    <hr />
-
-                    <div className='flex justify-between'>
-                        <div className="avatar ">
-
-                            <div className="w-24 h-24 mask mask-hexagon">
-                                {filteredDriver?.photo === undefined ? <img src={driverimg} alt="" /> : <img src={filteredDriver?.photo} />}
-
-                            </div>
-                        </div>
-                        <div className='w-[200px]'>
-                            <h1 className='text-gray-500 uppercase text-xl text-right font-bold'>{selectedItem?.name}</h1>
-                            <h2 className=' font-bold text-3xl text-right'>{selectedItem?.registrationNumber}</h2>
-                            <p className='text-gray-500 text-right '>{selectedItem?.brandname}</p>
-                            <p className='text-gray-500 text-right '>{selectedItem?.modelname}</p>
-                            <p className='text-red-500 text-right '>{selectedItem?.cartype} Rent Per km {selectedItem?.chargePerKm} BDT</p>
-                        </div>
-                    </div>
-                    <hr />
-                    <div className='flex justify-around  px-8 py-4'>
-                        <div>
-                            <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%]'>
-                                <AiFillSafetyCertificate className='text-3xl ' />
-
-                            </div>
-                            <span>Safty</span>
-                        </div>
-                        <div>
-                            <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%]'>
-                                <MdPayments className='text-4xl' />
-
-                            </div>
-                            <span>Pay</span>
-                        </div>
-                        <div>
-                            <div className='bg-slate-200 text-blue-600 p-2 rounded-[50%] tooltip tooltip-open  tooltip-right tooltip-success' data-tip={filteredDriver?.phone}>
-                                <FaMobileScreenButton className='text-3xl ' />
-                            </div>
-
-                            <p>Phone</p>
-                        </div>
 
 
-                    </div>
-                    <hr />
 
-                    <div className='flex pt-5'>
-                        <FaDotCircle className='text-2xl mt-4 ' />
-                        <div className='px-5'>
-                            <h3 className='font-bold text-xl'>{pickupLocation}</h3>
-                            <small className='text-gray-500'>ROad no 90/3434</small>
-                        </div>
-                    </div>
-                    <div className='flex pt-5'>
-                        <SiSquare className='text-2xl mt-4 ' />
-                        <div className='px-5'>
-                            <h3 className='font-bold text-xl'>{destination}</h3>
-                            <small className='text-gray-500'>ROad no 90/3434</small>
-                        </div>
-                    </div>
-                    <div className='flex pt-5 '>
-                        <MdPayments className='text-3xl mt-4' />
-
-                        <div className='px-5'>
-                            <h3 className='font-bold text-xl'>BDT {(selectedItem?.chargePerKm * distance).toFixed(3)}</h3>
-                            <small className='text-gray-500'> Payment </small>
-                        </div>
-                    </div>
-
-                    <button className='btn w-full bg-slate-200 mt-5 text-red-600'>Cancel Ride</button>
-
-                </div>
-
-                : null}
 
 
         </div>

@@ -55,7 +55,7 @@ const NavDashBoard = () => {
                                     userData?.role === 'user' ?
                                         <>
                                             <li>   <Link className=' ' to="/addreview">Add Review</Link></li>
-                                            <li>   <Link className=' ' to="/">History</Link></li></>
+                                            <li>   <Link className=' ' to="/historylist">History</Link></li></>
                                         : null
 
                                 }
