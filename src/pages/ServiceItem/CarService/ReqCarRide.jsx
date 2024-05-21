@@ -49,10 +49,7 @@ const ReqCarRide = () => {
                         toast.success('Ride canceled successfully!');
                         navigate('/primeCar');
                     })
-                    .catch(error => {
-                        console.error('Error updating order status:', error);
-                        toast.error('Error canceling ride');
-                    });
+                    
             }
         });
     };

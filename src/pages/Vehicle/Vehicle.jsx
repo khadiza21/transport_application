@@ -65,8 +65,13 @@ const Vehicle = () => {
         setSelectedBrand(event.target.value);
     };
 
-
-
+    // {carData.brands.map((brand, index) => (
+    //     <option key={index} value={brand.name}>{brand.name}</option>
+    // ))}
+    // {models.map((model, index) => (
+    //     <option key={index} value={model}>{model}</option>
+    // ))}
+    
     const onSubmit = async (data) => {
         const registrationNumber = `${data.areaCode}-${data.categoryCode}-${data.number}`;
         const formData = {

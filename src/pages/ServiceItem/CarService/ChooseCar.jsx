@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-
 import Loading from '../../Shared/Loading/Loading';
 import Swal from 'sweetalert2';
 import maxcar from '../../../assets/car3.jpeg'
 import pluscar from '../../../assets/car2.jpeg'
 import primecar from '../../../assets/car1.jpeg'
-
 import useUsersAuth from '../../../hooks/useUsersAuth';
 import {  useNavigate } from 'react-router-dom';
 
@@ -37,7 +35,6 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
                 setCarData(sortedData);
                 setLoading(false);
                 console.log(data)
-
             })
 
     }, [])
@@ -70,9 +67,6 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
             showCancelButton: true,
             cancelButtonColor: "#000000",
         });
-
-
-
     };
 
 

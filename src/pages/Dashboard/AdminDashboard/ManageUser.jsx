@@ -14,7 +14,7 @@ import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 const ManageUser = () => {
   const [userData, loading] = useUsersAuth();
-  const [useronly, setUseronly] = useState([]);
+  const [newUserList, setNewUserList] = useState([]);
 
 
   useEffect(() => {
@@ -22,7 +22,8 @@ const ManageUser = () => {
       .then(res => res.json())
       .then(data => {
         const filteredUsers = data.filter(user => user.role === 'user');
-        setUseronly(filteredUsers);
+       
+        setNewUserList(filteredUsers);
 
       })
 
@@ -32,7 +33,7 @@ const ManageUser = () => {
     return <Loading></Loading>;
   };
 
-  console.log(useronly);
+  console.log(newUserList);
   const handleDelete = (userId) => {
 
     Swal.fire({
@@ -51,8 +52,9 @@ const ManageUser = () => {
           .then(res => res.json())
           .then(data => {
             if (data.message === 'User removed successfully') {
-              const updatedList = useronly.filter(user => user._id !== userId);
-              setUseronly(updatedList);
+              const updatedList = newUserList.filter(user => user._id !== userId);
+              setNewUserList(updatedList);
+           
               toast.success('User removed successfully');
             } else {
               toast.error('Failed to remove user: ' + data.error);
@@ -63,6 +65,7 @@ const ManageUser = () => {
     });
   };
 
+
   const handleVerify = (userId) => {
     fetch(`http://localhost:5000/users/${userId}`, {
       method: 'PUT',
@@ -71,19 +74,21 @@ const ManageUser = () => {
       },
       body: JSON.stringify({ verifiedStatus: 'verified' })
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === 'User verified successfully') {
+      .then(res => res.json().then(data => ({ status: res.status, body: data }))) 
+      .then(({ status, body }) => {
+        if (status === 200) {
           const updatedList = newUserList.map(user =>
             user._id === userId ? { ...user, verifiedStatus: 'verified' } : user
           );
-          setUseronly(updatedList);
+          setNewUserList(updatedList);
           toast.success('User verified successfully');
         } else {
-          toast.error('Failed to verify user: ' + data.error);
+          toast.error('Failed to verify user: ' + body.message);
         }
       })
+     
   };
+
 
 
 
@@ -94,7 +99,7 @@ const ManageUser = () => {
 
         <div className='flex justify-center'>
           <ul className="users-list">
-            {useronly.map((user, index) => (
+            {newUserList.map((user, index) => (
               <li key={user.id}
 
                 className='my-5 p-5'
@@ -115,16 +120,16 @@ const ManageUser = () => {
                         </div>
                       </div>
                       <div>
-                      
+
                         <div className="stat-title">{user?.role} #00{index + 1}</div>
 
                         <div className='flex '>
                           <div className="stat-value text-yellow-600 text-3xl">{user.name} </div>
                           <small className=" mt-2 ml-2  stat-desc uppercase font-bold badge bg-blue-600 text-white">{user?.gender}</small>
                           <span>
-                          { user?.verifiedStatus === 'verified' ? <FaCheckCircle className='text-bold text-blue-600 mt-3 ml-3' />:<IoIosCheckmarkCircleOutline className='text-bold text-blue-600 mt-3 ml-3' /> } 
-                        
-                        </span>
+                            {user?.verifiedStatus === 'verified' ? <FaCheckCircle className='text-bold text-blue-600 mt-3 ml-3' /> : <IoIosCheckmarkCircleOutline className='text-bold text-blue-600 mt-3 ml-3' />}
+
+                          </span>
                         </div>
                         <div className='flex my-1 '>
                           {user?.gender === 'male' ? <FaChildReaching className='font-bold' /> : <FaChildDress className='font-bold' />}
@@ -157,9 +162,9 @@ const ManageUser = () => {
                           onClick={() => handleDelete(user?._id)}
                         >Delete User</button><br />
 
-                        {user?.verifiedStatus === undefined || user?.verifiedStatus ===   "" ?  <button className="btn btn-sm  bg-slate-800 mt-2 text-white"
+                        {user?.verifiedStatus === undefined || user?.verifiedStatus === "" ? <button className="btn btn-sm  bg-slate-800 mt-2 text-white"
                           onClick={() => handleVerify(user?._id)}
-                        >Verify User</button>:  null  }
+                        >Verify User</button> : null}
 
                       </div>
 
