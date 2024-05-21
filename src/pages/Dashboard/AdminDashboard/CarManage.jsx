@@ -45,20 +45,47 @@ const CarManage = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-
                         if (data.message === "Car Deleted Successfully") {
                             console.log(data.message);
                             const updatedList = newCarLIst.filter(car => car._id !== carId);
                             setNewCarLIst(updatedList);
                             toast.success('Car Deleted successfully');
                         } else {
-                            toast.error('Failed to remove Car: ppp ' + (data.error || 'Unknown error'));
+                            toast.error('Failed to remove Car:  ' + (data.error || 'Unknown error'));
                         }
                     })
-
             }
         });
     };
+   
+
+    const handleVerify = (carId) => {
+        console.log(carId)
+        fetch(`https://transport-server2-1.onrender.com/cardata/${carId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ verifiedStatus: 'verified' })
+
+        })
+        
+        .then(res => res.json()
+        .then(data => ({ status: res.status, body: data })))
+        .then(({ status, body }) => {
+            if (status === 200) {
+                const updatedList = newCarLIst.map(car =>
+                    car._id === carId ? { ...car, verifiedStatus: 'verified' } : car
+                );
+                setNewCarLIst(updatedList);
+                toast.success('Car verified successfully');
+            } else {
+                toast.error('Failed to verify Car: ' + (body.message || 'Unknown error'));
+            }
+        })
+       
+    };
+    
 
 
 
