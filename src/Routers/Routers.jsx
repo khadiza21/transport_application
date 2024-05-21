@@ -34,6 +34,8 @@ import OrderHistory from "../pages/OrderHistory/OrderHistory";
 import CommonDashboard from "../pages/Dashboard/CommonDashbord/CommonDashboard";
 import ManageUser from "../pages/Dashboard/AdminDashboard/ManageUser";
 import ManageDriver from "../pages/Dashboard/AdminDashboard/ManageDriver";
+import CarManage from "../pages/Dashboard/AdminDashboard/CarManage";
+import ManageBus from "../pages/Dashboard/AdminDashboard/ManageBus";
 
 
 
@@ -67,12 +69,12 @@ export const router = createBrowserRouter([
         element: <Contact></Contact>
 
       },
-     
+
       {
         path: 'primeCar',
         element: <PrivateRoute><CarPrime></CarPrime></PrivateRoute>
       },
-    
+
       {
         path: 'femalebus',
         element: <PrivateRoute><FemaleBus></FemaleBus> </PrivateRoute>
@@ -107,6 +109,14 @@ export const router = createBrowserRouter([
         element: <PrivateRoute> <ManageUser></ManageUser> </PrivateRoute>
       },
       {
+        path: 'managecar',
+        element: <PrivateRoute> <CarManage></CarManage></PrivateRoute>
+      },
+      {
+        path: 'managebus',
+        element: <PrivateRoute><ManageBus></ManageBus> </PrivateRoute>
+      },
+      {
         path: 'managedriver',
         element: <PrivateRoute> <ManageDriver></ManageDriver> </PrivateRoute>
       },
@@ -114,7 +124,7 @@ export const router = createBrowserRouter([
         path: 'historylist',
         element: <PrivateRoute> <OrderHistory></OrderHistory> </PrivateRoute>
       },
-    
+
       {
         path: 'addreview',
         element: <PrivateRoute><AddReviews></AddReviews></PrivateRoute>
