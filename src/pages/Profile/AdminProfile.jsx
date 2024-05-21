@@ -45,7 +45,7 @@ const AdminProfile = () => {
                     localStorage.setItem("profile", JSON.stringify(data));
                     setLoadingg(false);
                 })
-                .catch((error) => console.error('Error fetching profile data:', error));
+               
         }
     }, [userData]);
 
