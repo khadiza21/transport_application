@@ -16,7 +16,7 @@ const NavDashBoard = () => {
     }
     return (
         <div>
-            <div className="navbar bg-base-100 px-4 md:px-10 shadow-lg bg-slate-100">
+            <div className="navbar bg-base-100  px-44 shadow-lg bg-slate-100">
                 <div className="flex-1">
                     <Link to='/' className="text-xl font-bold">City Mover</Link>
                 </div>

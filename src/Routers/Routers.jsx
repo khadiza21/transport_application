@@ -31,7 +31,6 @@ import AllReviews from "../pages/Reviews/AllReviews";
 import Vehicle from "../pages/Vehicle/Vehicle";
 import ReqCarRide from "../pages/ServiceItem/CarService/ReqCarRide";
 import OrderHistory from "../pages/OrderHistory/OrderHistory";
-import Dashboard from "../pages/Dashboard/Dashboard";
 import CommonDashboard from "../pages/Dashboard/CommonDashbord/CommonDashboard";
 
 

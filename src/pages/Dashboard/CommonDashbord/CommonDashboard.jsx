@@ -1,9 +1,8 @@
-import { Parallax } from 'swiper/modules';
 import useUsersAuth from '../../../hooks/useUsersAuth';
-import Loading from '../../Shared/Loading/Loading';
 import NavDashBoard from '../../Shared/Navbar/NavDashBoard';
 import carimg from '../../../assets/car.jpg'
 import Cover from '../../Shared/Cover/Cover';
+import { Link } from 'react-router-dom';
 
 const CommonDashboard = () => {
     const [userData, loading] = useUsersAuth();
@@ -17,12 +16,12 @@ const CommonDashboard = () => {
 
             <div className='px-44 my-24'>
                 <div className="card lg:card-side bg-base-100 shadow-xl my-10 ">
-                    <figure><img src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">New album is released!</h2>
-                        <p>Click the button to listen on Spotiwhy app.</p>
-                        <div className="card-actions ">
-                            <button className="btn btn-primary">Listen</button>
+                    <figure><img className='rounded-xl shadow-xl' src="https://t3.ftcdn.net/jpg/00/85/13/32/360_F_85133296_uRf7VrGLUDUj8Tq2kvCSViGxYE4vRQxB.jpg" alt="Album" /></figure>
+                    <div className="card-body ml-10">
+                        <h2 className="card-title text-4xl font-bold mt-14">Car Ride Available For All!</h2>
+                        <p className='text-gray-400'>Click the button to listen on Spotiwhy app. Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi aspernatur id quo eos suscipit accusantium totam dolorem veniam ducimus? Consequuntur.</p>
+                        <div className="card-actions mb-14 mt-5">
+                        <Link to='/primeCar'> <button className="btn bg-slate-900 text-white hover:bg-slate-800">Book Car</button></Link>
                         </div>
                     </div>
                 </div>
@@ -37,9 +36,10 @@ const CommonDashboard = () => {
                     <div className="hero-content flex-col lg:flex-row-reverse">
                         <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" className="max-w-sm rounded-lg shadow-2xl" />
                         <div>
-                            <h1 className="text-5xl font-bold">!</h1>
+                            <h1 className="text-5xl font-bold">Bus Service Available for all ride!</h1>
                             <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                            <button className="btn btn-primary">Get Started</button>
+                        <Link to='/'> <button className="btn bg-slate-900 text-white  hover:bg-slate-800">Take Service</button></Link>
+                           
                         </div>
                     </div>
                 </div>
