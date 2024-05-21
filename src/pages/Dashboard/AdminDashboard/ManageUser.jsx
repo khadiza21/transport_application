@@ -46,7 +46,7 @@ const ManageUser = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${userId}`, {
+        fetch(`https://transport-server2-1.onrender.com/users/${userId}`, {
           method: 'DELETE',
         })
           .then(res => res.json())
@@ -67,7 +67,7 @@ const ManageUser = () => {
 
 
   const handleVerify = (userId) => {
-    fetch(`http://localhost:5000/users/${userId}`, {
+    fetch(`https://transport-server2-1.onrender.com/users/${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -160,7 +160,7 @@ const ManageUser = () => {
                       <div className=''>
                         <button className="btn btn-sm bg-yellow-900 hover text-white"
                           onClick={() => handleDelete(user?._id)}
-                        >Delete User</button><br />
+                        >Remove User</button><br />
 
                         {user?.verifiedStatus === undefined || user?.verifiedStatus === "" ? <button className="btn btn-sm  bg-slate-800 mt-2 text-white"
                           onClick={() => handleVerify(user?._id)}
