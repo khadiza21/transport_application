@@ -159,11 +159,11 @@ const ManageUser = () => {
 
                     <div className="stat flex items-center jsutify-between">
                       <div className=''>
-                        <button className="btn btn-sm bg-yellow-900 hover text-white"
+                        <button className="btn btn-sm bg-yellow-900 hover:bg-yellow-600  text-white"
                           onClick={() => handleDelete(user?._id)}
                         >Remove User</button><br />
 
-                        {user?.verifiedStatus === undefined || user?.verifiedStatus === "" ? <button className="btn btn-sm  bg-slate-800 mt-2 text-white"
+                        {user?.verifiedStatus === undefined || user?.verifiedStatus === "" ? <button className="btn btn-sm hover:bg-slate-600  bg-slate-800 mt-2 text-white"
                           onClick={() => handleVerify(user?._id)}
                         >Verify User</button> : null}
 

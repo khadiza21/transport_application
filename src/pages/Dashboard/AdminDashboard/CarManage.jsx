@@ -31,34 +31,36 @@ const CarManage = () => {
 
     const handleDelete = (carId) => {
         Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
-          if (result.isConfirmed) {
-            fetch(`https://transport-server2-1.onrender.com/cardata/${carId}`, {
-              method: 'DELETE',
-            })
-              .then(res => res.json())
-              .then(data => {
-                if (data.message === 'Car removed successfully') {
-                  const updatedList = newCarLIst.filter(car => car._id !== carId);
-                  setNewCarLIst(updatedList);
-               
-                  toast.success('Car removed successfully');
-                } else {
-                  toast.error('Failed to remove Car: ' + data.error);
-                }
-              })
-    
-          }
+            if (result.isConfirmed) {
+                fetch(`https://transport-server2-1.onrender.com/cardata/${carId}`, {
+                    method: 'DELETE',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        if (data.message === "Car Deleted Successfully") {
+                            console.log(data.message);
+                            const updatedList = newCarLIst.filter(car => car._id !== carId);
+                            setNewCarLIst(updatedList);
+                            toast.success('Car Deleted successfully');
+                        } else {
+                            toast.error('Failed to remove Car: ppp ' + (data.error || 'Unknown error'));
+                        }
+                    })
+
+            }
         });
-      };
-    
+    };
+
+
 
     if (loading) {
         return <Loading></Loading>;
@@ -74,8 +76,8 @@ const CarManage = () => {
                     <ul className=' w-8/12'>
                         {newCarLIst.map((car, index) => (
 
-                            <li key={car._id} 
-                            className='my-5 p-5'
+                            <li key={car._id}
+                                className='my-5 p-5'
                             >
 
                                 <div>
@@ -112,7 +114,7 @@ const CarManage = () => {
                                                     <FaChildDress className='font-bold my-1' /> <p className='ml-1 font-bold'>{car?.name}</p>
 
 
-                                                  
+
                                                 </div>
                                                 <div className="stat-desc text-gray-500">{car?.email}</div>
                                                 <div className='flex'>
@@ -137,11 +139,11 @@ const CarManage = () => {
 
                                         <div className="stat flex items-center jsutify-end">
                                             <div className=''>
-                                                <button className="btn btn-sm bg-yellow-900 hover text-white"
+                                                <button className="btn btn-sm bg-yellow-900 hover:bg-yellow-600 text-white"
                                                     onClick={() => handleDelete(car?._id)}
                                                 >Remove car</button><br />
 
-                                                {car?.verifiedStatus === undefined || car?.verifiedStatus === "" ? <button className="btn btn-sm  bg-slate-800 mt-2 text-white"
+                                                {car?.verifiedStatus === undefined || car?.verifiedStatus === "" ? <button className="btn btn-sm  bg-slate-800 mt-2 text-white hover:bg-slate-600"
                                                     onClick={() => handleVerify(car?._id)}
                                                 >Verify car</button> : null}
 
