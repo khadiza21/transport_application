@@ -32,6 +32,8 @@ import Vehicle from "../pages/Vehicle/Vehicle";
 import ReqCarRide from "../pages/ServiceItem/CarService/ReqCarRide";
 import OrderHistory from "../pages/OrderHistory/OrderHistory";
 import CommonDashboard from "../pages/Dashboard/CommonDashbord/CommonDashboard";
+import ManageUser from "../pages/Dashboard/AdminDashboard/ManageUser";
+import ManageDriver from "../pages/Dashboard/AdminDashboard/ManageDriver";
 
 
 
@@ -99,6 +101,14 @@ export const router = createBrowserRouter([
       {
         path: 'allreview',
         element: <PrivateRoute> <AllReviews></AllReviews> </PrivateRoute>
+      },
+      {
+        path: 'manageuser',
+        element: <PrivateRoute> <ManageUser></ManageUser> </PrivateRoute>
+      },
+      {
+        path: 'managedriver',
+        element: <PrivateRoute> <ManageDriver></ManageDriver> </PrivateRoute>
       },
       {
         path: 'historylist',

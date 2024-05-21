@@ -7,6 +7,7 @@ import { FaStar } from 'react-icons/fa';
 import useUsersAuth from '../../hooks/useUsersAuth';
 import Loading from '../Shared/Loading/Loading';
 import { IoArrowBackCircle } from 'react-icons/io5';
+import NavDashBoard from '../Shared/Navbar/NavDashBoard';
 
 const AddReviews = () => {
     const [userData, loading] = useUsersAuth();
@@ -51,8 +52,9 @@ const AddReviews = () => {
 
     return (
         <div>
+            <NavDashBoard></NavDashBoard>
             <div>
-                <section>
+               
                     <div class="container mx-auto my-5 pb-5">
                         <h3 class="py-3 text-success text-4xl pb-5 text-center font-bold">
                             Add Review
@@ -71,7 +73,7 @@ const AddReviews = () => {
                                 <h1 className="text-2xl font-bold">Name  : {userData?.name} </h1>
                                 <div className="flex items-center justify-start">
                                     <Link
-                                        to='/primeCar'
+                                        to='/dashboard'
                                         className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
                                         style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
                                     >
@@ -81,10 +83,11 @@ const AddReviews = () => {
                             </div>
                         </div>
 
-                        <div   class="flex flex-col w-3/4 mx-auto mt-8">
+                        <div class="flex flex-col w-full mx-auto mt-8">
+
                             <form
                                 onSubmit={handleSubmit(onSubmit)}
-                                class="flex flex-col w-3/4 mx-auto mt-8"
+                                class="flex flex-col  mt-8"
                             >
 
                                 <span style={{ display: 'flex' }} className='mb-5'>
@@ -127,12 +130,13 @@ const AddReviews = () => {
 
                             </form>
 
-                            <Link to='/allreview' ><button className="mx-auto  w-3/4 btn bg-slate-600 hover:bg-slate-700 text-white mt-6">See Reviews</button></Link>
 
+                            <Link to='/allreview' ><button className="mx-auto w-full btn bg-slate-600 hover:bg-slate-700 text-white mt-6">See Reviews</button></Link>
                         </div>
 
                     </div>
-                </section>
+
+               
             </div>
         </div>
     );

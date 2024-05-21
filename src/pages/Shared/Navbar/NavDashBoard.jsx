@@ -16,9 +16,9 @@ const NavDashBoard = () => {
     }
     return (
         <div>
-            <div className="navbar bg-base-100  px-44 shadow-lg bg-slate-100">
+            <div className="navbar bg-base-100  px-44 shadow-lg bg-slate-100 shadow-xl">
                 <div className="flex-1">
-                    <Link to='/' className="text-xl font-bold">City Mover</Link>
+                    <Link to='/' className="text-xl font-bold"> <span className='text-[26px] font-bold '>  <span className='px-0 mx-0 text-yellow-500  font-bold text-[28px]'>City</span > Mover</span></Link>
                 </div>
                 <div>
                     <div>

@@ -7,6 +7,7 @@ import SectionTitle from '../Shared/Components/SectionTitile';
 import Loading from '../Shared/Loading/Loading';
 import { Link } from 'react-router-dom';
 import { IoArrowBackCircle } from 'react-icons/io5';
+import NavDashBoard from '../Shared/Navbar/NavDashBoard';
 
 
 
@@ -39,6 +40,7 @@ const AllReviews = () => {
 
     return (
         <div>
+            <NavDashBoard></NavDashBoard>
             <section className='py-10'>
                 <SectionTitle
                     heading=" All Reviews"
@@ -88,7 +90,7 @@ const AllReviews = () => {
 
 
                                 <Link
-                                    to='/primeCar'
+                                    to='/dashboard'
                                     className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
                                     style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
                                 >
