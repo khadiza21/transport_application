@@ -63,10 +63,11 @@ const NavDashBoard = () => {
                                 {
                                     userData?.role === 'admin' ?
                                         <>
-                                            <li>   <Link className=' ' to="/managedriver">Driver Manage</Link></li>
+                                            <li>   <Link className=' ' to="/managecardriver">Car Driver Manage</Link></li>
+                                            <li>   <Link className=' ' to="/managebusdriver">Bus Driver Manage</Link></li>
                                             <li>   <Link className=' ' to="/manageuser">User Manage</Link></li>
                                             <li>   <Link className=' ' to="/managecar">Car Manage</Link></li>
-                                            <li>   <Link className=' ' to="/managebus">Car Manage</Link></li>
+                                            <li>   <Link className=' ' to="/managebus">Bus Manage</Link></li>
                                             
                                             </>
                                         : null
