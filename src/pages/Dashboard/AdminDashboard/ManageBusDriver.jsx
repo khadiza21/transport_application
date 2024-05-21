@@ -1,5 +1,4 @@
 import NavDashBoard from '../../Shared/Navbar/NavDashBoard';
-import busdriverdata from '../../../hooks/busdriverdata';
 import Loading from '../../Shared/Loading/Loading';
 import { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css'
@@ -9,9 +8,10 @@ import { toast } from 'react-toastify';
 import { FaCheckCircle } from 'react-icons/fa';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { FaChildDress, FaChildReaching, FaFacebook } from 'react-icons/fa6';
+import useUsersAuth from '../../../hooks/useUsersAuth';
 
 const ManageBusDriver = () => {
-    const [loading] = busdriverdata();
+    const [ loading] = useUsersAuth();
     const [newBusDriverLIst, setNewBusDriverLIst] = useState([]);
 
 

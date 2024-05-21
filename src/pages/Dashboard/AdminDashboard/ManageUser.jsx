@@ -6,10 +6,11 @@ import userimg from '../../../assets/user.png'
 import 'react-toastify/dist/ReactToastify.css'
 import { FaFacebook } from 'react-icons/fa';
 import { FaChildDress, FaChildReaching } from "react-icons/fa6";
-import Swal from 'sweetalert2';
-import { toast } from 'react-toastify';
 import { FaCheckCircle } from "react-icons/fa";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+
 
 
 const ManageUser = () => {
@@ -98,7 +99,7 @@ const ManageUser = () => {
       <div className="p-4">
 
         <div className='flex justify-center'>
-          <ul className="users-list">
+          <ul className="">
             {newUserList.map((user, index) => (
               <li key={user.id}
 
