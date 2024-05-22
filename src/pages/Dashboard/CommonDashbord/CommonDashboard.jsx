@@ -50,7 +50,7 @@ const CommonDashboard = () => {
                             <div>
                                 <h1 className="text-5xl font-bold">Bus Service Available for all ride!</h1>
                                 <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                                <Link to='/'> <button className="btn bg-slate-900 text-white  hover:bg-slate-800">Take Service</button></Link>
+                                <Link to='/busService'> <button className="btn bg-slate-900 text-white  hover:bg-slate-800">Take Service</button></Link>
 
                             </div>
                         </div>

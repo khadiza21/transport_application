@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
         path: 'primeCar',
         element: <PrivateRoute><CarPrime></CarPrime></PrivateRoute>
       },
-
+      
       {
         path: 'femalebus',
         element: <PrivateRoute><FemaleBus></FemaleBus> </PrivateRoute>
