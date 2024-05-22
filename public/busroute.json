@@ -1,0 +1,125 @@
+{
+    "routes": [
+      {
+        "route_number": 1,
+        "stops": [
+          "Mirpur 1", "Mirpur 2", "Mirpur 10", "Kazipara", "Shewrapara", "Agargaon", "Bijoy Sarani", "Jahangir Gate", "Mohakhali", "Wireless", "Gulshan 1", "Badda Link Road", "Madhya Badda", "Merul", "Rampura Bridge", "Banasree"
+        ]
+      },
+      {
+        "route_number": 2,
+        "stops": [
+          "Japan Garden City", "Ring Road", "Adabor", "Shyamoli", "Shishu Mela", "Agargaon", "Zia Uddyan", "Bijoy Sarani", "Old Airport", "Jahangir Gate", "Mohakhali", "Chairman Bari", "Sainik Club", "Kakoli", "Banani", "Staff Road", "MES", "Shewra", "Kuril Bishwa Road", "Khilkhet", "Airport", "Jashimuddin (Uttara)", "Rajlakshmi", "Azampur", "House Building", "Abdullahpur"
+        ]
+      },
+      {
+        "route_number": 3,
+        "stops": [
+          "Sign Board", "Shonir Akhra", "Jatrabari", "Sayedabad", "Mugdapara", "Bashabo", "Khilgaon", "Malibagh Railgate", "Hazipara", "Rampura Bazar", "Rampura Bridge", "Merul", "Badda", "Uttar Badda", "Shahjadpur", "Bashtola", "Notun Bazar", "Nadda", "Bashundhara", "Jamuna Future Park", "Kuril Bishwa Road", "Khilkhet", "Airport", "Jashimuddin (Uttara)", "Rajlakshmi", "Azampur", "House Building", "Abdullahpur", "Tongi", "Station Road", "Mill Gate", "Board Bazar", "Gazipur Bypass", "Gazipur Chourasta"
+        ]
+      },
+      {
+        "route_number": 4,
+        "stops": [
+          "Hemayetpur", "Amin Bazar", "Gabtoli", "Technical", "Kallyanpur", "Shyamoli", "Shishu Mela", "Agargaon", "Zia Uddyan", "Bijoy Sarani", "Jahangir Gate", "Mohakhali", "Wireless", "Gulshan 1", "Badda Link Road", "Madhya Badda", "Merul", "Rampura Bridge", "Banasree", "Demra Staff Quarter"
+        ]
+      },
+      {
+        "route_number": 5,
+        "stops": [
+          "Duaripara", "Rupnagar Abashik", "Shiyal Bari", "Proshika Moor", "Mirpur 2", "Mirpur 1", "Ansar Camp", "Technical", "Kallyanpur", "Shyamoli", "Shishu Mela", "College Gate", "Asad Gate", "Dhanmondi 27", "Shukrabad", "Dhanmondi 32", "Kalabagan", "City College", "New Market", "Nilkhet", "Azimpur"
+        ]
+      },
+      {
+        "route_number": 6,
+        "stops": [
+          "Mohammadpur Bus Stand", "Asad Gate", "Shukrabad", "Kalabagan City College", "Science Lab", "Katabon", "Bata Signal", "Shahbag", "Matsya Bhaban", "High Court", "Press Club", "Paltan", "GPO", "Gulistan", "Arambagh", "Notre Dame College"
+        ]
+      },
+      {
+        "route_number": 7,
+        "stops": [
+          "Chiriyakhana", "Sony Cinema Hall", "Mirpur 2", "Mirpur 10", "Kazipara", "Shewrapara", "Taltola", "Agargaon", "Khamar Bari", "Farmgate", "Kawran Bazar", "Bangla Motor", "Mogbazar", "Mouchak", "Malibagh Moor", "Rajarbag", "Kamalapur"
+        ]
+      },
+      {
+        "route_number": 8,
+        "stops": [
+          "Mirpur 14", "Mirpur 10", "Mirpur 2", "Mirpur 1", "Ansar Camp", "Bangla College", "Technical", "Darussalam", "Kallyanpur", "Shyamoli", "Asad Gate", "Dhanmondi 27", "Dhanmondi 32", "Kalabagan", "Science Lab", "Katabon", "Shahbag", "High Court", "Press Club", "Paltan", "Dainik Bangla Moor", "Motijheel", "Arambagh", "Kamlapur", "Mugdapara", "Bashabo"
+        ]
+      },
+      {
+        "route_number": 9,
+        "stops": [
+          "Savar", "Hemayetpur", "Amin Bazar", "Gabtoli", "Technical", "Kallyanpur", "Shyamoli", "Shishu Mela", "Agargaon", "Bijoy Sarani", "Jahangir Gate", "Mohakhali", "Gulshan 1", "Badda Link Road", "Bashtola", "Uttar Badda", "Notun Bazar"
+        ]
+      },
+      {
+        "route_number": 10,
+        "stops": [
+          "Sayedabad", "Manik Nagar", "TT Para", "Kamalapur", "Malibagh Moor", "Mouchak", "Mogbazar", "Satrasta", "Nabisco", "Mohakhali", "Chairman Bari", "Banani", "Kakoli", "Staff Road", "MES", "Shewra", "Kuril Bishwa Road", "Khilkhet", "Airport", "Jashimuddin (Uttara)", "Rajlakshmi", "Azampur", "House Building", "Abdullahpur", "Tongi", "Station Road", "Mill Gate", "Board Bazar", "Gazipur Bypass", "Gazipur Chourasta"
+        ]
+      },
+      {
+        "route_number": 11,
+        "stops": [
+          "Gabtoli", "Technical", "Kallyanpur", "Shyamoli", "Shishu Mela", "College Gate", "Asad Gate", "Manik Mia Avenue", "Khamar Bari", "Farmgate", "Kawran Bazar", "Bangla Motor", "Shahbag", "Matsya Bhaban", "High Court", "Press Club", "Paltan", "GPO", "Golap Shah Mazar", "Naya Bazar", "Babubazar", "Keraniganj", "Maowa"
+        ]
+      },
+      {
+        "route_number": 12,
+        "stops": [
+          "Gabtoli", "Mirpur 1", "Sony Cinema Hall", "Mirpur 2", "Mirpur 10", "Mirpur 11", "Purobi", "Kalshi", "ECB Square", "MES", "Shewra", "Kuril Bishwa Road", "Khilkhet", "Airport", "Jashimuddin (Uttara)", "Rajlakshmi", "Azampur", "House Building", "Abdullahpur", "Tongi", "Station Road", "Mill Gate", "Board Bazar", "Gazipur Chourasta"
+        ]
+      },
+      {
+        "route_number": 13,
+        "stops": [
+          "Fulbaria", "Golap Shah Mazar", "GPO", "Paltan", "Press Club", "High Court", "Matsya Bhaban", "Shahbag", "Bangla Motor", "Kawran Bazar", "Farmgate", "Bijoy Sarani", "Jahangir Gate", "Mohakhali", "Chairman Bari", "Sainik Club", "Banani", "Kakoli", "Staff Road 2", "MES", "Kurmitola", "Shewra", "Kuril", "Bishwa Road", "Khilkhet", "Airport", "Jashimuddin (Uttara)", "Rajlakshmi", "Azampur", "House Building", "Abdullahpur"
+        ]
+      },
+      {
+        "route_number": 14,
+        "stops": [
+          "Mohammadpur", "Shankar", "Star Kabab", "Dhanmondi 152", "Jigatola", "City College", "Science Lab", "New Market", "Nilkhet", "Azimpur"
+        ]
+      },
+      {
+        "route_number": 15,
+        "stops": [
+          "Balughat Signal", "CMH", "2 Garrison (Cantonment)", "Adamjee College Workshop", "Jahangir Gate", "Bijoy Sarani", "Farmgate", "Bangla Motor", "Shahbag", "Paltan", "Gulistan", "Motijheel"
+        ]
+      },
+      {
+        "route_number": 16,
+        "stops": [
+          "Kamalapur", "Motijheel", "Mouchak", "Mogbazar", "Gulistan", "GPO", "Paltan", "Kawran Bazar", "Gulshan 1", "Gulshan 2", "Notun Bazar", "Farmgate", "Jahangir Gate", "Bijoy Sarani", "Mohakhali"
+        ]
+      },
+      {
+        "route_number": 17,
+        "stops": [
+          "Kamalapur", "Motijheel", "Mouchak", "Mogbazar", "Gulistan", "GPO", "Paltan", "Kawran Bazar", "Gulshan 1", "Gulshan 2", "Notun Bazar", "Farmgate", "Kakrail", "Shantinagar", "Malibagh Moor", "Jahangir Gate", "Bijoy Sarani", "Mohakhali"
+        ]
+      },
+      {
+        "route_number": 18,
+        "stops": [
+          "Gabtoli", "Technical", "Kallyanpur", "Dhanmondi 27", "Dhanmondi 32", "Shyamoli", "Kalabagan", "Shishu Mela", "Science Lab", "Gulistan", "Press Club", "Paltan 2", "GPO", "Golap Shah Mazar", "Sadarghat", "College Gate", "Asad Gate", "Katabon", "Shahbag", "High Court", "Naya Bazar", "Ray Saheb Bazar"
+        ]
+      },
+      {
+        "route_number": 19,
+        "stops": [
+          "Jatrabari", "Janapath Moor", "Matsya Bhaban", "High Court", "Asad Gate", "College Gate", "Sayedabad", "Shahbag", "Shishu Mela", "Motijheel", "Dainik Bangla Moor", "Bangla Motor", "Shyamoli", "Kawran Bazar", "Paltan", "Press Club", "Farmgate", "Kallyanpur Technical", "Khamar Bari", "Gabtoli"
+        ]
+      },
+      {
+        "route_number": 20,
+        "stops": [
+          "College Gate", "Shishu Mela", "Tolarbag", "Ansar Camp Mirpur 12", "Shyamoli", "Kallyanpur", "Darussalam", "Technical", "Mirpur 1", "Sony Cinema Hall", "Mirpur 2", "Proshika Moor", "Bangla College", "Pallabi"
+        ]
+      }
+    ]
+  }
+  
