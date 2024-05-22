@@ -4,10 +4,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../Shared/Loading/Loading';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { FaFacebook } from 'react-icons/fa';
+import { FaCheckCircle, FaFacebook } from 'react-icons/fa';
 import { IoArrowBackCircle } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import NavDashBoard from '../Shared/Navbar/NavDashBoard';
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 
 
 const UserProfile = () => {
@@ -98,9 +99,16 @@ const UserProfile = () => {
 
                             <div class="mt-4 flex justify-center">
                                 <div>
-                                    <h1 className="text-2xl font-bold">Name  : {userData?.name} ({userData?.role})</h1>
+                                    <div className='flex'> 
+                                        <h1 className="text-2xl font-bold">Name  : {userData?.name} ({userData?.role})</h1>
+                                        <span>
+                                            {userData?.verifiedStatus === 'verified' ? <FaCheckCircle className='text-bold text-blue-600 mt-2 ml-3' /> : <IoIosCheckmarkCircleOutline className='text-bold text-blue-600 mt-2 ml-3' />}
+
+                                        </span>
+                                    </div>
+
                                     <h2 className="text-xl font-bold">Email  : {userData?.email}</h2>
-                                    <h2 className=" font-bold">Gender :{profile?.gender}</h2>
+                                    <h2 className=" font-bold uppercase">Gender : {profile?.gender}</h2>
                                     <h2 className="font-bold">Phone  : {profile?.phone}</h2>
                                     <h3 className=" font-bold"> BirthDate : {profile?.dob}</h3>
                                     <h3 className="font-bold"> Location : {profile?.location}</h3>

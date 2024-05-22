@@ -16,10 +16,10 @@ const OrderHistory = () => {
     const [orderHistoryDatalist, setOrderHistoryDatalist] = useState([]);
     const [filteredOrderHistory, setFilteredOrderHistory] = useState([]);
   
- 
+
 
     const [userData, loading] = useUsersAuth();
-    console.log(userData?.email)
+
     const userEmail = userData?.email;
     useEffect(() => {
         if (userEmail) {
@@ -92,7 +92,7 @@ const OrderHistory = () => {
     
 
 
-    console.log(filteredOrderHistory.length);
+   
     if (loading) {
         return <Loading></Loading>;
     }
@@ -166,9 +166,10 @@ const OrderHistory = () => {
                                         onClick={() => handleDelete(order._id)}
                                         >Delete</button><br />
 
-                                        {order?.status === 'canceled' && <button className="btn btn-sm  bg-slate-400 mt-2"
+                                        {order?.status === 'canceled'   && <button className="btn btn-sm  bg-slate-400 mt-2"
                                          onClick={() => handleRebook(order._id)}
                                         >Rebook</button>  }
+
                                        
                                     </div>
                                 </div>
