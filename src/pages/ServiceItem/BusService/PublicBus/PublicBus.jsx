@@ -3,8 +3,9 @@
 const PublicBus = () => {
     return (
         <div>
-            <h1>femlae bus</h1>
             
+            <h1>femlae bus</h1>
+
         </div>
     );
 };
