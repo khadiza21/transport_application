@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Loading from "../Shared/Loading/Loading";
 
 const Vehicle = () => {
 
@@ -94,7 +95,7 @@ const Vehicle = () => {
         }
     };
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <Loading></Loading>;
 
     return (
         <div class="container mx-auto my-5 py-5 shadow-lg rounded-lg ">

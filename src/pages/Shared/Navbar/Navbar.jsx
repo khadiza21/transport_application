@@ -29,7 +29,7 @@ const Navbar = () => {
 
         <li> <Link to="/home"> <span className='text-white'>Home</span></Link></li>
 
-        {(driverData || cardriverData || userData) && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus' || cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver'  || userData?.role === 'admin') ? null :
+        {(driverData || cardriverData || userData) && (driverData?.role === 'publicbus' || driverData?.role === 'femalebus' || cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver'  || userData?.role === 'admin') ? null :
             <li>
                 <details>
                     <summary><span className='text-white'>Services</span></summary>

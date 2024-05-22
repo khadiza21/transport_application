@@ -37,6 +37,7 @@ import ManageDriver from "../pages/Dashboard/AdminDashboard/ManageDriver";
 import CarManage from "../pages/Dashboard/AdminDashboard/CarManage";
 import ManageBus from "../pages/Dashboard/AdminDashboard/ManageBus";
 import ManageBusDriver from "../pages/Dashboard/AdminDashboard/ManageBusDriver";
+import BusVehicleProfile from "../pages/Vehicle/BusVehicleProfile";
 
 
 
@@ -139,8 +140,12 @@ export const router = createBrowserRouter([
         element: <DriversRoute> <BusDriverProfile></BusDriverProfile> </DriversRoute>
       },
       {
-        path: 'vehicleprofile',
+        path: 'carvehicleprofile',
         element: <DriversRoute> <Vehicle></Vehicle> </DriversRoute>
+      },
+      {
+        path: 'busvehicleprofile',
+        element: <DriversRoute> <BusVehicleProfile></BusVehicleProfile> </DriversRoute>
       },
       {
         path: 'cardriverprofile',
