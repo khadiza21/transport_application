@@ -1,109 +1,109 @@
 {
     "upazilas": [
-        {
-            "id": 1,
-            "name": "Dhanmondi",
-            "busStop": ["Dhanmondi 27", "Shukrabad", "Dhanmondi 32", "Kalabagan", "City College", "Science Lab", "Shankar", "Jigatola"]
-        },
-        {
-            "id": 2,
-            "name": "Gulshan",
-            "busStop": ["Gulshan 1", "Gulshan 2", "Notun Bazar", "Wireless", "Chairman Bari"]
-        },
-        {
-            "id": 3,
-            "name": "Mirpur",
-            "busStop": ["Mirpur 1", "Mirpur 2", "Mirpur 10", "Kazipara", "Shewrapara", "Ansar Camp", "Technical", "Sony Cinema Hall", "Mirpur 11", "Mirpur 14", "Proshika Moor", "Bangla College", "Rupnagar Abashik"]
-        },
-        {
-            "id": 4,
-            "name": "Uttara",
-            "busStop": ["Jashimuddin", "Rajlakshmi", "Azampur", "House Building", "Abdullahpur"]
-        },
-        {
-            "id": 5,
-            "name": "Mohammadpur",
-            "busStop": ["Japan Garden City", "Ring Road", "Adabor", "Shyamoli", "Shishu Mela", "Asad Gate", "Mohammadpur Bus Stand", "College Gate"]
-        },
-        {
-            "id": 6,
-            "name": "Badda",
-            "busStop": ["Badda Link Road", "Madhya Badda", "Merul", "Uttar Badda", "Shahjadpur", "Bashtola"]
-        },
-        {
-            "id": 7,
-            "name": "Tejgaon",
-            "busStop": ["Bijoy Sarani", "Mohakhali"]
-        },
-        {
-            "id": 8,
-            "name": "Lalbagh",
-            "busStop": ["Azimpur", "Nilkhet", "New Market"]
-        },
-        {
-            "id": 9,
-            "name": "Pallabi",
-            "busStop": ["Pallabi", "Mirpur 12"]
-        },
-        {
-            "id": 10,
-            "name": "Ramna",
-            "busStop": ["Shahbag", "Bangla Motor", "Matsya Bhaban", "High Court", "Press Club", "Paltan", "GPO", "Golap Shah Mazar"]
-        },
-        {
-            "id": 11,
-            "name": "Savar",
-            "busStop": ["Hemayetpur", "Amin Bazar", "Savar", "Savar Bus Stand"]
-        },
-        {
-            "id": 12,
-            "name": "Keraniganj",
-            "busStop": ["Keraniganj"]
-        },
-        {
-            "id": 13,
-            "name": "Jatrabari",
-            "busStop": ["Signboard", "Shonir Akhra", "Jatrabari", "Sayedabad"]
-        },
-        {
-            "id": 14,
-            "name": "Khilgaon",
-            "busStop": ["Khilgaon", "Malibagh Railgate", "Hazipara", "Rampura Bridge", "Bashabo"]
-        },
-        {
-            "id": 15,
-            "name": "Hazaribagh",
-            "busStop": ["Rayer Bazar"]
-        },
-        {
-            "id": 16,
-            "name": "Demra",
-            "busStop": ["Demra Staff Quarter"]
-        },
-        {
-            "id": 17,
-            "name": "Cantonment",
-            "busStop": ["Cantonment Station", "MES", "Kalshi", "ECB Chattar", "Shewra"]
-        },
-        {
-            "id": 18,
-            "name": "Bimanbandar",
-            "busStop": ["Airport", "Airport Station", "Airport Road", "Ashkona Hajj Camp", "Airport Railway Station", "Airport Bimanbandar"]
-        },
-        {
-            "id": 19,
-            "name": "Shyampur",
-            "busStop": ["Shyampur"]
-        },
-        {
-            "id": 20,
-            "name": "Khilkhet",
-            "busStop": ["Khilkhet", "Kuril Bishwa Road"]
-        }
+      {
+        "id": 1,
+        "name": "ধানমন্ডি",
+        "busStop": ["ধানমন্ডি ২৭", "শুক্রাবাদ", "ধানমন্ডি ৩২", "কালাবাগান", "সিটি কলেজ", "সায়েন্স ল্যাব", "শংকর", "জিগাতলা"]
+      },
+      {
+        "id": 2,
+        "name": "গুলশান",
+        "busStop": ["গুলশান ১", "গুলশান ২", "নতুন বাজার", "ওয়্যারলেস", "চেয়ারম্যান বাড়ি"]
+      },
+      {
+        "id": 3,
+        "name": "মিরপুর",
+        "busStop": ["মিরপুর ১", "মিরপুর ২", "মিরপুর ১০", "কাজীপাড়া", "শেওড়াপাড়া", "আনসার ক্যাম্প", "টেকনিক্যাল", "সনি সিনেমা হল", "মিরপুর ১১", "মিরপুর ১৪", "প্রশিকা মোড়", "বাংলা কলেজ", "রূপনগর আবাসিক"]
+      },
+      {
+        "id": 4,
+        "name": "উত্তরা",
+        "busStop": ["জসিমউদ্দিন", "রাজলক্ষ্মী", "আজমপুর", "হাউস বিল্ডিং", "আব্দুল্লাহপুর"]
+      },
+      {
+        "id": 5,
+        "name": "মোহাম্মদপুর",
+        "busStop": ["জাপান গার্ডেন সিটি", "রিং রোড", "আদাবর", "শ্যামলী", "শিশু মেলা", "আসাদ গেট", "মোহাম্মদপুর বাস স্ট্যান্ড", "কলেজ গেট"]
+      },
+      {
+        "id": 6,
+        "name": "বাড্ডা",
+        "busStop": ["বাড্ডা লিংক রোড", "মধ্য বাড্ডা", "মেরুল", "উত্তর বাড্ডা", "শাহজাদপুর", "বাস্টোলা"]
+      },
+      {
+        "id": 7,
+        "name": "তেজগাঁও",
+        "busStop": ["বিজয় সরণি", "মহাখালী"]
+      },
+      {
+        "id": 8,
+        "name": "লালবাগ",
+        "busStop": ["আজিমপুর", "নীলক্ষেত", "নিউ মার্কেট"]
+      },
+      {
+        "id": 9,
+        "name": "পল্লবী",
+        "busStop": ["পল্লবী", "মিরপুর ১২"]
+      },
+      {
+        "id": 10,
+        "name": "রমনা",
+        "busStop": ["শাহবাগ", "বাংলা মোটর", "মৎস্য ভবন", "হাইকোর্ট", "প্রেস ক্লাব", "পল্টন", "জিপিও", "গোলাপ শাহ মাজার"]
+      },
+      {
+        "id": 11,
+        "name": "সাভার",
+        "busStop": ["হেমায়েতপুর", "আমিনবাজার", "সাভার", "সাভার বাস স্ট্যান্ড"]
+      },
+      {
+        "id": 12,
+        "name": "কেরানীগঞ্জ",
+        "busStop": ["কেরানীগঞ্জ"]
+      },
+      {
+        "id": 13,
+        "name": "যাত্রাবাড়ী",
+        "busStop": ["সাইনবোর্ড", "শনির আখড়া", "যাত্রাবাড়ী", "সায়েদাবাদ"]
+      },
+      {
+        "id": 14,
+        "name": "খিলগাঁও",
+        "busStop": ["খিলগাঁও", "মালিবাগ রেলগেট", "হাজীপাড়া", "রামপুরা ব্রিজ", "বাশাবো"]
+      },
+      {
+        "id": 15,
+        "name": "হাজারীবাগ",
+        "busStop": ["রায়ের বাজার"]
+      },
+      {
+        "id": 16,
+        "name": "ডেমরা",
+        "busStop": ["ডেমরা স্টাফ কোয়ার্টার"]
+      },
+      {
+        "id": 17,
+        "name": "ক্যান্টনমেন্ট",
+        "busStop": ["ক্যান্টনমেন্ট স্টেশন", "এমইএস", "কালশী", "ইসিবি চত্ত্বর", "শেওড়া"]
+      },
+      {
+        "id": 18,
+        "name": "বিমানবন্দর",
+        "busStop": ["এয়ারপোর্ট", "এয়ারপোর্ট স্টেশন", "এয়ারপোর্ট রোড", "আশকোনা হাজ্জ ক্যাম্প", "এয়ারপোর্ট রেলওয়ে স্টেশন", "এয়ারপোর্ট বিমানবন্দর"]
+      },
+      {
+        "id": 19,
+        "name": "শ্যামপুর",
+        "busStop": ["শ্যামপুর"]
+      },
+      {
+        "id": 20,
+        "name": "খিলক্ষেত",
+        "busStop": ["খিলক্ষেত", "কুড়িল বিশ্বরোড"]
+      }
     ],
-  
-    "schedule": [
+  "schedule": [
         "08:00 AM",  "09:00 AM",  "10:00 AM",  "11:00 AM",  "12:00 PM",  "01:00 PM",  "02:00 PM",  "03:00 PM", "04:00 PM",  "05:00 PM",  "06:00 PM",  "07:00 PM",  "08:00 PM",  "09:00 PM",  "10:00 PM"
       ]
-}
-
+   
+  }
+  

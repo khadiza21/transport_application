@@ -26,15 +26,13 @@ const Dashboard = ({ userRole }) => {
         { title: 'Home', link: '/' },
         { title: 'Profile', link: '/busdriverprofile' },
         { title: 'Vehicle Profile', link: '/busvehicleprofile' },
-        { title: 'Drive Management', link: '/drive-management' },
-        { title: 'History', link: '/history' },
+       
     ];
     const crdriverOptions = [
         { title: 'Home', link: '/' },
         { title: 'Profile', link: '/cardriverprofile' },
         { title: 'Vehicle Profile', link: '/carvehicleprofile' },
-        { title: 'Drive Management', link: '/drive-management' },
-        { title: 'History', link: '/history' },
+       ,
     ];
 
     const options = userRole === 'admin' ? adminOptions : userRole === 'primecardriver' ? crdriverOptions : userRole === 'maxcardriver' ? crdriverOptions : userRole === 'pluscardriver' ? crdriverOptions : userRole === 'femalebus' ? driverOptions : userRole === 'publicbus' ? driverOptions : userOptions;

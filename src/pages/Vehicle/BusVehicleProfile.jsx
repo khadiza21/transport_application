@@ -1,9 +1,11 @@
-
 import { useForm } from 'react-hook-form';
 import busdriverdata from '../../hooks/busdriverdata';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Loading from '../Shared/Loading/Loading';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import axios from 'axios';
 const BusVehicleProfile = () => {
 
     const { register, handleSubmit, reset, setValue } = useForm();
@@ -13,10 +15,26 @@ const BusVehicleProfile = () => {
     const [selectedRoute, setSelectedRoute] = useState('');
     const [stops, setStops] = useState([]);
 
+
     const busData = {
         areaCodes: ['DHA', 'CTG', 'RAJ', 'SYL', 'MY', 'NG', 'NR', 'NA', 'ND', 'NT', 'NK', 'NO', 'PB', 'PA', 'PT', 'PJ', 'RB', 'RM', 'RP', 'SK', 'SP', 'SH', 'SG'],
         categoryCodes: ['BHA', 'CHA', 'GA', 'GHA', 'KA', 'KHA', 'MA', 'PA', 'THA']
     };
+
+
+    useEffect(() => {
+        if (driverData) {
+            setValue("email", driverData.email);
+            setValue("name", driverData.name);
+            setValue("phone", driverData.phone);
+            setValue("role", driverData.role);
+            if (driverData.role === "femalebus") {
+                setValue("servicerole", "Female Bus");
+            } else if (driverData.role === "publicbus") {
+                setValue("servicerole", "Public Bus");
+            }
+        }
+    }, [driverData, setValue]);
 
 
     useEffect(() => {
@@ -32,21 +50,58 @@ const BusVehicleProfile = () => {
 
     }, []);
 
- 
+
     useEffect(() => {
         const route = routes.find(r => r.route_number === Number(selectedRoute));
         if (route) {
             setStops(route.stops);
             setValue('stops', route.stops.join(', '));
-            
+
 
         }
     }, [selectedRoute, setValue]);
 
 
-    const onSubmit =  (data) => {
-        console.log(data)
-       
+    const onSubmit =async (data) => {
+        const registrationNumber = `${data.areaCode}-${data.categoryCode}-${data.number}`;
+
+        const formData = {
+            email: data.email,
+            role: data.role,
+            name: data.name,
+            phone: data.phone,
+            ...data,
+            registrationNumber,
+        };
+        console.log(formData, 'form data');
+        console.log(data);
+
+
+        try {
+            const response = await axios.post('http://localhost:5000/busdata', formData);
+            console.log(response.data);
+            reset();
+            toast.success("Successfully sent data !");
+
+        } catch (error) {
+            console.error('Error sending data to backend:', error);
+        }
+
+        reset({
+          
+            route_number: '',
+            stops: '',
+            firststops: '',
+            laststops: '',
+            seatingcapacity: 40,
+            year: '',
+            licensePlate: '',
+            areaCode: '',
+            categoryCode: '',
+            number: '',
+            chargePerKm: 1.5,
+          });
+
     };
 
     if (loading) return <Loading></Loading>;
@@ -58,7 +113,7 @@ const BusVehicleProfile = () => {
             <h2 className="text-4xl font-bold mb-4 text-center">Bus Profile Form</h2>
             <form
                 className="flex flex-col w-3/4 mx-auto mt-8 bg-white overflow-hidden "
-            onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(onSubmit)}
             >
 
 
@@ -122,7 +177,7 @@ const BusVehicleProfile = () => {
                 <select
                     name="route_number"
                     className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                    {...register("route_number")}
+                    {...register("route_number", { required: true })}
                     onChange={(e) => setSelectedRoute(e.target.value)}
                     defaultValue=""
                 >
@@ -160,7 +215,7 @@ const BusVehicleProfile = () => {
                     name="laststops"
                     className="mb-3 py-2 px-4 border border-gray-300 rounded"
                     {...register("laststops")}
-                    value={stops[stops.length-1]}
+                    value={stops[stops.length - 1]}
                     readOnly
                 />
 
@@ -210,7 +265,7 @@ const BusVehicleProfile = () => {
                         className="mb-3 py-2 px-4 border border-gray-300 rounded"
                         {...register("areaCode", { required: true })}
                     >
-                        <option value="">Select Area Code</option>
+                        <option value="" disabled>Select Area Code</option>
                         {busData.areaCodes.map((code, index) => (
                             <option key={index} value={code}>{code}</option>
                         ))}
@@ -224,7 +279,7 @@ const BusVehicleProfile = () => {
                         className="mb-3 py-2 px-4 border border-gray-300 rounded"
                         {...register("categoryCode", { required: true })}
                     >
-                        <option value="">Select Category Code</option>
+                        <option value="" disabled>Select Category Code</option>
                         {busData.categoryCodes.map((code, index) => (
                             <option key={index} value={code}>{code}</option>
                         ))}
@@ -247,7 +302,7 @@ const BusVehicleProfile = () => {
                         name="chargePerKm"
                         placeholder="Charge Per KM"
                         className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                        {...register("chargePerKm", { required: true })}
+                        {...register("chargePerKm")}
                         value={1.5}
                     />
                 </div>
@@ -262,7 +317,7 @@ const BusVehicleProfile = () => {
                     value="Save"
                 />
             </form>
-            <Link to='/'>   <button className="btn bg-slate-500 flex flex-col w-3/4 mx-auto mb-10 mt-4 bg-white shadow-lg rounded-lg overflow-hidden p-6 font-bold">GO Back </button></Link>
+            <Link to='/'>   <button className="btn bg-slate-800 hover:bg-slate-900 flex flex-col w-3/4 mx-auto mb-10 mt-4 text-white shadow-lg rounded-lg overflow-hidden p-6 font-bold">GO Back </button></Link>
 
         </div>
     );
