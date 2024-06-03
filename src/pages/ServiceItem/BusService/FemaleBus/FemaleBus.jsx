@@ -1,10 +1,10 @@
 import NavDashBoard from "../../../Shared/Navbar/NavDashBoard";
 import SharedSection from "../SharedSection";
-
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Loading from "../../../Shared/Loading/Loading";
 import { FaSearch } from "react-icons/fa";
+
 const FemaleBus = () => {
     const { register, handleSubmit, reset } = useForm();
     const [upazilaData, setUpazilaData] = useState(null);
@@ -64,6 +64,9 @@ const FemaleBus = () => {
                 <section>
 
 
+
+
+
                     <form
                         className="flex flex-col w-3/4 mx-auto mt-8 bg-white p-6 shadow rounded"
                         onSubmit={handleSubmit(onSubmit)}
@@ -87,9 +90,9 @@ const FemaleBus = () => {
                                     name="timeSlot"
                                     required
                                     className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                    {...register("timeSlot")}
+                                    {...register("timeSlot", { required: true })}
                                 >
-                                    <option value="">Select Time Slot</option>
+                                    <option value="" disabled>Select Time Slot</option>
                                     {upazilaData && upazilaData.schedule.map((timeSlot, index) => (
                                         <option key={index} value={timeSlot}>{timeSlot}</option>
                                     ))}
@@ -101,11 +104,11 @@ const FemaleBus = () => {
                                             required
                                             name="fromUpazilaName"
                                             className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                            {...register("fromUpazilaName")}
+                                            {...register("fromUpazilaName", { required: true })}
                                             value={selectedFromUpazila}
                                             onChange={handleFromUpazilaChange}
                                         >
-                                            <option value="">Select an upazila</option>
+                                            <option value="" disabled>Select an upazila</option>
                                             {upazilaData && upazilaData.upazilas.map((upazila, index) => (
                                                 <option key={index} value={upazila.name}>{upazila.name}</option>
                                             ))}
@@ -114,11 +117,11 @@ const FemaleBus = () => {
                                             required
                                             name="fromBusStopStation"
                                             className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                            {...register("fromBusStopStation")}
+                                            {...register("fromBusStopStation", { required: true })}
                                             // value={fromBusStopStation}
                                             defaultValue=""
                                         >
-                                            <option value="">Select Bus Stop</option>
+                                            <option value="" disabled>Select Bus Stop</option>
                                             {fromBusStopStation.map((busStop, index) => (
                                                 <option key={index} value={busStop}>{busStop}</option>
                                             ))}
@@ -137,11 +140,11 @@ const FemaleBus = () => {
                                             required
                                             name="toUpazilaName"
                                             className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                            {...register("toUpazilaName")}
+                                            {...register("toUpazilaName", { required: true })}
                                             value={selectedToUpazila}
                                             onChange={handleToUpazilaChange}
                                         >
-                                            <option value="">Select an upazila</option>
+                                            <option value="" disabled>Select an upazila</option>
                                             {upazilaData && upazilaData.upazilas.map((upazila, index) => (
                                                 <option key={index} value={upazila.name}>{upazila.name}</option>
                                             ))}
@@ -150,10 +153,10 @@ const FemaleBus = () => {
                                             required
                                             name="toBusStopStation"
                                             className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                            {...register("toBusStopStation")}
+                                            {...register("toBusStopStation", { required: true })}
                                             defaultValue=""
                                         >
-                                            <option value="">Select Bus Stop</option>
+                                            <option value="" disabled>Select Bus Stop</option>
                                             {toBusStopStation.map((busStop, index) => (
                                                 <option key={index} value={busStop}>{busStop}</option>
                                             ))}

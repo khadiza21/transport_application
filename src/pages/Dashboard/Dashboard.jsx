@@ -18,7 +18,7 @@ const Dashboard = ({ userRole }) => {
         { title: 'Vehicle Management', link: '/vehicle-management' },
         { title: 'Driver Management', link: '/driver-management' },
         { title: 'User Management', link: '/user-management' },
-        { title: 'See Emergency Notifications', link: '/emergency-notifications' },
+        // { title: 'See Emergency Notifications', link: '/emergency-notifications' },
         { title: 'See Reviews', link: '/allreview' },
     ];
 

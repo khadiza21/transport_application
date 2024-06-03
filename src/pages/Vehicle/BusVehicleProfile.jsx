@@ -14,11 +14,16 @@ const BusVehicleProfile = () => {
     const [routes, setRoutes] = useState([]);
     const [selectedRoute, setSelectedRoute] = useState('');
     const [stops, setStops] = useState([]);
+    const [firstStop, setFirstStop] = useState('');
+    const [lastStop, setLastStop] = useState('');
 
 
     const busData = {
         areaCodes: ['DHA', 'CTG', 'RAJ', 'SYL', 'MY', 'NG', 'NR', 'NA', 'ND', 'NT', 'NK', 'NO', 'PB', 'PA', 'PT', 'PJ', 'RB', 'RM', 'RP', 'SK', 'SP', 'SH', 'SG'],
-        categoryCodes: ['BHA', 'CHA', 'GA', 'GHA', 'KA', 'KHA', 'MA', 'PA', 'THA']
+        categoryCodes: ['BHA', 'CHA', 'GA', 'GHA', 'KA', 'KHA', 'MA', 'PA', 'THA'],
+        schedule: [
+            "08:00 AM"
+        ]
     };
 
 
@@ -55,14 +60,18 @@ const BusVehicleProfile = () => {
         const route = routes.find(r => r.route_number === Number(selectedRoute));
         if (route) {
             setStops(route.stops);
+            setFirstStop(route.stops[0]);
+            setLastStop(route.stops[route.stops.length - 1]);
             setValue('stops', route.stops.join(', '));
+            setValue('firststops', route.stops[0]);
+            setValue('laststops', route.stops[route.stops.length - 1]);
 
 
         }
-    }, [selectedRoute, setValue]);
+    }, [selectedRoute, setValue, routes]);
 
 
-    const onSubmit =async (data) => {
+    const onSubmit = async (data) => {
         const registrationNumber = `${data.areaCode}-${data.categoryCode}-${data.number}`;
 
         const formData = {
@@ -88,8 +97,9 @@ const BusVehicleProfile = () => {
         }
 
         reset({
-          
+
             route_number: '',
+            timeSlot: '',
             stops: '',
             firststops: '',
             laststops: '',
@@ -100,7 +110,11 @@ const BusVehicleProfile = () => {
             categoryCode: '',
             number: '',
             chargePerKm: 1.5,
-          });
+        });
+
+        setStops([]);
+        setFirstStop('');
+        setLastStop('');
 
     };
 
@@ -173,6 +187,18 @@ const BusVehicleProfile = () => {
                     />
                 ) : null}
 
+                <select
+                    name="timeSlot"
+                    required
+                    className="mb-3 py-2 px-4 border border-gray-300 rounded"
+                    {...register("timeSlot", { required: true })}
+                >
+                    <option value="" disabled>Select Time Slot</option>
+                    {busData.schedule.map((timeSlot, index) => (
+                        <option key={index} value={timeSlot}>{timeSlot}</option>
+                    ))}
+                </select>
+
 
                 <select
                     name="route_number"
@@ -206,7 +232,7 @@ const BusVehicleProfile = () => {
                     name="firststops"
                     className="mb-3 py-2 px-4 border border-gray-300 rounded"
                     {...register("firststops")}
-                    value={stops[0]}
+                    value={firstStop}
                     readOnly
                 />
                 {console.log()}
@@ -215,7 +241,7 @@ const BusVehicleProfile = () => {
                     name="laststops"
                     className="mb-3 py-2 px-4 border border-gray-300 rounded"
                     {...register("laststops")}
-                    value={stops[stops.length - 1]}
+                    value={lastStop}
                     readOnly
                 />
 
