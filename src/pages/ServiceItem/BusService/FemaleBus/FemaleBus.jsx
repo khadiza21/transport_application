@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import Loading from "../../../Shared/Loading/Loading";
 import { FaSearch } from "react-icons/fa";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const FemaleBus = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -20,7 +23,7 @@ const FemaleBus = () => {
     const [seatNumber, setSeatNumber] = useState(0);
     const [distance, setDistance] = useState(null);
 
-
+    const [selectedBus, setSelectedBus] = useState(null);
 
     useEffect(() => {
         fetch('upazilaData.json')
@@ -35,7 +38,7 @@ const FemaleBus = () => {
 
     }, []);
 
-
+    // 
     useEffect(() => {
         const date = new Date();
         setCurrentDate(date.toLocaleDateString());
@@ -99,15 +102,54 @@ const FemaleBus = () => {
             });
     };
 
-
-
     const handleSeatNumberChange = (event) => {
-        const value = parseInt(event.target.value);
-        setSeatNumber(value);
+        setSeatNumber(event.target.value);
     };
+
+
     console.log(searchResults, 'pppoiiippppppp');
 
     console.log(fromdata, 'pppppppp');
+
+
+
+
+
+    console.log(selectedBus, 'selectbus')
+
+    const handleConfirm = () => {
+        const bookingData = {
+            bus: selectedBus,
+            date: fromdata[1],
+            rent: isNaN(seatNumber) ? selectedBus?.chargePerKm * distance + 10 : selectedBus?.chargePerKm * distance * seatNumber + 10,
+            availableSeat: isNaN(seatNumber) ? 0 :
+                selectedBus?.seatingcapacity - Number(seatNumber),
+            fromUpazila: fromdata[0]?.fromUpazilaName,
+            fromBusStop: fromdata[0]?.fromBusStopStation,
+            toUpazila: fromdata[0]?.toUpazilaName,
+            toBusStop: fromdata[0]?.toBusStopStation,
+            timeSlot: fromdata[0]?.timeSlot,
+            date: fromdata[1],
+            seatNumber: seatNumber
+        };
+        console.log(bookingData, 'booking data');
+
+        fetch('http://localhost:5000/busSeatBookingData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookingData)
+        })
+            .then(res => res.json())
+            .then(response => {
+                toast.success('Booking Confirmed! Your seat has been successfully booked.');
+               
+                console.log(response);
+
+            })
+
+    }
 
     return (
         <div>
@@ -244,14 +286,14 @@ const FemaleBus = () => {
                                                 <p>To: {fromdata[0]?.toUpazilaName} - {fromdata[0]?.toBusStopStation}</p>
                                                 <p>Time Slot: {bus.timeSlot}</p>
 
-
-
-
-
                                                 <div>
                                                     {/* Open the modal using document.getElementById('ID').showModal() method */}
                                                     <button className="btn text-slate-100 bg-yellow-900" onClick={() => document.getElementById('my_modal_5').showModal()}>View Details</button>
-                                                    <dialog id="my_modal_5" className="modal  sm:modal-middle">
+                                                    <dialog id="my_modal_5"
+                                                        onClick={() => {
+                                                            setSelectedBus(bus)
+                                                        }}
+                                                        className="modal  sm:modal-middle">
                                                         <div className="modal-box">
                                                             <form method="dialog">
                                                                 {/* if there is a button in form, it will close the modal */}
@@ -300,6 +342,7 @@ const FemaleBus = () => {
                                                                 <button
                                                                     className="btn text-slate-100 bg-yellow-800 ml-4"
                                                                     disabled={seatNumber < 1 || seatNumber > 5}
+                                                                    onClick={handleConfirm}
                                                                 >
                                                                     Confirm
                                                                 </button>
