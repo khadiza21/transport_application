@@ -17,7 +17,8 @@ const FemaleBus = () => {
     const [busData, setBusData] = useState([]);
     const [searchResults, setSearchResults] = useState(null);
     const [fromdata, setFromdata] = useState([]);
-
+    const [seatNumber, setSeatNumber] = useState(0);
+    const [distance, setDistance] = useState(null);
 
 
 
@@ -73,10 +74,18 @@ const FemaleBus = () => {
                     const toIndex = stopsArray.indexOf(data.toUpazilaName);
                     const fromstopIndex = stopsArray.indexOf(data.fromBusStopStation);
                     const tostopIndex = stopsArray.indexOf(data.toBusStopStation);
-                    console.log(fromIndex, toIndex, fromstopIndex, tostopIndex)
+
+                    const fromDistanceIndex = fromIndex !== -1 ? fromIndex : fromstopIndex;
+                    const toDistanceIndex = toIndex !== -1 ? toIndex : tostopIndex;
+                    const distance = Math.abs(toDistanceIndex - fromDistanceIndex);
+                    console.log(`Distance: ${distance}`);
+                    console.log(fromIndex, toIndex, fromstopIndex, tostopIndex, distance)
+                    setDistance(distance);
 
                     if ((fromIndex !== -1 || fromstopIndex !== -1) && (toIndex !== -1 || tostopIndex !== -1) && (fromIndex < toIndex || fromstopIndex < tostopIndex)) {
+                        if ((fromIndex || fromstopIndex) && (toIndex || tostopIndex)) {
 
+                        }
 
                         console.log('ppppppppp')
 
@@ -90,6 +99,12 @@ const FemaleBus = () => {
             });
     };
 
+
+
+    const handleSeatNumberChange = (event) => {
+        const value = parseInt(event.target.value);
+        setSeatNumber(value);
+    };
     console.log(searchResults, 'pppoiiippppppp');
 
     console.log(fromdata, 'pppppppp');
@@ -218,21 +233,91 @@ const FemaleBus = () => {
                         {searchResults.length > 0 ? (
                             <div>
                                 <h2 className="font-bold text-lg mb-4">Available Buses:</h2>
-                                <ul>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {searchResults.map((bus, index) => (
-                                        <li key={index} className="mb-2 p-2 border border-gray-300 rounded">
-                                            <p>Bus Number: {bus.registrationNumber}</p>
-                                            
-                                            <p>From: {fromdata[0].fromUpazilaName} - {fromdata[0].fromBusStopStation}</p>
+                                        <div key={index} className="card bg-base-100 shadow-xl">
+                                            <div className="card-body">
+                                                <h3 className="card-title">Bus Number: {bus.registrationNumber}</h3>
+                                                <p>Bus Number: {bus.registrationNumber}</p>
+
+                                                <p>From: {fromdata[0]?.fromUpazilaName} - {fromdata[0]?.fromBusStopStation}</p>
+                                                <p>To: {fromdata[0]?.toUpazilaName} - {fromdata[0]?.toBusStopStation}</p>
+                                                <p>Time Slot: {bus.timeSlot}</p>
 
 
-                                            <p>To: {fromdata[0].toUpazilaName} - {fromdata[0].toBusStopStation}</p>
-                                            
-                                            <p>Time Slot: {bus.timeSlot}</p>
-                                            <p>Available Seat: {bus.seatingcapacity}</p>
-                                        </li>
+
+
+
+                                                <div>
+                                                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                                    <button className="btn text-slate-100 bg-yellow-900" onClick={() => document.getElementById('my_modal_5').showModal()}>View Details</button>
+                                                    <dialog id="my_modal_5" className="modal  sm:modal-middle">
+                                                        <div className="modal-box">
+                                                            <form method="dialog">
+                                                                {/* if there is a button in form, it will close the modal */}
+                                                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                                            </form>
+                                                            <h3 className="font-bold text-lg">Bus Details!</h3>
+                                                            <h4>Date: {fromdata[1]}</h4>
+                                                            <div>
+                                                                <h3 className="card-title">Bus Number: {bus.registrationNumber}</h3>
+                                                                <h4 className="card-title">Bus Number: {bus.name}</h4>
+                                                                <p>Bus Number: {bus.registrationNumber}</p>
+                                                                <p>Contact Number: {bus.phone}</p>
+                                                                <p> Route Number: {bus.route_number} : {bus.stops}</p>
+                                                                <p> Bus : {bus.servicerole} </p>
+                                                                <p> Charge Per Km : {bus.chargePerKm} </p>
+
+
+                                                                <p> Rent For you:{
+                                                                    isNaN(seatNumber) ? bus.chargePerKm * distance + 10 : bus.chargePerKm * distance * seatNumber + 10
+
+                                                                } </p>
+
+
+
+                                                                <p>From: {fromdata[0]?.fromUpazilaName} - {fromdata[0]?.fromBusStopStation}</p>
+                                                                <p>To: {fromdata[0]?.toUpazilaName} - {fromdata[0]?.toBusStopStation}</p>
+                                                                <p>Time Slot: {bus.timeSlot}</p>
+                                                                <p>Available Seat: {
+                                                                    isNaN(seatNumber) ? 0 :
+                                                                        bus?.seatingcapacity - Number(seatNumber)
+                                                                }</p>
+
+                                                            </div>
+
+
+
+                                                            <div className="flex items-center mt-4">
+                                                                <input
+                                                                    type="number"
+                                                                    className="input input-bordered w-full max-w-xs"
+                                                                    value={seatNumber}
+                                                                    onChange={handleSeatNumberChange}
+                                                                    min="1"
+                                                                    max="5"
+                                                                />
+                                                                <button
+                                                                    className="btn text-slate-100 bg-yellow-800 ml-4"
+                                                                    disabled={seatNumber < 1 || seatNumber > 5}
+                                                                >
+                                                                    Confirm
+                                                                </button>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </dialog>
+                                                </div>
+
+
+
+
+                                            </div>
+                                        </div>
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         ) : (
                             <p>No bus available</p>
