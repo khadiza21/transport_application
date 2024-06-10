@@ -25,6 +25,7 @@ const CreateAccount = () => {
         } else {
 
         }
+
         setErrorMessage('');
         console.log(createUser, 'create user')
         createUser(data.email, data.password)
@@ -115,11 +116,11 @@ const CreateAccount = () => {
                                             <span className="label-text font-bold">Join as  </span>
                                         </label>
                                         <div className='input input-bordered' >
-                                            <select type="text" {...register("role", { required: true, maxLength: 20 })} placeholder="" id="dropdown" className="w-full border-0 mt-2 border-none outline-none" required
+                                            <select type="text" {...register("role", { required: true, maxLength: 20 })} placeholder="" id="dropdown =" className=" role w-full border-0 mt-2 border-none outline-none" required
                                                 onChange={handleRoleChange}
                                             ><option value="user">User</option>
                                                 <option value="admin">Admin</option>
-                                                
+
                                             </select>
                                         </div>
 
@@ -133,9 +134,9 @@ const CreateAccount = () => {
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text font-bold"> Name</span>
+                                            <span className="label-text font-bold "> Name</span>
                                         </label>
-                                        <input type="text"  {...register("name", { required: true, maxLength: 20, pattern: /^[A-Za-z\s]+$/i })} placeholder="name" className="input input-bordered" required />
+                                        <input type="text"  {...register("name", { required: true, maxLength: 20, pattern: /^[A-Za-z\s]+$/i })} placeholder="name" className=" name input input-bordered" required />
                                         {errors.name?.type === "required" && (
                                             <span className="text-red-600" role="alert"> Name is required</span>
                                         )}
@@ -154,7 +155,7 @@ const CreateAccount = () => {
                                             <span className="mt-2">(+880) </span>
                                             <input type="tel"
                                                 country={'bd'}
-                                                {...register("phone", { required: true, maxLength: 10, minLength: 10 })} placeholder=" " className="mt-2" required />
+                                                {...register("phone", { required: true, maxLength: 10, minLength: 10 })} placeholder=" " className=" phone mt-2" required />
 
                                         </div>
                                         {errors.phone?.type === "required" && (
@@ -170,10 +171,10 @@ const CreateAccount = () => {
                                             <span className="label-text font-bold">Gender </span>
                                         </label>
                                         <div className="input input-bordered">
-                                            <select type="text" {...register("gender", { required: true, maxLength: 20 })} placeholder="gender" required className="border-0 mt-2 border-none outline-none" >
-                                                <option value="female">female</option>
-                                                <option value="male">male</option>
-                                                <option value="other">other</option>
+                                            <select type="text" {...register("gender", { required: true, maxLength: 20 })} placeholder="gender" required className="gender border-0 mt-2 border-none outline-none" >
+                                                <option value="female">Female</option>
+                                                <option value="male">Male</option>
+                                                <option value="other">Other</option>
                                             </select>
                                         </div>
                                         {errors.gender?.type === "required" && (
@@ -186,7 +187,7 @@ const CreateAccount = () => {
                                         <label className="label">
                                             <span className="label-text font-bold">Email</span>
                                         </label>
-                                        <input type="email" placeholder="email"  {...register("email", { required: true })} className="input input-bordered" required />
+                                        <input type="email" placeholder="email"  {...register("email", { required: true })} className=" email input input-bordered" required />
                                         {errors.email && <span className="text-red-600">Email is required</span>}
 
                                         {errorMessage && <p className="text-red-600">{errorMessage}</p>}
@@ -201,7 +202,7 @@ const CreateAccount = () => {
                                                 type="password"
                                                 {...register("secretPassword", { required: true })}
                                                 placeholder="Secret Password"
-                                                className="input input-bordered"
+                                                className="secretPassword input input-bordered "
                                                 required
                                             />
                                             {errors.secretPassword && (
@@ -221,16 +222,16 @@ const CreateAccount = () => {
                                                 minLength: 6,
                                                 maxLength: 20,
                                                 pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                                            })} className="input input-bordered" required />
+                                            })} className="input input-bordered password" required />
                                             {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
                                             {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
                                             {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
                                             {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
                                         </div>
-                                    )}
 
 
-                                    {role === 'user' && (
+
+                                    )}            {role === 'user' && (
 
                                         <div className="form-control">
                                             <label className="label">
@@ -243,7 +244,7 @@ const CreateAccount = () => {
                                                     required: true,
                                                     validate: value => value === watch('password') || "Passwords do not match"
                                                 })}
-                                                className="input input-bordered"
+                                                className="input input-bordered confirmPassword"
                                                 required
                                             />
                                             {errors.confirmPassword?.type === 'required' && <p className="text-red-600">Confirm Password is required</p>}
@@ -256,10 +257,9 @@ const CreateAccount = () => {
 
 
 
-
                                     <div className="form-control mt-6">
 
-                                        <input value={"Sign Up"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
+                                        <input id="submit" value={"Sign Up"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
                                     </div>
                                 </form>
                                 <div className=" mt-6 w-full">

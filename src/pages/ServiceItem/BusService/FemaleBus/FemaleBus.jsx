@@ -14,6 +14,12 @@ const FemaleBus = () => {
     const [toBusStopStation, setToBusStopStation] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentDate, setCurrentDate] = useState('');
+    const [busData, setBusData] = useState([]);
+    const [searchResults, setSearchResults] = useState(null);
+    const [fromdata, setFromdata] = useState([]);
+
+
+
 
     useEffect(() => {
         fetch('upazilaData.json')
@@ -48,12 +54,45 @@ const FemaleBus = () => {
         setToBusStopStation(selectedUpazilaObj ? selectedUpazilaObj.busStop : []);
     };
 
-
+    // toUpazilaName,toBusStopStation,fromBusStopStation
     const onSubmit = (data) => {
-        console.log(data, currentDate);
+        console.log(data.fromUpazilaName, currentDate);
+        console.log(currentDate);
+        setFromdata([data, currentDate]);
+        fetch('http://localhost:5000/busdata')
+            .then(res => res.json())
+            .then(busData => {
+                setBusData(busData);
+
+                console.log(busData[0]?.firststops)
+                console.log(busData[0])
+                const results = busData.filter(bus => {
+                    const stopsArray = bus.stops.split(', ');
+
+                    const fromIndex = stopsArray.indexOf(data.fromUpazilaName);
+                    const toIndex = stopsArray.indexOf(data.toUpazilaName);
+                    const fromstopIndex = stopsArray.indexOf(data.fromBusStopStation);
+                    const tostopIndex = stopsArray.indexOf(data.toBusStopStation);
+                    console.log(fromIndex, toIndex, fromstopIndex, tostopIndex)
+
+                    if ((fromIndex !== -1 || fromstopIndex !== -1) && (toIndex !== -1 || tostopIndex !== -1) && (fromIndex < toIndex || fromstopIndex < tostopIndex)) {
+
+
+                        console.log('ppppppppp')
+
+                        return bus.timeSlot === data.timeSlot;
+                    }
+                    return false;
+                }
+
+                );
+                setSearchResults(results);
+            });
     };
 
+    console.log(searchResults, 'pppoiiippppppp');
 
+    console.log(fromdata, 'pppppppp');
 
     return (
         <div>
@@ -62,11 +101,6 @@ const FemaleBus = () => {
             <div className="px-44 mx-auto my-14">
 
                 <section>
-
-
-
-
-
                     <form
                         className="flex flex-col w-3/4 mx-auto mt-8 bg-white p-6 shadow rounded"
                         onSubmit={handleSubmit(onSubmit)}
@@ -179,7 +213,32 @@ const FemaleBus = () => {
                     </form>
                 </section>
 
+                {searchResults !== null && (
+                    <section className="mt-8">
+                        {searchResults.length > 0 ? (
+                            <div>
+                                <h2 className="font-bold text-lg mb-4">Available Buses:</h2>
+                                <ul>
+                                    {searchResults.map((bus, index) => (
+                                        <li key={index} className="mb-2 p-2 border border-gray-300 rounded">
+                                            <p>Bus Number: {bus.registrationNumber}</p>
+                                            
+                                            <p>From: {fromdata[0].fromUpazilaName} - {fromdata[0].fromBusStopStation}</p>
 
+
+                                            <p>To: {fromdata[0].toUpazilaName} - {fromdata[0].toBusStopStation}</p>
+                                            
+                                            <p>Time Slot: {bus.timeSlot}</p>
+                                            <p>Available Seat: {bus.seatingcapacity}</p>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ) : (
+                            <p>No bus available</p>
+                        )}
+                    </section>
+                )}
 
                 <SharedSection></SharedSection>
             </div>
