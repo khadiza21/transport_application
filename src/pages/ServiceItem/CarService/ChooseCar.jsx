@@ -135,7 +135,7 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
                                 <div key={item._id}
 
                                     id={item._id}
-                                    className="focus:outline rounded-[30px] focus:border-2 focus:shadow-outline mx-5 my-2"
+                                    className="focus:outline rounded-[30px] focus:border-2 focus:shadow-outline mx-5 my-2 carlistppp"
 
                                     tabIndex={0}
                                     onClick={() => handleClick(item)}
@@ -190,7 +190,7 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
 
 
                         {selectedItem !== null ? <div>
-                            <button className='btn btn-neutral' onClick={handleRequestRide}>Request For Ride</button>
+                            <button className='btn btn-neutral' id='finalReqRide' onClick={handleRequestRide}>Request For Ride</button>
 
 
                         </div> : <div><button className='btn btn-disabled'

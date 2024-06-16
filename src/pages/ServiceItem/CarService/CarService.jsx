@@ -13,11 +13,11 @@ const CarService = () => {
                 <title>City Mover | Car Service</title>
             </Helmet>
             <Cover img={carmax} ></Cover>
-{/* title="Car services" btntext="Earn By Car" */}
+            {/* title="Car services" btntext="Earn By Car" */}
             <CarItems></CarItems>
             <Earn></Earn>
 
-            
+
 
         </div>
     );

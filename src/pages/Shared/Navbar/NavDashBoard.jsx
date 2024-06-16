@@ -29,7 +29,7 @@ const NavDashBoard = () => {
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    {userData?.photo === undefined  ? <img alt="User Avatar" src={userImge} /> : <img alt="User Avatar" src={userData?.photo} />}
+                                    {userData?.photo === undefined  ? <img alt="User Avatar" src={userImge} /> : <img id='profileIcon' alt="User Avatar" src={userData?.photo} />}
                                   
                                 </div>
                             </div>
@@ -65,7 +65,7 @@ const NavDashBoard = () => {
                                         <>
                                             <li>   <Link className=' ' to="/managecardriver">Car Driver Manage</Link></li>
                                             <li>   <Link className=' ' to="/managebusdriver">Bus Driver Manage</Link></li>
-                                            <li>   <Link className=' ' to="/manageuser">User Manage</Link></li>
+                                            <li>   <Link id='userManagement' className=' ' to="/manageuser">User Manage</Link></li>
                                             <li>   <Link className=' ' to="/managecar">Car Manage</Link></li>
                                             <li>   <Link className=' ' to="/managebus">Bus Manage</Link></li>
                                             

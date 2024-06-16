@@ -102,7 +102,7 @@ const Login = () => {
                                         <label className="label">
                                             <span className="label-text font-bold">Email</span>
                                         </label>
-                                        <input type="email" placeholder="email"  {...register("email", { required: true })} className="input input-bordered" required />
+                                        <input type="email" placeholder="email"  {...register("email", { required: true })} className="input email input-bordered" required />
                                         {errors.email && <span className="text-red-600">Email is required</span>}
                                     </div>
 
@@ -115,7 +115,7 @@ const Login = () => {
                                             type="password"
                                             placeholder="password"
                                             {...register("password", { required: true, })}
-                                            className="input input-bordered"
+                                            className=" password input input-bordered"
                                             required
                                         />
                                         {errors.password?.type === 'required' && <p className="text-red-600"> Password is required</p>}
@@ -124,7 +124,7 @@ const Login = () => {
 
 
                                     <div className="form-control mt-6">
-                                        <input value={"Sign In"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
+                                        <input id='loginButton' value={"Sign In"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
                                     </div>
 
                                 </form>

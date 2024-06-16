@@ -197,11 +197,11 @@ const CarPrime = () => {
                                     <span className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={handleCurrentLocationClick}>
                                         {fetchingLocation ? (
                                             <svg className="animate-spin h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <circle  className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V2.5"></path>
                                             </svg>
                                         ) : (
-                                            <svg className="h-6 w-6 text-gray-600 mt-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg id='locationIcon'  className="h-6 w-6 text-gray-600 mt-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path d="M19 8a7 7 0 00-7-7 7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13z" />
                                                 <circle cx="12" cy="8" r="2" />
                                             </svg>
@@ -214,7 +214,7 @@ const CarPrime = () => {
                                     {error && <p className=" text-red-400">{error}</p>}
                                 </div>
                                 <div className="flex justify-center">
-                                    <button type="submit" className="btn btn-neutral w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Request Ride</button>
+                                    <button id='reqRide' type="submit" className="btn btn-neutral w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Request Ride</button>
                                 </div>
                             </form>
                         </section>

@@ -103,7 +103,7 @@ const ManageUser = () => {
             {newUserList.map((user, index) => (
               <li key={user.id}
 
-                className='my-5 p-5'
+                className='userItem my-5 p-5'
               >
                 <div>
                   <div className="stats shadow-xl rounded-xl w-full">
@@ -159,11 +159,11 @@ const ManageUser = () => {
 
                     <div className="stat flex items-center jsutify-between">
                       <div className=''>
-                        <button className="btn btn-sm bg-yellow-900 hover:bg-yellow-600  text-white"
+                        <button className="removeButton btn btn-sm bg-yellow-900 hover:bg-yellow-600  text-white"
                           onClick={() => handleDelete(user?._id)}
                         >Remove User</button><br />
 
-                        {user?.verifiedStatus === undefined || user?.verifiedStatus === "" ? <button className="btn btn-sm hover:bg-slate-600  bg-slate-800 mt-2 text-white"
+                        {user?.verifiedStatus === undefined || user?.verifiedStatus === "" ? <button className="verifyButton btn btn-sm hover:bg-slate-600  bg-slate-800 mt-2 text-white"
                           onClick={() => handleVerify(user?._id)}
                         >Verify User</button> : null}
 

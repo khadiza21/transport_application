@@ -136,7 +136,7 @@ const ReqCarRide = () => {
                         </div>
                     </div>
 
-                    <button className='btn w-full bg-slate-200 mt-5 text-red-600'  onClick={handleCancelRide}>Cancel Ride</button>
+                    <button id='cancelRideButton' className='btn w-full bg-slate-200 mt-5 text-red-600'  onClick={handleCancelRide}>Cancel Ride</button>
 
                 </div>
             </div>

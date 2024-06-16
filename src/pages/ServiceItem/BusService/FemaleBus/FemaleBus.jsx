@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const FemaleBus = () => {
+    
     const { register, handleSubmit, reset } = useForm();
     const [upazilaData, setUpazilaData] = useState(null);
     const [selectedFromUpazila, setSelectedFromUpazila] = useState('');
@@ -22,8 +23,8 @@ const FemaleBus = () => {
     const [fromdata, setFromdata] = useState([]);
     const [seatNumber, setSeatNumber] = useState(0);
     const [distance, setDistance] = useState(null);
-
     const [selectedBus, setSelectedBus] = useState(null);
+
 
     useEffect(() => {
         fetch('upazilaData.json')
@@ -63,7 +64,7 @@ const FemaleBus = () => {
         console.log(data.fromUpazilaName, currentDate);
         console.log(currentDate);
         setFromdata([data, currentDate]);
-        fetch('http://localhost:5000/busdata')
+        fetch('https://transport-server2-1.onrender.com/busdata')
             .then(res => res.json())
             .then(busData => {
                 setBusData(busData);
@@ -134,7 +135,7 @@ const FemaleBus = () => {
         };
         console.log(bookingData, 'booking data');
 
-        fetch('http://localhost:5000/busSeatBookingData', {
+        fetch('https://transport-server2-1.onrender.com/busSeatBookingData', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
