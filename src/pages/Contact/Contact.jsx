@@ -4,19 +4,28 @@ import emailjs from "@emailjs/browser";
 import { Helmet } from 'react-helmet-async';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 
 
 
 const Contact = () => {
 
-
+const [messageError , setMessageError] = useState('');
     const form = useRef();
 
     const sendEmail = (e) => {
         e.preventDefault();
 
+        
+       
+            const message = e.target.message.value.trim();
+            if(!message){
+                setMessageError('Please write something ....');
+            }else{
+                setMessageError('');
+            }
+   
         emailjs.sendForm('service_jwjttgk', 'template_npae9y9', form.current, {
                 publicKey: 'CQ5OKwfRskTWUvM5e',
             })
@@ -71,7 +80,8 @@ const Contact = () => {
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text font-bold">Message</span></label>
-                                <textarea id="message" name="message" className="w-full h-32   py-1 px-3 input input-bordered "></textarea>
+                                <textarea id="message" name="message" className="w-full h-32   py-1 px-3 input input-bordered " required="Write Something"></textarea>
+                                {messageError && (<p className='text-red-500 text-sm mt-2'>{messageError}</p> )}
                             </div>
 
                             <div className="form-control mt-4">
