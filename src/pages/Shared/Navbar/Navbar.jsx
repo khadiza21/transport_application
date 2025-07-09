@@ -6,107 +6,100 @@ import busdriverdata from '../../../hooks/busdriverdata';
 import useCarDriverData from '../../../hooks/useCarDriverData';
 
 const Navbar = () => {
-
     const { user, logOut } = useContext(AuthContext);
     const [userData, loading] = useUsersAuth();
     const [driverData] = busdriverdata();
     const [cardriverData] = useCarDriverData();
 
-    console.log(driverData, 'driverdata');
-    console.log(userData, 'driverdata');
-    console.log(userData?.role, 'user data rolename');
-    console.log(driverData?.role, 'driver rolename');
-    console.log(cardriverData?.role, 'car driver rolename');
-    console.log('user data from navbar', userData);
-
-
     const handleLogOut = () => {
-        logOut()
-            .then(() => { })
-            .catch(error => console.log(error));
-    }
-    const navOptions = <>
+        logOut().catch(error => console.log(error));
+    };
 
-        <li> <Link to="/home"> <span className='text-white'>Home</span></Link></li>
+    const navOptions = (
+        <>
+            <li><Link to="/home" className="text-white">Home</Link></li>
 
-        {(driverData || cardriverData || userData) && (driverData?.role === 'publicbus' || driverData?.role === 'femalebus' || cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver'  || userData?.role === 'admin') ? null :
-            <li>
-                <details>
-                    <summary><span className='text-white'>Services</span></summary>
-                    <ul className="p-2 bg-opacity-50 bg-neutral-950">
-                        <li><Link to="/busService"><span className='text-white'>Bus</span></Link></li>
-                        <li><Link to="/carService"><span className='text-white'>Car</span></Link></li>
+            {(driverData || cardriverData || userData) &&
+                (driverData?.role === 'publicbus' ||
+                    driverData?.role === 'femalebus' ||
+                    cardriverData?.role === 'primecardriver' ||
+                    cardriverData?.role === 'maxcardriver' ||
+                    cardriverData?.role === 'pluscardriver' ||
+                    userData?.role === 'admin') ? null : (
+                <li>
+                    <details>
+                        <summary className='text-white'>Services</summary>
+                        <ul className="p-2 bg-opacity-50 bg-neutral-950">
+                            <li><Link to="/busService" className='text-white'>Bus</Link></li>
+                            <li><Link to="/carService" className='text-white'>Car</Link></li>
+                        </ul>
+                    </details>
+                </li>
+            )}
 
-                    </ul>
-                </details>
-            </li>
-        }
+            {userData && (userData?.role === 'user' || userData?.role === 'admin') ? null : (
+                <li>
+                    <details>
+                        <summary className='text-white'>Earn</summary>
+                        <ul className="p-2 bg-opacity-50 bg-neutral-950">
+                            {(cardriverData?.role === 'primecardriver' ||
+                                cardriverData?.role === 'maxcardriver' ||
+                                cardriverData?.role === 'pluscardriver') ? null : (
+                                <li><Link to="/busdriverdashboard" className='text-white'>Bus</Link></li>
+                            )}
+                            {(driverData?.role === 'publicbus' || driverData?.role === 'femalebus') ? null : (
+                                <li><Link to="/cardriverdashboard" className='text-white'>Car</Link></li>
+                            )}
+                        </ul>
+                    </details>
+                </li>
+            )}
 
+            {userData?.role === 'user' && <li><Link to="/dashboard" className='text-white'>Dashboard</Link></li>}
+            {userData?.role === 'admin' && <li><Link to="/dashboard" className='text-white'>Dashboard</Link></li>}
+            {(driverData?.role === 'publicbus' || driverData?.role === 'femalebus') &&
+                <li><Link to="/busdriverdashboard" className='text-white'>Dashboard</Link></li>}
+            {(cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') &&
+                <li><Link to="/cardriverdashboard" className='text-white'>Dashboard</Link></li>}
 
-        {userData && (userData?.role === 'user' || userData?.role === 'admin') ? null :
-            <li>
-                <details>
-                    <summary><span className='text-white'>Earn</span></summary>
-                    <ul className="p-2 bg-opacity-50 bg-neutral-950">
-                        {(cardriverData) && (cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? null : <li><Link to="/busdriverdashboard"><span className='text-white'>Bus</span></Link></li>}
-                        {(driverData) && (driverData?.role === 'pubilcbus' || driverData?.role === 'femalebus') ? null :
-                            <li><Link to="/cardriverdashboard"><span className='text-white'>Car</span></Link></li>}
-                    </ul>
-                </details>
-            </li>
-        }
-
-
-        {userData && (userData?.role === 'user') ? <li><Link to="/dashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
-        {userData && (userData?.role === 'admin') ? <li><Link to="/dashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
-
-
-        {driverData && (driverData?.role === 'publicbus' || driverData?.role === 'femalebus') ? <li><Link to="/busdriverdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
-        {cardriverData && (cardriverData?.role === 'primecardriver' || cardriverData?.role === 'maxcardriver' || cardriverData?.role === 'pluscardriver') ? <li><Link to="/cardriverdashboard"><span className='text-white'>DashBoard</span></Link></li> : null}
-
-
-
-
-
-        <li><Link to="/about"><span className='text-white'>About</span></Link></li>
-        <li><Link to="/contact"><span className='text-white'>Contact</span></Link></li>
-
-
-    </>
+            <li><Link to="/about" className="text-white">About</Link></li>
+            <li><Link to="/contact" className="text-white">Contact</Link></li>
+        </>
+    );
 
     return (
-        // px-48 is appropriet for large device. for small device not appropriet. need to responsive bg-base-100
-        <div className="navbar fixed z-10 bg-opacity-50  bg-neutral-950 text-white px-40">
-            <div className="navbar-start   mx-auto ">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </div>
-                    <ul tabIndex={0} className=" font-bold menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow text-white rounded-box w-48  bg-slate-900 font-bold px-0">
+        <div className="navbar fixed z-10 bg-opacity-50 bg-neutral-950 text-white w-full px-4 md:px-10 lg:px-20">
+            <div className="flex-1">
+                <div className="dropdown lg:hidden">
+                    <button tabIndex={0} className="btn btn-ghost">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral-900 rounded-box w-52">
                         {navOptions}
                     </ul>
                 </div>
-                <Link to="/" className=" py-2  px-2 text-xl font-bold "> <span className='text-[26px] font-bold '>  <span className='px-0 mx-0 text-yellow-500  font-bold text-[28px]'>City</span >Mover</span></Link>
+                <Link to="/" className="text-xl md:text-2xl lg:text-3xl font-bold">
+                    <span className='text-yellow-500'>City</span>Mover
+                </Link>
             </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 text-white font-bold px-48 ">
+            <div className="hidden lg:flex flex-1 justify-center">
+                <ul className="menu menu-horizontal space-x-2 text-white font-semibold">
                     {navOptions}
                 </ul>
             </div>
-            <div className="navbar-end">
-                {
-                    user ? <>
-
-                        <Link onClick={handleLogOut} className='btn font-bold' to="/">Sign Out</Link></>
-                        : <Link className='btn font-bold' to="/login">Sign Up</Link>
-
-                }
-
+            <div className="flex-none">
+                {user ? (
+                    <Link onClick={handleLogOut} className="btn btn-sm md:btn-md">Sign Out</Link>
+                ) : (
+                    <Link to="/login" className="btn btn-sm md:btn-md">Sign Up</Link>
+                )}
             </div>
         </div>
-
-
     );
 };
 
-export default Navbar;  
+export default Navbar;
