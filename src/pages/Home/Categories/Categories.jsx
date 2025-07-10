@@ -23,7 +23,7 @@ const Categories = () => {
             >
 
             </SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-44  ">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 container px-4 mx-auto my-10  ">
 
                 {loading ? (
                     <Loading></Loading>
