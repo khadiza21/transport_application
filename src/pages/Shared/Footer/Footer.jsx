@@ -73,14 +73,14 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-center md:text-left">
             <p>
-              © {currentYear}{" "}
+              © {currentYear}
               <Link to="https://transport-female-application.web.app/" target="_blank" className="text-yellow-600 font-bold">
                 City Mover
-              </Link>{" "}
+              </Link>
               Transport - All rights reserved by BK Industries Ltd.
             </p>
             <p>
-              Developed By{" "}
+              Developed By
               <Link to="https://transport-female-application.web.app/" target="_blank" className="text-yellow-600 font-bold">
                 BK Team
               </Link>

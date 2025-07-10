@@ -5,8 +5,8 @@ import { Helmet } from 'react-helmet-async';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRef, useState } from 'react';
-
-
+import { MdEmail, MdPhoneAndroid } from "react-icons/md";
+import { FaMagnifyingGlassLocation } from "react-icons/fa6";
 
 
 const Contact = () => {
@@ -62,26 +62,10 @@ const Contact = () => {
                         Stay with CITY Mover
                     </h1>
 
-                    <div className='flex flex-col lg:flex-row lg:flex-row-reverse gap-5'>
-                        <div className='w-full lg:w-1/2'>
-                            <ul>
-                                <li>
-                                    <h5>Address</h5>
-                                    <p>Savar, Dhaka</p>
-                                </li>
-                                <li>
-                                    <h5>Contact</h5>
-                                    <p>+0000 000 000</p>
-                                </li>
-                                <li>
-                                    <h5>Email</h5>
-                                    <p>transport@gmail.com</p>
-                                </li>
-                            </ul>
-                        </div>
+                    <div className='flex flex-col lg:flex-row gap-5'>
 
-                        <div className="card shrink-0 w-full mx-auto shadow bg-base-100 lg:w-1/2">
-                            <form ref={form} onSubmit={sendEmail} className="card-body">
+                        <div className=" shrink-0 w-full mx-auto lg:border-r lg:w-2/3 lg:pr-10">
+                            <form ref={form} onSubmit={sendEmail} >
 
                                 <div className="form-control">
                                     <label className="label">
@@ -152,15 +136,56 @@ const Contact = () => {
                                 </div>
                             </form>
                         </div>
+                        <div className='w-full lg:w-1/3'>
+
+                            <ul className="py-6 h-full space-y-5 lg:space-y-10">
+
+                                <li className="flex  py-8 w-full flex-row-reverse gap-10 text-right rounded-xl ">
+                                    <div className="text-yellow-600 hover:text-gray-500 text-2xl mt-1">
+                                        <FaMagnifyingGlassLocation className='text-5xl' />
+                                    </div>
+                                    <div>
+                                        <h5 className="font-bold text-lg mb-1">Address</h5>
+                                        <p className='text-gray-500'>Savar, Dhaka</p>
+                                    </div>
+                                </li>
+
+                                <li className="flex py-8 w-full flex-row-reverse gap-10 text-right rounded-xl ">
+                                    <div className="text-yellow-600 hover:text-gray-500 text-2xl mt-1">
+                                        <MdPhoneAndroid className='text-5xl' />
+                                    </div>
+                                    <div>
+                                        <h5 className="font-bold text-lg mb-1">Contact</h5>
+                                        <p className='text-gray-500'>+0000 000 000</p>
+                                    </div>
+                                </li>
+
+                                <li className="flex py-8 w-full flex-row-reverse gap-10 text-right rounded-xl ">
+                                    <div className="text-yellow-600 hover:text-gray-500 text-2xl mt-1">
+                                        <MdEmail className='text-5xl' />
+                                    </div>
+                                    <div>
+                                        <h5 className="font-bold text-lg mb-1">Email</h5>
+                                        <p className='text-gray-500'>transport@gmail.com</p>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+
+
                     </div>
                 </div>
-            </div>
 
+
+            </div>
+            <div className="mt-40">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24478.772491137097!2d90.25552137795968!3d23.839573396174313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755eb0044ea1bcb%3A0xd0c28ea1db9bb194!2sSavar%20Dhaka%20Bangladesh!5e1!3m2!1sen!2sbd!4v1752134181313!5m2!1sen!2sbd" height="300" className='border-0 w-full' allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
             <ToastContainer />
         </div>
     );
 };
 
 export default Contact;
-
-
