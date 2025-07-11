@@ -3,7 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Cover from '../../Shared/Cover/Cover';
 import CarItems from './CarItems/CarItems';
-import carmax from "../../../assets/max.jpg";
+import carmax from "../../../assets/car.mp4";
 import Earn from './CarItems/Earn';
 
 const CarService = () => {
@@ -12,8 +12,7 @@ const CarService = () => {
             <Helmet>
                 <title>City Mover | Car Service</title>
             </Helmet>
-            <Cover img={carmax} ></Cover>
-            {/* title="Car services" btntext="Earn By Car" */}
+            <Cover videoBg={carmax} title="Car services" btntext="Earn By Car"></Cover>
             <CarItems></CarItems>
             <Earn></Earn>
 

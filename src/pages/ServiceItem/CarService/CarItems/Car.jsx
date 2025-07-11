@@ -5,7 +5,7 @@ const Car = ({ item }) => {
     const { carType, description, buttonText, img } = item;
     return (
         <div>
-            <div className="card bg-base-100 shadow-xl image-full">
+            <div className="card bg-base-100 shadow image-full h-[250px]">
                 <figure><img src={img} alt="max-car" /></figure>
                 <div className="card-body">
                     <h2 className="card-title uppercase font-bold text-white">CAR {carType}</h2>

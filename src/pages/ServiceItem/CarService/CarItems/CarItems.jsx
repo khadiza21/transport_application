@@ -16,19 +16,17 @@ const CarItems = () => {
             })
     }, [])
     return (
-        <div className="px-44 my-44 ">
+        <div className="container mx-auto px-4 my-44 ">
             <SectionTitle
                 heading="Car Categories"
                 subHeading="Car rides are available for everyone"
-           
-
             > </SectionTitle>
 
-            <div className="grid sm:grid-cols-1 lg:grid-cols-3  md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 mt-16  md:grid-cols-2 gap-20 sm:gap-10">
                 {loading ? (
                     <Loading></Loading>
                 ) : (
-                    cars.map(item => (<Car
+                    cars.map(item => (<Car 
                         key={item._id}
                         item={item}
                     ></Car>)

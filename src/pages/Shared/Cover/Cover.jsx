@@ -1,6 +1,6 @@
 import { Parallax } from "react-parallax";
 
-const Cover = ({ videoBg, title,btntext }) => {
+const Cover = ({ videoBg, title, btntext }) => {
     return (
 
         <Parallax

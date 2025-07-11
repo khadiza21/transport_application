@@ -8,22 +8,49 @@ const BusCatF = () => {
     console.log(userData?.gender, 'gender find')
     return (
         <>
-            <div className="hero py-8 my-24  ">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="pl-14 text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Available Only Female Bus Service</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <div className="container px-4 mx-auto py-8 my-24">
+                <div className="px-4 md:px-8 lg:px-16 py-10 flex flex-col lg:flex-row-reverse items-center gap-10">
 
-                        {userData?.gender === 'female' ? <Link className="font-semibold uppercase border-orange-400" to='/femalebus'>
-                            <button className="btn btn-outline border-0 bg-slate-200  border-b-4 mt-4  "> Take Service </button></Link> :
-                            <button className="btn btn-outline border-0 bg-slate-200  border-b-4 mt-4  " disabled="disabled">Take Service</button>
-                        }
+                    <div className="text-center lg:text-left w-full lg:w-2/3">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug">
+                            Available Only Female Bus Service
+                        </h1>
+                        <p className="py-4 text-sm sm:text-base text-gray-600">
+                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
+                            exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        </p>
 
+                        {userData?.gender === 'female' ? (
+                            <Link
+                                className="inline-block mt-4 font-semibold uppercase border-orange-400"
+                                to="/femalebus"
+                            >
+                                <button className="btn btn-outline border-0 bg-slate-200 border-b-4">
+                                    Take Service
+                                </button>
+                            </Link>
+                        ) : (
+                            <button
+                                className="btn btn-outline border-0 bg-slate-200 border-b-4 mt-4"
+                                disabled
+                            >
+                                Take Service
+                            </button>
+                        )}
                     </div>
-                    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <img src={femalebus} className="max-w-sm rounded-lg shadow-2xl" />
+
+
+                    <div className="w-full lg:w-1/3">
+
+                        <img
+                            src={femalebus}
+                            alt="Female Bus"
+                            className="w-full h-auto rounded-lg shadow object-cover"
+                        />
+
                     </div>
                 </div>
+
             </div>
 
         </>
