@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { CgInternal } from "react-icons/cg";
 
 const BusDriver = () => {
     const axiosPublic = useAxiosPublic();
@@ -36,7 +37,7 @@ const BusDriver = () => {
                                     console.log('user added to the database')
                                     reset();
                                     Swal.fire({
-                                        position: 'top-end',
+                                        position: 'center',
                                         icon: 'success',
                                         title: 'User created successfully.',
                                         showConfirmButton: false,
@@ -74,137 +75,203 @@ const BusDriver = () => {
             <Helmet>
                 <title>City Mover | Sign Up | Bus Driver</title>
             </Helmet>
-            <div className="card-body" >
-                <form onSubmit={handleSubmit(onSubmit)}>
-
-
+            <div className="card-body p-0">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
 
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-bold">Bus Entry for  </span>
+                            <span className="label-text font-bold">Bus Entry for</span>
                         </label>
-                        <div className='input input-bordered' >
-                            <select type="text" {...register("role", { required: true, maxLength: 20 })} placeholder="" id="dropdown" className="w-full border-0 mt-2 border-none outline-none" required >
-                                <option value="femalebus">Only Female Passanger</option>
-                                <option value="publicbus">Public Passanger</option>
-                            </select>
-                        </div>
-
-                        {errors.role?.type === "required" && (
-                            <span className="text-red-600" role="alert">This is required</span>
-                        )}
-                    </div>
-
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text font-bold"> Name</span>
-                        </label>
-                        <input type="text"  {...register("name", { required: true, maxLength: 20, pattern: /^[A-Za-z\s]+$/i })} placeholder="name" className="input input-bordered" required />
-                        {errors.name?.type === "required" && (
-                            <span className="text-red-600" role="alert"> Name is required</span>
-                        )}
-                        {errors.name?.type === 'pattern' && <p className="text-red-600">Name can only contain letters and spaces</p>}
-                    </div>
-
-
-
-
-
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text font-bold">Phone</span>
-                        </label>
-                        <div className="input input-bordered">
-                            <span className="mt-2">(+880) </span>
-                            <input type="tel"
-                                country={'bd'}
-                                {...register("phone", { required: true, maxLength: 10, minLength: 10 })} placeholder=" " className="mt-2" required />
-
-                        </div>
-                        {errors.phone?.type === "required" && (
-                            <span className="text-red-600" role="alert">Phone number is required</span>
-                        )}
-                        {(errors.phone?.type === "maxLength" || errors.phone?.type === "minLength") &&
-                            (<span className="text-red-600" role="alert">Phone number must be 10 digits</span>
-                            )}
-                    </div>
-
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text font-bold">Gender </span>
-                        </label>
-                        <div className="input input-bordered">
-                            <select type="text" {...register("gender", { required: true, maxLength: 20 })} placeholder="gender" required className="border-0 mt-2 border-none outline-none" >
-                                <option value="female">female</option>
-                                <option value="male">male</option>
-                                <option value="other">other</option>
-                            </select>
-                        </div>
-                        {errors.gender?.type === "required" && (
-                            <span className="text-red-600" role="alert">Gender is required</span>
-                        )}
-                    </div>
-
-
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text font-bold">Email</span>
-                        </label>
-                        <input type="email" placeholder="email"  {...register("email", { required: true })} className="input input-bordered" required />
-                        {errors.email && <span className="text-red-600">Email is required</span>}
-
-                        {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-                    </div>
-
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text font-bold">Password</span>
-                        </label>
-                        <input type="password" placeholder="password"  {...register("password", {
-                            required: true,
-                            minLength: 6,
-                            maxLength: 20,
-                            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
-                        })} className="input input-bordered" required />
-                        {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
-                        {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
-                        {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
-                        {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
-                    </div>
-
-
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text font-bold">Confirm Password</span>
-                        </label>
-                        <input
-                            type="password"
-                            placeholder="confirm password"
-                            {...register("confirmPassword", {
-                                required: true,
-                                validate: value => value === watch('password') || "Passwords do not match"
-                            })}
-                            className="input input-bordered"
+                        <select
+                            {...register("role", { required: true, maxLength: 20 })}
+                            className="select select-bordered w-full"
                             required
-                        />
-                        {errors.confirmPassword?.type === 'required' && <p className="text-red-600">Confirm Password is required</p>}
-                        {errors.confirmPassword?.type === 'validate' && <p className="text-red-600">{errors.confirmPassword.message}</p>}
+                        >
+                            <option value="femalebus">Only Female Passenger</option>
+                            <option value="publicbus">Public Passenger</option>
+                        </select>
+                        {errors.role?.type === "required" && (
+                            <span className="text-red-600 text-sm mt-1">This field is required</span>
+                        )}
+                    </div>
+
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-bold">Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                {...register("name", {
+                                    required: true,
+                                    maxLength: 20,
+                                    pattern: /^[A-Za-z\s]+$/i,
+                                })}
+                                placeholder="Your name"
+                                className="input input-bordered"
+                                required
+                            />
+                            {errors.name?.type === "required" && (
+                                <span className="text-red-600 text-sm mt-1">Name is required</span>
+                            )}
+                            {errors.name?.type === "pattern" && (
+                                <span className="text-red-600 text-sm mt-1">Only letters and spaces allowed</span>
+                            )}
+                        </div>
+
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-bold">Email</span>
+                            </label>
+                            <input
+                                type="email"
+                                {...register("email", { required: true })}
+                                placeholder="Your email"
+                                className="input input-bordered"
+                                required
+                            />
+                            {errors.email && (
+                                <span className="text-red-600 text-sm mt-1">Email is required</span>
+                            )}
+                            {errorMessage && (
+                                <p className="text-red-600 text-sm mt-1">{errorMessage}</p>
+                            )}
+                        </div>
+
                     </div>
 
 
+
+                    <div className="flex flex-col md:flex-row gap-4">
+
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-bold">Phone</span>
+                            </label>
+                            <div className="flex items-center input input-bordered gap-2 px-3">
+                                <span>(+880)</span>
+                                <input
+                                    type="tel"
+                                    {...register("phone", {
+                                        required: true,
+                                        maxLength: 10,
+                                        minLength: 10,
+                                    })}
+                                    className="w-full outline-none border-none"
+                                    placeholder="1234567890"
+                                    required
+                                />
+                            </div>
+                            {errors.phone && (
+                                <span className="text-red-600 text-sm mt-1">
+                                    Phone number must be 10 digits
+                                </span>
+                            )}
+                        </div>
+
+
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-bold">Gender</span>
+                            </label>
+                            <select
+                                {...register("gender", { required: true })}
+                                className="select select-bordered w-full"
+                                required
+                            >
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="other">Other</option>
+                            </select>
+                            {errors.gender?.type === "required" && (
+                                <span className="text-red-600 text-sm mt-1">Gender is required</span>
+                            )}
+                        </div>
+                    </div>
+
+
+
+
+                    <div className="flex flex-col md:flex-row gap-4">
+
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-bold">Password</span>
+                            </label>
+                            <input
+                                type="password"
+                                {...register("password", {
+                                    required: true,
+                                    minLength: 6,
+                                    maxLength: 20,
+                                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                                })}
+                                className="input input-bordered"
+                                placeholder="Password"
+                                required
+                            />
+                            {errors.password && (
+                                <p className="text-red-600 text-sm mt-1">
+                                    {errors.password.type === "minLength"
+                                        ? "Password must be at least 6 characters"
+                                        : errors.password.type === "maxLength"
+                                            ? "Password must be less than 20 characters"
+                                            : errors.password.type === "pattern"
+                                                ? "Must include uppercase, lowercase, number & special character"
+                                                : "Password is required"}
+                                </p>
+                            )}
+                        </div>
+
+
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text font-bold">Confirm Password</span>
+                            </label>
+                            <input
+                                type="password"
+                                {...register("confirmPassword", {
+                                    required: true,
+                                    validate: (value) =>
+                                        value === watch("password") || "Passwords do not match",
+                                })}
+                                className="input input-bordered"
+                                placeholder="Confirm password"
+                                required
+                            />
+                            {errors.confirmPassword && (
+                                <p className="text-red-600 text-sm mt-1">
+                                    {errors.confirmPassword.message ||
+                                        "Confirm Password is required"}
+                                </p>
+                            )}
+                        </div>
+                    </div>
 
 
                     <div className="form-control mt-6">
-
-                        <input value={"Sign Up"} type="submit" className="btn bg-yellow-600 hover:bg-yellow-700 text-white" />
+                        <input
+                            type="submit"
+                            value="Sign Up"
+                            className="btn bg-yellow-600 hover:bg-yellow-700 text-white w-full"
+                        />
                     </div>
                 </form>
-                <div className=" mt-6 w-full">
-                    <Link to='/' ><button className=" w-full btn bg-slate-600 hover:bg-slate-700 text-white"> Go Home</button></Link>
 
+                <p className="text-center mt-4 text-sm">
+                    <small className="font-bold">
+                        Already have an account?
+                        <Link className="text-yellow-600 hover:text-yellow-700 ml-1" to="/signupdriver">
+                            Sign In
+                        </Link>
+                    </small>
+                </p>
+
+                <div className=' border mx-auto border-2 shadow px-2 border-dotted py-1'>
+                    <Link to="/" className="flex items-center gap-1 text-center text-sm hover:text-yellow-600 text-black underline w-auto max-w-max">Go Home <CgInternal /></Link>
                 </div>
             </div>
-            <p className='text-center mb-4 pb-4 '><small className='font-bold'>Already have an account <Link className='font-bold text-blue-600' to="/signupdriver">SignIn</Link> </small></p>
+
         </>
     );
 };
