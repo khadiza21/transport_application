@@ -75,164 +75,154 @@ const UserProfile = () => {
 
     return (
         <div>
-            <NavDashBoard></NavDashBoard>
-            <div>
+            <NavDashBoard />
 
-                <section>
-                    <div class="container mx-auto my-5 pb-5">
+            <section className="py-5 px-4">
+                <div className="container mx-auto max-w-screen-lg">
+                    <h3 className="py-3 text-success text-2xl md:text-4xl text-center font-bold mb-6">
+                        Your Profile
+                    </h3>
 
-                        <h3 class="py-3 text-success text-4xl pb-5 text-center font-bold">
-                            Your Profile
-                        </h3>
-                        <>
-
-                            <div class="flex justify-center">
-                                <div class="flex justify-center">
-                                    <img
-                                        className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
-                                        src={profile?.photo}
-                                        alt="admin"
-                                    />
-                                </div>
-                            </div>
-
-
-                            <div class="mt-4 flex justify-center">
-                                <div>
-                                    <div className='flex'> 
-                                        <h1 className="text-2xl font-bold">Name  : {userData?.name} ({userData?.role})</h1>
-                                        <span>
-                                            {userData?.verifiedStatus === 'verified' ? <FaCheckCircle className='text-bold text-blue-600 mt-2 ml-3' /> : <IoIosCheckmarkCircleOutline className='text-bold text-blue-600 mt-2 ml-3' />}
-
-                                        </span>
-                                    </div>
-
-                                    <h2 className="text-xl font-bold">Email  : {userData?.email}</h2>
-                                    <h2 className=" font-bold uppercase">Gender : {profile?.gender}</h2>
-                                    <h2 className="font-bold">Phone  : {profile?.phone}</h2>
-                                    <h3 className=" font-bold"> BirthDate : {profile?.dob}</h3>
-                                    <h3 className="font-bold"> Location : {profile?.location}</h3>
-                                    <h3 className="font-bold"> Upazila : {profile?.upazila}</h3>
-                                    <h3 className=" font-bold">Address  : {profile?.address}</h3>
-                                    <p className=" font-bold">About : {profile?.about}</p>
-
-
-                                    <div className="flex items-center justify-start">
-                                        <a
-                                            href={userData?.facebook}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300 mr-2"
-                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                        >
-                                            <FaFacebook className="w-10 h-10 my-8" />
-                                        </a>
-                                        <Link
-                                            to='/dashboard'
-                                            className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
-                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                        >
-                                            <IoArrowBackCircle className="w-10 h-10 my-8" />
-                                        </Link>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </>
-
-
-                        <form
-                            onSubmit={handleSubmit(onSubmit)}
-                            class="flex flex-col w-3/4 mx-auto mt-8"
-                        >
-                            <input
-                                name="email"
-                                value={userData?.email}
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("email")}
-                            />
-                            <input
-                                value={userData?.name}
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded "
-                                {...register("name")}
-                            />
-
-
-                            <select
-                                name="location"
-                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("location")}
-                            >
-
-                                <option value="Dhaka">Dhaka</option>
-
-                            </select>
-                            <select
-                                name="upazila"
-                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("upazila")}
-                            >
-
-
-                                <option value="Dhanmondi">Dhanmondi</option>
-                                <option value="Gulshan">Gulshan</option>
-                                <option value="Savar">Savar</option>
-
-                            </select>
-                            <input
-                                required
-                                name="phone"
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                placeholder="Phone Number"
-                                {...register("phone")}
-                            />
-                            <input
-                                required
-                                name="facebook"
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                placeholder="Social URL Link"
-                                {...register("facebook")}
-                            />
-
-                            <input
-                                required
-                                type="date"
-                                name="dob"
-                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("dob")}
-                            />
-                            <input
-                                required
-                                // type="file"
-                                name="photo"
-                                // accept="image/*"
-                                placeholder='Photo Link'
-                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("photo")}
-                            />
-                            <textarea
-                                name="address"
-                                placeholder="Address"
-                                className="mb-3 py-3 px-4 border border-gray-300 rounded"
-                                {...register("address")} />
-
-                            <textarea
-                                name="about"
-                                placeholder="About"
-                                className="mb-3 py-6 px-4 border border-gray-300 rounded"
-                                {...register("about")}
-                            />
-                            <input
-                                class="btn btn-success mb-3 py-2 px-4 font-bold"
-                                type="submit"
-                                value="Update Your Profile"
-                            />
-                        </form>
+    
+                    <div className="flex justify-center mb-6">
+                        <img
+                            className="h-36 w-36 md:h-48 md:w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
+                            src={profile?.photo}
+                            alt="admin"
+                        />
                     </div>
-                </section>
-            </div>
 
+        
+                    <div className="flex justify-center">
+                        <div className="text-center md:text-left space-y-2">
+                            <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-2">
+                                <h1 className="text-xl md:text-2xl font-bold">
+                                    Name: {userData?.name} ({userData?.role})
+                                </h1>
+                                <span>
+                                    {userData?.verifiedStatus === 'verified' ? (
+                                        <FaCheckCircle className="text-blue-600 text-xl" />
+                                    ) : (
+                                        <IoIosCheckmarkCircleOutline className="text-blue-600 text-xl" />
+                                    )}
+                                </span>
+                            </div>
+
+                            <h2 className="text-base md:text-xl font-semibold">Email: {userData?.email}</h2>
+                            <h2 className="font-semibold uppercase">Gender: {profile?.gender}</h2>
+                            <h2 className="font-semibold">Phone: {profile?.phone}</h2>
+                            <h3 className="font-semibold">BirthDate: {profile?.dob}</h3>
+                            <h3 className="font-semibold">Location: {profile?.location}</h3>
+                            <h3 className="font-semibold">Upazila: {profile?.upazila}</h3>
+                            <h3 className="font-semibold">Address: {profile?.address}</h3>
+                            <p className="font-semibold">About: {profile?.about}</p>
+
+                            <div className="flex justify-center md:justify-start gap-3 mt-4">
+                                <a
+                                    href={userData?.facebook}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center w-10 h-10 text-blue-500 rounded-full hover:text-blue-600 transition"
+                                    style={{ boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}
+                                >
+                                    <FaFacebook className="w-6 h-6" />
+                                </a>
+                                <Link
+                                    to="/dashboard"
+                                    className="flex items-center justify-center w-10 h-10 text-slate-500 rounded-full hover:text-slate-600 transition"
+                                    style={{ boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}
+                                >
+                                    <IoArrowBackCircle className="w-6 h-6" />
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
+               
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="flex flex-col w-full max-w-screen-md mx-auto mt-10 px-2 md:px-0 space-y-4"
+                    >
+                        <input
+                            name="email"
+                            value={userData?.email}
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("email")}
+                        />
+                        <input
+                            value={userData?.name}
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("name")}
+                        />
+
+                        <select
+                            name="location"
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("location")}
+                        >
+                            <option value="Dhaka">Dhaka</option>
+                        </select>
+
+                        <select
+                            name="upazila"
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("upazila")}
+                        >
+                            <option value="Dhanmondi">Dhanmondi</option>
+                            <option value="Gulshan">Gulshan</option>
+                            <option value="Savar">Savar</option>
+                        </select>
+
+                        <input
+                            required
+                            name="phone"
+                            placeholder="Phone Number"
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("phone")}
+                        />
+                        <input
+                            required
+                            name="facebook"
+                            placeholder="Social URL Link"
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("facebook")}
+                        />
+                        <input
+                            required
+                            type="date"
+                            name="dob"
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("dob")}
+                        />
+                        <input
+                            required
+                            name="photo"
+                            placeholder="Photo URL"
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("photo")}
+                        />
+                        <textarea
+                            name="address"
+                            placeholder="Address"
+                            className="py-2 px-4 border border-gray-300 rounded w-full"
+                            {...register("address")}
+                        />
+                        <textarea
+                            name="about"
+                            placeholder="About"
+                            className="py-3 px-4 border border-gray-300 rounded w-full"
+                            {...register("about")}
+                        />
+                        <input
+                            type="submit"
+                            value="Update Your Profile"
+                            className="btn btn-success py-2 px-4 font-bold"
+                        />
+                    </form>
+                </div>
+            </section>
         </div>
+
     );
 };
 

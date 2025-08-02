@@ -109,8 +109,6 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
                 console.log('Order saved:', data);
                 navigate('/requestedcarride', { state: { orderHistory: [...orderHistory, data] } });
 
-
-
             })
            
 
@@ -119,37 +117,33 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
 
     return (
         <div className=''>
-            {/* {move ? null : */}
+        
             {!move && (
 
                 <div className='w-full '>
-                    <h1 className='text-4xl font-bold   my-2 px-5'>Choose A Ride </h1>
+                    <h1 className='text-xl  lg:text-4xl font-bold my-2 px-5 '>Choose A Ride </h1>
                     <hr />
 
-                    <div className='overflow-y-scroll h-[73vh] '>
+                    <div className='overflow-y-auto max-h-[60vh] lg:max-h-[73vh]'>
                         {loading ? (
                             <Loading></Loading>
                         ) : (
 
                             cardata.map(item =>
                                 <div key={item._id}
-
                                     id={item._id}
-                                    className="focus:outline rounded-[30px] focus:border-2 focus:shadow-outline mx-5 my-2 carlistppp"
-
+                                    className="focus:outline rounded-[20px] border hover:shadow-md mx-2 md:mx-5 my-2 carlistppp"
                                     tabIndex={0}
                                     onClick={() => handleClick(item)}
-
                                 >
 
                                     <div
-                                        className=" h-100 flex justify-between py-6 px-5 " >
+                                        className="h-100 flex justify-between py-6 px-5 " >
                                         <div className='flex justify-start '>
                                             <div className="avatar">
-                                                <div className="w-24 rounded">
+                                                <div className=" w-16 lg:w-24 rounded">
                                                     <div className="avatar">
-                                                        <div className="w-24 rounded">
-
+                                                        <div className="w-16 lg:w-24 rounded">
                                                             {
                                                                 item?.cartype === 'Prime Car' ? (
                                                                     <img src={primecar} alt="Prime Car" />
@@ -159,22 +153,20 @@ const ChooseCar = ({ pickupLocation, destination, distance }) => {
                                                                     <img src={maxcar} alt="Max Car" />
                                                                 )
                                                             }
-
-
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className='flex items-center pl-3 '>
                                                 <div>
-                                                    <h2 className='font-bold text-xl '> {item?.cartype}</h2>
-                                                    <small className='font-bold text-gray-400'>Affodable everyday rides</small>
+                                                    <h2 className='font-bold text-sm lg:text-xl '> {item?.cartype}</h2>
+                                                    <small className='font-bold text-gray-400 text-xs lg:text-sm'>Affodable everyday rides</small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className='flex items-center'>
 
-                                            <h1 className='font-bold text-2xl'> BDT {(item?.chargePerKm * distance).toFixed(3)}</h1>
+                                            <h1 className='font-bold text-sm pl-2 lg:text-2xl'> BDT {(item?.chargePerKm * distance).toFixed(3)}</h1>
                                         </div>
                                     </div>
 

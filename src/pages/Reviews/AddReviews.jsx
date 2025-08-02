@@ -54,89 +54,96 @@ const AddReviews = () => {
         <div>
             <NavDashBoard></NavDashBoard>
             <div>
-               
-                    <div class="container mx-auto my-5 pb-5">
-                        <h3 class="py-3 text-success text-4xl pb-5 text-center font-bold">
-                            Add Review
-                        </h3>
-                        <div class="flex justify-center">
-                            <div class="flex justify-center">
-                                <img
-                                    className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
-                                    src={userData?.photo}
-                                    alt="admin"
-                                />
-                            </div>
-                        </div>
-                        <div class="mt-4 flex justify-center">
-                            <div>
-                                <h1 className="text-2xl font-bold">Name  : {userData?.name} </h1>
-                                <div className="flex items-center justify-start">
-                                    <Link
-                                        to='/dashboard'
-                                        className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
-                                        style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                    >
-                                        <IoArrowBackCircle className="w-10 h-10 my-8" />
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-5 pb-10">
+                    
+                    <h3 className="py-3 text-green-600 text-3xl sm:text-4xl text-center font-bold">
+                        Add Review
+                    </h3>
 
-                        <div class="flex flex-col w-full mx-auto mt-8">
-
-                            <form
-                                onSubmit={handleSubmit(onSubmit)}
-                                class="flex flex-col  mt-8"
-                            >
-
-                                <span style={{ display: 'flex' }} className='mb-5'>
-                                    {[...Array(5)].map((_, index) => {
-                                        const ratingValue = index + 1;
-                                        return (
-                                            <label key={index} style={{ cursor: 'pointer' }}>
-                                                <input
-                                                    type="radio"
-                                                    name="rating"
-                                                    style={{ display: 'none' }}
-                                                    value={ratingValue}
-                                                    onClick={() => handleRatingChange(ratingValue)}
-                                                />
-                                                <FaStar
-                                                    className="star"
-                                                    color={ratingValue <= rating ? '#ffc107' : '#e4e5e9'}
-                                                    size={25}
-                                                    style={{ marginRight: '5px' }}
-                                                />
-                                            </label>
-                                        );
-                                    })}
-                                </span>
-                                <input
-                                    value={userData?.name}
-                                    class="mb-3 py-2 px-4 border border-gray-300 rounded "
-                                    {...register("name")}
-                                />
-                                <textarea
-                                    name="review"
-                                    placeholder="review"
-                                    className="mb-3 py-3 px-4 border border-gray-300 rounded"
-                                    {...register("review")} />
-                                <input
-                                    class="btn btn-success mb-3 py-2 px-4 font-bold"
-                                    type="submit"
-                                    value="Add New Review"
-                                />
-
-                            </form>
-
-
-                            <Link to='/allreview' ><button className="mx-auto w-full btn bg-slate-600 hover:bg-slate-700 text-white mt-6">See Reviews</button></Link>
-                        </div>
-
+                    <div className="flex justify-center">
+                        <img
+                            className="h-32 w-32 sm:h-48 sm:w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2 object-cover"
+                            src={userData?.photo}
+                            alt="admin"
+                        />
                     </div>
 
-               
+                  
+                    <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <h1 className="text-xl sm:text-2xl font-bold text-center">
+                            Name: {userData?.name}
+                        </h1>
+                        <Link
+                            to="/dashboard"
+                            className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
+                            style={{
+                                boxShadow:
+                                    "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                            }}
+                        >
+                            <IoArrowBackCircle className="w-10 h-10" />
+                        </Link>
+                    </div>
+
+                   
+                    <div className="mt-8 w-full max-w-xl mx-auto">
+                        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                          
+                            <div className="flex justify-center mb-3">
+                                {[...Array(5)].map((_, index) => {
+                                    const ratingValue = index + 1;
+                                    return (
+                                        <label key={index} className="cursor-pointer">
+                                            <input
+                                                type="radio"
+                                                name="rating"
+                                                className="hidden"
+                                                value={ratingValue}
+                                                onClick={() => handleRatingChange(ratingValue)}
+                                            />
+                                            <FaStar
+                                                className="star"
+                                                color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
+                                                size={25}
+                                                style={{ marginRight: "5px" }}
+                                            />
+                                        </label>
+                                    );
+                                })}
+                            </div>
+
+                           
+                            <input
+                                value={userData?.name}
+                                className="py-2 px-4 border border-gray-300 rounded w-full"
+                                {...register("name")}
+                            />
+
+                       
+                            <textarea
+                                name="review"
+                                placeholder="Write your review"
+                                className="py-3 px-4 border border-gray-300 rounded w-full"
+                                {...register("review")}
+                            />
+
+                         
+                            <input
+                                className="btn btn-success py-2 px-4 font-bold text-white"
+                                type="submit"
+                                value="Add New Review"
+                            />
+                        </form>
+
+                       
+                        <Link to="/allreview">
+                            <button className="w-full mt-6 btn bg-slate-600 hover:bg-slate-700 text-white">
+                                See Reviews
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+
             </div>
         </div>
     );

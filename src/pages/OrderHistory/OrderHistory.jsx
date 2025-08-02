@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 const OrderHistory = () => {
     const [orderHistoryDatalist, setOrderHistoryDatalist] = useState([]);
     const [filteredOrderHistory, setFilteredOrderHistory] = useState([]);
-  
+
 
 
     const [userData, loading] = useUsersAuth();
@@ -52,23 +52,23 @@ const OrderHistory = () => {
                 fetch(`https://transport-server2-1.onrender.com/orderhistory/${orderId}`, {
                     method: 'DELETE',
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.message === 'Order deleted successfully') {
-                        const updatedList = filteredOrderHistory.filter(order => order._id !== orderId);
-                        setFilteredOrderHistory(updatedList);
-                        toast.success('Order deleted successfully');
-                    } else {
-                        toast.error('Failed to delete order: ' + data.error);
-                    }
-                })
-                
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.message === 'Order deleted successfully') {
+                            const updatedList = filteredOrderHistory.filter(order => order._id !== orderId);
+                            setFilteredOrderHistory(updatedList);
+                            toast.success('Order deleted successfully');
+                        } else {
+                            toast.error('Failed to delete order: ' + data.error);
+                        }
+                    })
+
             }
         });
     };
 
     const handleRebook = (orderId) => {
-        const newStatus = 'Rebooked'; 
+        const newStatus = 'Rebooked';
 
         fetch(`https://transport-server2-1.onrender.com/orderhistory/${orderId}`, {
             method: 'PATCH',
@@ -77,65 +77,66 @@ const OrderHistory = () => {
             },
             body: JSON.stringify({ status: newStatus })
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.message === 'Order status updated successfully') {
-                const updatedList = filteredOrderHistory.map(order => 
-                    order._id === orderId ? { ...order, status: newStatus } : order
-                );
-                setFilteredOrderHistory(updatedList);
-                toast.success('Ride Rebooked successfully');
-            }
-        })
-        
+            .then(res => res.json())
+            .then(data => {
+                if (data.message === 'Order status updated successfully') {
+                    const updatedList = filteredOrderHistory.map(order =>
+                        order._id === orderId ? { ...order, status: newStatus } : order
+                    );
+                    setFilteredOrderHistory(updatedList);
+                    toast.success('Ride Rebooked successfully');
+                }
+            })
+
     };
-    
 
 
-   
+
+
     if (loading) {
         return <Loading></Loading>;
     }
+
     // requestedcarride
-    
+
     return (
         <>
-        <NavDashBoard></NavDashBoard>
-        <div className='px-24'>
-            <h1 className='text-5xl text-center font-bold my-10'>Ride History ({filteredOrderHistory.length})</h1>
+            <NavDashBoard></NavDashBoard>
+            <div className='container mx-auto px-4'>
+                <h1 className='text-3xl md:text-5xl text-center font-bold my-6 md:my-10'>
+                    Ride History ({filteredOrderHistory.length})
+                </h1>
 
-            <section className='grid h-20 card  rounded-box place-items-center'>
-             
-                <ul className=''>
-                    {filteredOrderHistory.map((order,index )=> (
-                        
-                        <li key={order._id}>
-                            <div className="stats shadow m-5 shadow-xl">
+                <section className='grid grid-cols-1 gap-6'>
+                    <ul className='space-y-4'>
+                        {filteredOrderHistory.map((order, index) => (
+                            <li key={order._id}>
+                                <div className="stats shadow-md md:shadow-xl flex flex-col md:flex-row flex-wrap gap-4 md:gap-0 p-4 md:p-6 rounded-lg">
 
-                                <div className="stat">
-                                    <div className="stat-figure text-primary">
-                                    <FaDotCircle className='text-2xl mt-4 ' />
-                    
+                                    {/* Pickup Location */}
+                                    <div className="stat flex-1 min-w-[250px]">
+                                        <div className="stat-figure text-primary">
+                                            <FaDotCircle className='text-2xl mt-4' />
+                                        </div>
+                                        <div className="stat-title">Pickup Location</div>
+                                        <div className="stat-value text-primary text-lg md:text-xl">{order?.pickupLocation}</div>
+                                        <div className="stat-desc">Ride No: #{String(index + 1).padStart(3, '0')}</div>
                                     </div>
-                                    <div className="stat-title">Pickup Location</div>
-                                    <div className="stat-value text-primary text-xl">{order?.pickupLocation}</div>
-                                    <div className="stat-desc">Ride No: #00{index+1}</div>
-                                </div>
 
-                                <div className="stat">
-                                    <div className="stat-figure text-secondary">
-                                    <SiSquare className='text-2xl mt-4 ' />
+                                    {/* Destination */}
+                                    <div className="stat flex-1 min-w-[250px]">
+                                        <div className="stat-figure text-secondary">
+                                            <SiSquare className='text-2xl mt-4' />
+                                        </div>
+                                        <div className="stat-title">Destination Address</div>
+                                        <div className="stat-value text-secondary text-lg md:text-xl">{order?.destination}</div>
                                     </div>
-                                    <div className="stat-title">Destination Address</div>
-                                    <div className="stat-value text-secondary text-xl">{order?.destination}</div>
-                                  
-                                </div>
 
-                                <div className="stat">
-                                    <div className="stat-figure text-secondary">
-                                        <div className='flex display-flex'>
-                                            <div className="avatar online">
-                                                <div className="w-24 rounded-full">
+                                    {/* Car Type and Price */}
+                                    <div className="stat flex-1 min-w-[250px]">
+                                        <div className="stat-figure text-secondary flex flex-col items-center">
+                                            <div className="avatar online mb-1">
+                                                <div className="w-16 md:w-24 rounded-full">
                                                     {
                                                         order?.carType === 'Prime Car' ? (
                                                             <img src={primecar} alt="Prime Car" />
@@ -145,43 +146,42 @@ const OrderHistory = () => {
                                                             <img src={maxcar} alt="Max Car" />
                                                         )
                                                     }
-
                                                 </div>
                                             </div>
+                                            <p className='text-center text-sm'>{order?.carType}</p>
                                         </div>
-                                        <p className='text-center'>{order?.carType}</p>
-
+                                        <div className="stat-value text-lg md:text-xl">{order?.totalPrice} /=</div>
+                                        <div className="stat-title font-bold uppercase">{order?.status}</div>
+                                        <div className="stat-desc text-secondary uppercase font-bold">{order?.paymentStatus}</div>
                                     </div>
 
-                                    <div className="stat-value text-xl">{order?.totalPrice} /=</div>
-                                    <div className="stat-title font-bold uppercase">{order?.status}</div>
-                                    <div className="stat-desc text-secondary uppercase font-bold">{order?.paymentStatus}</div>
-                                </div>
+                                    {/* Actions */}
+                                    <div className="stat flex-1 min-w-[250px]">
+                                        <div className="stat-actions flex flex-col gap-2 mt-2">
+                                            <button
+                                                className="btn btn-sm btn-success w-full"
+                                                onClick={() => handleDelete(order._id)}
+                                            >
+                                                Delete
+                                            </button>
 
-                                <div className="stat">
-
-
-                                    <div className="stat-actions">
-                                        <button className="btn btn-sm btn-success"
-                                        onClick={() => handleDelete(order._id)}
-                                        >Delete</button><br />
-
-                                        {order?.status === 'canceled'   && <button className="btn btn-sm  bg-slate-400 mt-2"
-                                         onClick={() => handleRebook(order._id)}
-                                        >Rebook</button>  }
-
-                                       
+                                            {order?.status === 'canceled' && (
+                                                <button
+                                                    className="btn btn-sm bg-slate-400 w-full"
+                                                    onClick={() => handleRebook(order._id)}
+                                                >
+                                                    Rebook
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            </div>
 
-                            </div>
-
-
-
-                        </li>
-                    ))}
-                </ul></section>
-        </div>
         </>
     );
 };

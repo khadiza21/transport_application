@@ -6,13 +6,6 @@
 
 #### About The Project:
 
--
--
-
--
--
--
-
 #### Technology
 
 - Language: HTML5, CSS3, JS
@@ -37,9 +30,14 @@
 // ]
 
 schedule: [
-            "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM"
-        ]
+"08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM"
+]
+<!--  need to added this info in bus ticket booking page -->
+available bus only: 
+gulshan . gulshan 2/ notun bazar ---> tejgao . mohakhali / bijoy sarani.
 
 
-
-    
+<!-- fix the sign in method  -->
+<!-- show / hide button add on password -->
+<!-- make responsive admin dashboard  -->
+<!-- make responsive driver dashboard   -->

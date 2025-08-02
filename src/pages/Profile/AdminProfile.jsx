@@ -45,7 +45,7 @@ const AdminProfile = () => {
                     localStorage.setItem("profile", JSON.stringify(data));
                     setLoadingg(false);
                 })
-               
+
         }
     }, [userData]);
 
@@ -77,174 +77,146 @@ const AdminProfile = () => {
 
     return (
         <>
-        <NavDashBoard></NavDashBoard>
-            <div>
+            <NavDashBoard></NavDashBoard>
+            <div className="px-4 sm:px-6 lg:px-8">
+                <section className="container mx-auto my-5 pb-5">
+                    <h3 className="py-3 text-success text-4xl text-center font-bold">
+                        Your Profile
+                    </h3>
 
+                    <div className="flex flex-col items-center md:flex-row md:items-start md:gap-10">
+                 
+                        <div className="flex justify-center mb-4 md:mb-0">
+                            <img
+                                className="h-40 w-40 md:h-48 md:w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
+                                src={userData?.photo === undefined ? userImg : profile?.photo}
+                                alt="admin"
+                            />
+                        </div>
 
-                <section>
-                    <div class="container mx-auto my-5 pb-5">
+                      
+                        <div className="text-center md:text-left">
+                            <h1 className="text-2xl font-bold">
+                                Name: {userData?.name} ({userData?.role})
+                            </h1>
+                            <h2 className="text-xl font-bold">Email: {userData?.email}</h2>
+                            <p className="font-bold">Gender: {profile?.gender}</p>
+                            <p className="font-bold">Phone: {profile?.phone}</p>
+                            <p className="font-bold">BirthDate: {profile?.dob}</p>
+                            <p className="font-bold">Location: {profile?.location}</p>
+                            <p className="font-bold">Upazila: {profile?.upazila}</p>
+                            <p className="font-bold">Address: {profile?.address}</p>
+                            <p className="font-bold">About: {profile?.about}</p>
 
-                        <h3 class="py-3 text-success text-4xl pb-5 text-center font-bold">
-                            Your Profile
-                        </h3>
-                        <>
-
-                            <div class="flex justify-center">
-                                <div class="flex justify-center">
-                                    {userData?.photo === undefined ?
-                                        <img
-                                            className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
-                                            src={userImg}
-                                            alt="admin"
-                                        />
-                                        :
-                                        <img
-                                            className="h-48 w-48 rounded-full ring ring-black ring-offset-base-100 ring-offset-2"
-                                            src={profile?.photo}
-                                            alt="admin"
-                                        />
-                                    }
-
-                                </div>
+                          
+                            <div className="flex justify-center md:justify-start mt-4 space-x-4">
+                                <a
+                                    href={userData?.facebook}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 flex items-center justify-center text-blue-500 rounded-full hover:text-blue-600 transition duration-300 shadow-md"
+                                >
+                                    <FaFacebook className="w-6 h-6" />
+                                </a>
+                                <Link
+                                    to="/dashboard"
+                                    className="w-12 h-12 flex items-center justify-center text-slate-500 rounded-full hover:text-slate-600 transition duration-300 shadow-md"
+                                >
+                                    <IoArrowBackCircle className="w-6 h-6" />
+                                </Link>
                             </div>
-
-
-                            <div class="mt-4 flex justify-center">
-                                <div>
-                                    <h1 className="text-2xl font-bold">Name  : {userData?.name} ({userData?.role})</h1>
-                                    <h2 className="text-xl font-bold">Email  : {userData?.email}</h2>
-                                    <h2 className=" font-bold">Gender :{profile?.gender}</h2>
-                                    <h2 className="font-bold">Phone  : {profile?.phone}</h2>
-                                    <h3 className=" font-bold"> BirthDate : {profile?.dob}</h3>
-                                    <h3 className="font-bold"> Location : {profile?.location}</h3>
-                                    <h3 className="font-bold"> Upazila : {profile?.upazila}</h3>
-                                    <h3 className=" font-bold">Address  : {profile?.address}</h3>
-                                    <p className=" font-bold">About : {profile?.about}</p>
-
-
-                                    <div className="flex items-center justify-start">
-                                        <a
-                                            href={userData?.facebook}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center w-12 h-12 text-blue-500 rounded-full hover:text-blue-600 transition-colors duration-300 mr-2"
-                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                        >
-                                            <FaFacebook className="w-10 h-10 my-8" />
-                                        </a>
-                                        <Link
-                                            to='/dashboard'
-                                            className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
-                                            style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                        >
-                                            <IoArrowBackCircle className="w-10 h-10 my-8" />
-                                        </Link>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </>
-
-
-                        <form
-                            onSubmit={handleSubmit(onSubmit)}
-                            class="flex flex-col w-3/4 mx-auto mt-8"
-                        >
-                            <input
-                                name="email"
-                                value={userData?.email}
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400"
-                                {...register("email")}
-                            />
-                            <input
-                                value={userData?.name}
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded text-gray-400 "
-                                {...register("name")}
-                            />
-
-
-                            <select
-                                name="location"
-                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("location")}
-                                defaultValue={userData?.location}
-                            >
-
-                                <option value="Dhaka">Dhaka</option>
-
-                            </select>
-                            <select
-                                name="upazila"
-                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("upazila")}
-                                defaultValue={userData?.upazila}
-                            >
-
-
-                                <option value="Dhanmondi">Dhanmondi</option>
-                                <option value="Gulshan">Gulshan</option>
-                                <option value="Savar">Savar</option>
-
-                            </select>
-                            <input
-                                required
-                                name="phone"
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                placeholder="Phone Number"
-                                {...register("phone")}
-                                defaultValue={userData?.phone}
-                            />
-                            <input
-                                required
-                                name="facebook"
-                                class="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                placeholder="Social URL Link"
-                                {...register("facebook")}
-                                defaultValue={userData?.facebook}
-                            />
-
-                            <input
-                                required
-                                type="date"
-                                name="dob"
-                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("dob")}
-                                defaultValue={userData?.dob}
-                            />
-                            <input
-                                required
-                                // type="file"
-                                name="photo"
-                                // accept="image/*"
-                                placeholder='Photo Link'
-                                className="mb-3 py-2 px-4 border border-gray-300 rounded"
-                                {...register("photo")}
-                                defaultValue={userData?.photo}
-                            />
-                            <textarea
-                                name="address"
-                                placeholder="Address"
-                                className="mb-3 py-3 px-4 border border-gray-300 rounded"
-                                {...register("address")}
-                                defaultValue={userData?.address} />
-
-
-                            <textarea
-                                name="about"
-                                placeholder="About"
-                                className="mb-3 py-6 px-4 border border-gray-300 rounded"
-                                {...register("about")}
-                                defaultValue={userData?.about}
-                            />
-                            <input
-                                class="btn btn-success mb-3 py-2 px-4 font-bold"
-                                type="submit"
-                                value="Update Your Profile"
-                            />
-                        </form>
+                        </div>
                     </div>
+
+                
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="w-full max-w-2xl mx-auto mt-8 space-y-4"
+                    >
+                        <input
+                            name="email"
+                            value={userData?.email}
+                            className="w-full py-2 px-4 border border-gray-300 rounded text-gray-400"
+                            {...register("email")}
+                        />
+                        <input
+                            value={userData?.name}
+                            className="w-full py-2 px-4 border border-gray-300 rounded text-gray-400"
+                            {...register("name")}
+                        />
+                        <select
+                            name="location"
+                            className="w-full py-2 px-4 border border-gray-300 rounded"
+                            {...register("location")}
+                            defaultValue={userData?.location}
+                        >
+                            <option value="Dhaka">Dhaka</option>
+                        </select>
+                        <select
+                            name="upazila"
+                            className="w-full py-2 px-4 border border-gray-300 rounded"
+                            {...register("upazila")}
+                            defaultValue={userData?.upazila}
+                        >
+                            <option value="Dhanmondi">Dhanmondi</option>
+                            <option value="Gulshan">Gulshan</option>
+                            <option value="Savar">Savar</option>
+                        </select>
+                        <input
+                            required
+                            name="phone"
+                            placeholder="Phone Number"
+                            className="w-full py-2 px-4 border border-gray-300 rounded"
+                            {...register("phone")}
+                            defaultValue={userData?.phone}
+                        />
+                        <input
+                            required
+                            name="facebook"
+                            placeholder="Social URL Link"
+                            className="w-full py-2 px-4 border border-gray-300 rounded"
+                            {...register("facebook")}
+                            defaultValue={userData?.facebook}
+                        />
+                        <input
+                            required
+                            type="date"
+                            name="dob"
+                            className="w-full py-2 px-4 border border-gray-300 rounded"
+                            {...register("dob")}
+                            defaultValue={userData?.dob}
+                        />
+                        <input
+                            required
+                            name="photo"
+                            placeholder="Photo Link"
+                            className="w-full py-2 px-4 border border-gray-300 rounded"
+                            {...register("photo")}
+                            defaultValue={userData?.photo}
+                        />
+                        <textarea
+                            name="address"
+                            placeholder="Address"
+                            className="w-full py-3 px-4 border border-gray-300 rounded"
+                            {...register("address")}
+                            defaultValue={userData?.address}
+                        />
+                        <textarea
+                            name="about"
+                            placeholder="About"
+                            className="w-full py-4 px-4 border border-gray-300 rounded"
+                            {...register("about")}
+                            defaultValue={userData?.about}
+                        />
+                        <input
+                            type="submit"
+                            value="Update Your Profile"
+                            className="btn btn-success w-full py-2 font-bold"
+                        />
+                    </form>
                 </section>
             </div>
+
 
         </>
     );

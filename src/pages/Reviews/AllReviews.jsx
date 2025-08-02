@@ -13,11 +13,11 @@ import NavDashBoard from '../Shared/Navbar/NavDashBoard';
 
 
 const AllReviews = () => {
- 
+
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    
+
     const reviewsPerPage = 4;
     useEffect(() => {
         fetch('https://transport-server2-1.onrender.com/review')
@@ -40,72 +40,65 @@ const AllReviews = () => {
 
     return (
         <div>
-            <NavDashBoard></NavDashBoard>
-            <section className='py-10'>
+            <NavDashBoard />
+
+            <section className="py-10 px-4 sm:px-8 md:px-16">
                 <SectionTitle
-                    heading=" All Reviews"
+                    heading="All Reviews"
                     subHeading={`Total Review ${reviews.length}`}
-
-                > </SectionTitle>
-
+                />
 
                 {loading ? (
-                    <Loading></Loading>
+                    <Loading />
                 ) : (
-
-
-                    <div className='px-44 grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-2'>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {currentReviews.map((item, index) => (
-                            <div key={index} className=' mb-4 flex flex-col items-center  shadow-xl p-10'>
-                                <Rating
-                                    style={{ maxWidth: 180 }}
-                                    value={item.star}
-                                    readOnly
+                            <div
+                                key={index}
+                                className="mb-4 flex flex-col items-center shadow-xl p-6 rounded-xl bg-white"
+                            >
+                                <Rating style={{ maxWidth: 180 }} value={item.star} readOnly />
+                                <img
+                                    src={item.img}
+                                    alt="Reviewer"
+                                    className="rounded-full w-12 h-12 mt-4"
                                 />
-                                <img src={item.img} alt="Reviewer" className="rounded-full w-12 h-12 mt-4 " />
-                                <p className='py-8'>{item.review}</p>
-                                <h3 className='text-2xl text-orange-400'>{item.name}</h3>
+                                <p className="py-6 text-center text-gray-700">{item.review}</p>
+                                <h3 className="text-xl sm:text-2xl text-orange-400 font-semibold">
+                                    {item.name}
+                                </h3>
                             </div>
                         ))}
-                    </div>)}
+                    </div>
+                )}
 
-                <div className="flex justify-center mt-8">
+              
+                <div className="flex justify-center mt-8 flex-wrap gap-2">
                     {[...Array(Math.ceil(reviews.length / reviewsPerPage))].map((_, index) => (
                         <button
                             key={index}
-                            className={`mx-1 px-4 py-2 rounded focus:outline-none ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 hover:bg-gray-400'
+                            className={`px-4 py-2 rounded focus:outline-none transition-colors duration-200 ${currentPage === index + 1
+                                    ? "bg-blue-500 text-white"
+                                    : "bg-gray-300 hover:bg-gray-400 text-gray-800"
                                 }`}
                             onClick={() => paginate(index + 1)}
                         >
                             {index + 1}
                         </button>
                     ))}
-
                 </div>
 
-                <div class="mt-4 flex justify-center">
-                    <div>
-                        <div className="flex items-center justify-start">
-                          
-
-
-                                <Link
-                                    to='/dashboard'
-                                    className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300"
-                                    style={{ boxShadow: "0 4px 6px -1px rgba(1, 1, 1, 1), 2px 2px 4px -1px rgba(0, 0, 0, 0.06)" }}
-                                >
-                                    <IoArrowBackCircle className="w-10 h-10 my-8" />
-
-                                </Link>
-                           
-
-                        </div>
-                    </div>
+                <div className="mt-8 flex justify-center">
+                    <Link
+                        to="/dashboard"
+                        className="flex items-center justify-center w-12 h-12 text-slate-500 rounded-full hover:text-slate-600 transition-colors duration-300 shadow-lg"
+                    >
+                        <IoArrowBackCircle className="w-10 h-10" />
+                    </Link>
                 </div>
-
-
             </section>
         </div>
+
     );
 };
 

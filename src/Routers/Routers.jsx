@@ -83,7 +83,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'publicbus',
-        element: <PrivateRoute> <PublicBus></PublicBus> </PrivateRoute>
+        element: <PrivateRoute> <FemaleBus></FemaleBus></PrivateRoute>
       },
 
       {
